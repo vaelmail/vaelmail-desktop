@@ -6,9 +6,55 @@ a tray icon, an encrypted offline cache and `mailto:` links that open straight i
 
 ![Mail in VaelMail Desktop](docs/screenshots/mail.webp)
 
+## Install
+
+The quickest way is one line in a terminal. It picks the right build for your system, installs it
+and keeps your settings when you run it again to update or repair.
+
+**Linux and macOS**
+
+```bash
+curl -fsSL https://vaelmail.com/desktop/install.sh | bash
+```
+
+**Windows** (PowerShell)
+
+```powershell
+irm https://vaelmail.com/desktop/install.ps1 | iex
+```
+
+On Linux the installer asks whether you want the AppImage in your home folder (no sudo, updates
+itself) or a `.deb` or `.rpm` through apt, dnf or zypper. On distributions without those it uses
+the AppImage. It adds VaelMail to your app menu and can start it when you sign in and make it your
+mail app. On macOS it installs `VaelMail.app` into Applications, and on Windows it downloads the
+installer for your PC and opens it.
+
+Running it again on a system that already has VaelMail offers to update, reinstall or remove it.
+Options go after `bash -s --` on Linux and macOS:
+
+| Option        | What it does                                                        |
+| ------------- | ------------------------------------------------------------------- |
+| `--yes`       | Install with the defaults, without asking                           |
+| `--appimage`  | Linux: use the AppImage                                             |
+| `--package`   | Linux: use the `.deb` or `.rpm`                                     |
+| `--uninstall` | Remove VaelMail                                                     |
+| `--purge`     | With `--uninstall`, also remove settings, offline cache and sign-in |
+| `--no-launch` | Don't open VaelMail when it's done                                  |
+
+```bash
+curl -fsSL https://vaelmail.com/desktop/install.sh | bash -s -- --uninstall
+```
+
+On Windows, use `-Quiet` to install without the setup window or `-Uninstall` to remove it:
+
+```powershell
+& ([scriptblock]::Create((irm https://vaelmail.com/desktop/install.ps1))) -Quiet
+```
+
 ## Download
 
-Grab the latest build from the [releases page](https://github.com/vaelmail/vaelmail-desktop/releases/latest).
+Prefer to do it by hand? Grab the latest build from the
+[releases page](https://github.com/vaelmail/vaelmail-desktop/releases/latest).
 
 | Platform                         | Installer                                                                                                                                                                                                                                                                                                                         | Portable                                                                                                                           |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -123,7 +169,12 @@ Networking, storage and everything native are in Rust.
 | `crates/vael-store`  | Keychain, encrypted cache, settings                               |
 | `src-tauri`          | The app itself: commands, tray, notifications, updater, protocols |
 | `src-tauri/windows`  | The Windows installer script and artwork                          |
+| `install.sh`         | The one-line installer for Linux and macOS                        |
+| `install.ps1`        | The one-line installer for Windows                                |
 | `docs`               | [Architecture notes](docs/architecture.md)                        |
+
+`vaelmail.com/desktop/install.sh` and `/install.ps1` redirect to the two installer scripts on
+`main` here, so a change to them is live as soon as it's merged.
 
 Releases are built by GitHub Actions when a `vX.Y.Z` tag is pushed. The workflow builds the
 installers and portable archives for every platform, signs the update files with the project's
