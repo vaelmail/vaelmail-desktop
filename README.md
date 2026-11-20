@@ -126,6 +126,14 @@ Releases are built by GitHub Actions when a `vX.Y.Z` tag is pushed. The workflow
 installers and portable archives for every platform, signs the update files with the project's
 updater key and publishes the release.
 
+## License
+
+VaelMail Desktop is source-available under the
+[PolyForm Strict License 1.0.0](LICENSE). You can read the code and use it for personal and
+noncommercial purposes. You can't copy it, redistribute it, change it or use it commercially
+without written permission. Third-party components keep their own licenses, listed in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Credits
 
 The Vael98 look builds on [98.css](https://github.com/jdan/98.css),
