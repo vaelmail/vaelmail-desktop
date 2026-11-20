@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-frame-release"
+description = "Enables the frame_release command without any pre-configured scope."
+commands.allow = ["frame_release"]
+
+[[permission]]
+identifier = "deny-frame-release"
+description = "Denies the frame_release command without any pre-configured scope."
+commands.deny = ["frame_release"]

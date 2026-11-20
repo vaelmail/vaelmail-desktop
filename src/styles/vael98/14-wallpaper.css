@@ -1,0 +1,58 @@
+body.vael98 .v98-desktop-area {
+  background: #09140f;
+}
+body.vael98 .v98-desktop-area::before {
+  display: none;
+}
+body.vael98 .v98-desktop-area .v98-wallpaper {
+  display: block;
+  overflow: hidden;
+  opacity: 1;
+  contain: strict;
+}
+.v98-wallpaper-scene {
+  position: absolute;
+  inset: 0;
+  background: url(/wallpapers/vael-night-garden-v1.webp) center/cover no-repeat;
+}
+.v98-wallpaper-stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: #d8e7b1;
+  shape-rendering: crispEdges;
+}
+.v98-wallpaper-stars path {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+body.vael98 .vael98[data-v98-theme="light"] .v98-desktop-area,
+.vael98[data-v98-theme="light"] .v98-desktop-area {
+  background: #ececec;
+}
+.vael98[data-v98-theme="light"] .v98-wallpaper {
+  display: none;
+}
+@media (max-width: 767px) {
+  .v98-wallpaper-scene {
+    background-image: url(/wallpapers/vael-night-garden-mobile-v1.webp);
+    background-position: 62%center;
+  }
+  .v98-wallpaper-stars {
+    display: none;
+  }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .v98-wallpaper-stars {
+    display: none;
+  }
+}
+@media (forced-colors: active) {
+  body.vael98 .v98-desktop-area {
+    background: Canvas;
+  }
+  body.vael98 .v98-wallpaper {
+    display: none;
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-mailto-take"
+description = "Enables the mailto_take command without any pre-configured scope."
+commands.allow = ["mailto_take"]
+
+[[permission]]
+identifier = "deny-mailto-take"
+description = "Denies the mailto_take command without any pre-configured scope."
+commands.deny = ["mailto_take"]

@@ -1,0 +1,265 @@
+:root {
+  --vael-cursor-default: default;
+  --vael-cursor-pointer: pointer;
+  --vael-cursor-text: text;
+  --vael-cursor-vertical-text: vertical-text;
+  --vael-cursor-crosshair: crosshair;
+  --vael-cursor-ew-resize: ew-resize;
+  --vael-cursor-ns-resize: ns-resize;
+  --vael-cursor-nwse-resize: nwse-resize;
+  --vael-cursor-nesw-resize: nesw-resize;
+  --vael-cursor-col-resize: col-resize;
+  --vael-cursor-row-resize: row-resize;
+  --vael-cursor-move: move;
+  --vael-cursor-grab: grab;
+  --vael-cursor-grabbing: grabbing;
+  --vael-cursor-wait: wait;
+  --vael-cursor-progress: progress;
+  --vael-cursor-not-allowed: not-allowed;
+  --vael-cursor-help: help;
+  --vael-cursor-zoom-in: zoom-in;
+  --vael-cursor-zoom-out: zoom-out;
+  --vael-cursor-copy: copy;
+  --vael-cursor-alias: alias;
+  --vael-cursor-context-menu: context-menu;
+  --vael-cursor-cell: cell;
+  --vael-cursor-auto: auto;
+  --vael-cursor-no-drop: no-drop;
+  --vael-cursor-all-scroll: all-scroll;
+  --vael-cursor-n-resize: n-resize;
+  --vael-cursor-s-resize: s-resize;
+  --vael-cursor-e-resize: e-resize;
+  --vael-cursor-w-resize: w-resize;
+  --vael-cursor-ne-resize: ne-resize;
+  --vael-cursor-nw-resize: nw-resize;
+  --vael-cursor-se-resize: se-resize;
+  --vael-cursor-sw-resize: sw-resize;
+}
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  :root {
+    --vael-cursor-default: url("/cursors/vael-arrow.svg?v=2") 3 2, default;
+    --vael-cursor-pointer: url("/cursors/vael-pointer.svg?v=2") 9 3, pointer;
+    --vael-cursor-text: url("/cursors/vael-text.svg?v=2") 10 10, text;
+    --vael-cursor-vertical-text: url("/cursors/vael-vertical-text.svg?v=2") 10 10, vertical-text;
+    --vael-cursor-crosshair: url("/cursors/vael-crosshair.svg?v=2") 10 10, crosshair;
+    --vael-cursor-ew-resize: url("/cursors/vael-ew-resize.svg?v=2") 10 10, ew-resize;
+    --vael-cursor-ns-resize: url("/cursors/vael-ns-resize.svg?v=2") 10 10, ns-resize;
+    --vael-cursor-nwse-resize: url("/cursors/vael-nwse-resize.svg?v=2") 10 10, nwse-resize;
+    --vael-cursor-nesw-resize: url("/cursors/vael-nesw-resize.svg?v=2") 10 10, nesw-resize;
+    --vael-cursor-col-resize: url("/cursors/vael-col-resize.svg?v=2") 10 10, col-resize;
+    --vael-cursor-row-resize: url("/cursors/vael-row-resize.svg?v=2") 10 10, row-resize;
+    --vael-cursor-move: url("/cursors/vael-move.svg?v=2") 10 10, move;
+    --vael-cursor-grab: url("/cursors/vael-grab.svg?v=2") 10 10, grab;
+    --vael-cursor-grabbing: url("/cursors/vael-grabbing.svg?v=2") 10 10, grabbing;
+    --vael-cursor-wait: url("/cursors/vael-wait.svg?v=2") 10 10, wait;
+    --vael-cursor-progress: url("/cursors/vael-progress.svg?v=2") 3 2, progress;
+    --vael-cursor-not-allowed: url("/cursors/vael-not-allowed.svg?v=2") 10 10, not-allowed;
+    --vael-cursor-help: url("/cursors/vael-help.svg?v=2") 3 2, help;
+    --vael-cursor-zoom-in: url("/cursors/vael-zoom-in.svg?v=2") 10 10, zoom-in;
+    --vael-cursor-zoom-out: url("/cursors/vael-zoom-out.svg?v=2") 10 10, zoom-out;
+    --vael-cursor-copy: url("/cursors/vael-copy.svg?v=2") 3 2, copy;
+    --vael-cursor-alias: url("/cursors/vael-alias.svg?v=2") 3 2, alias;
+    --vael-cursor-context-menu: url("/cursors/vael-context-menu.svg?v=2") 3 2, context-menu;
+    --vael-cursor-cell: url("/cursors/vael-cell.svg?v=2") 10 10, cell;
+    --vael-cursor-auto: url("/cursors/vael-arrow.svg?v=2") 3 2, auto;
+    --vael-cursor-no-drop: url("/cursors/vael-not-allowed.svg?v=2") 10 10, no-drop;
+    --vael-cursor-all-scroll: url("/cursors/vael-move.svg?v=2") 10 10, all-scroll;
+    --vael-cursor-n-resize: url("/cursors/vael-ns-resize.svg?v=2") 10 10, n-resize;
+    --vael-cursor-s-resize: url("/cursors/vael-ns-resize.svg?v=2") 10 10, s-resize;
+    --vael-cursor-e-resize: url("/cursors/vael-ew-resize.svg?v=2") 10 10, e-resize;
+    --vael-cursor-w-resize: url("/cursors/vael-ew-resize.svg?v=2") 10 10, w-resize;
+    --vael-cursor-ne-resize: url("/cursors/vael-nesw-resize.svg?v=2") 10 10, ne-resize;
+    --vael-cursor-nw-resize: url("/cursors/vael-nwse-resize.svg?v=2") 10 10, nw-resize;
+    --vael-cursor-se-resize: url("/cursors/vael-nwse-resize.svg?v=2") 10 10, se-resize;
+    --vael-cursor-sw-resize: url("/cursors/vael-nesw-resize.svg?v=2") 10 10, sw-resize;
+  }
+}
+body {
+  cursor: var(--vael-cursor-default);
+}
+body
+  :is(
+    input:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="button"]):not(
+        [type="submit"]
+      ):not([type="reset"]),
+    textarea,
+    [contenteditable="true"]
+  ) {
+  cursor: var(--vael-cursor-text);
+}
+body.vael98 :is(p, h1, h2, h3, h4, h5, h6, span, label, li, dt, dd, blockquote, pre, code, td, th) {
+  cursor: var(--vael-cursor-text);
+}
+body
+  :is(
+    a[href],
+    button,
+    [role="button"],
+    [role="menuitem"],
+    [role="tab"],
+    summary,
+    select,
+    label:has(input:is([type="radio"], [type="checkbox"]))
+  ) {
+  cursor: var(--vael-cursor-pointer);
+}
+body.vael98 .title-bar :is(h2, span, svg) {
+  cursor: inherit;
+}
+body
+  :is(
+    button:disabled,
+    input:disabled,
+    textarea:disabled,
+    select:disabled,
+    [aria-disabled="true"],
+    [data-disabled]
+  ) {
+  cursor: var(--vael-cursor-not-allowed);
+}
+body [aria-busy="true"]:not(.v98-desktop-window) {
+  cursor: var(--vael-cursor-progress);
+}
+body.vael98 .v98-desktop-shortcuts button[data-dragging] {
+  cursor: var(--vael-cursor-grabbing);
+}
+body.vael98 .v98-snake-board {
+  cursor: var(--vael-cursor-crosshair);
+}
+html[data-vael-gesture] * {
+  user-select: none !important;
+}
+html[data-vael-gesture="move"] * {
+  cursor: var(--vael-cursor-grabbing) !important;
+}
+html:is([data-vael-gesture="n"], [data-vael-gesture="s"]) * {
+  cursor: var(--vael-cursor-ns-resize) !important;
+}
+html:is([data-vael-gesture="e"], [data-vael-gesture="w"]) * {
+  cursor: var(--vael-cursor-ew-resize) !important;
+}
+html:is([data-vael-gesture="nw"], [data-vael-gesture="se"]) * {
+  cursor: var(--vael-cursor-nwse-resize) !important;
+}
+html:is([data-vael-gesture="ne"], [data-vael-gesture="sw"]) * {
+  cursor: var(--vael-cursor-nesw-resize) !important;
+}
+body [data-cursor="default"] {
+  cursor: var(--vael-cursor-default);
+}
+body [data-cursor="pointer"] {
+  cursor: var(--vael-cursor-pointer);
+}
+body [data-cursor="text"] {
+  cursor: var(--vael-cursor-text);
+}
+body [data-cursor="vertical-text"] {
+  cursor: var(--vael-cursor-vertical-text);
+}
+body [data-cursor="crosshair"] {
+  cursor: var(--vael-cursor-crosshair);
+}
+body [data-cursor="ew-resize"] {
+  cursor: var(--vael-cursor-ew-resize);
+}
+body [data-cursor="ns-resize"] {
+  cursor: var(--vael-cursor-ns-resize);
+}
+body [data-cursor="nwse-resize"] {
+  cursor: var(--vael-cursor-nwse-resize);
+}
+body [data-cursor="nesw-resize"] {
+  cursor: var(--vael-cursor-nesw-resize);
+}
+body [data-cursor="col-resize"] {
+  cursor: var(--vael-cursor-col-resize);
+}
+body [data-cursor="row-resize"] {
+  cursor: var(--vael-cursor-row-resize);
+}
+body [data-cursor="move"] {
+  cursor: var(--vael-cursor-move);
+}
+body [data-cursor="grab"] {
+  cursor: var(--vael-cursor-grab);
+}
+body [data-cursor="grabbing"] {
+  cursor: var(--vael-cursor-grabbing);
+}
+body [data-cursor="wait"] {
+  cursor: var(--vael-cursor-wait);
+}
+body [data-cursor="progress"] {
+  cursor: var(--vael-cursor-progress);
+}
+body [data-cursor="not-allowed"] {
+  cursor: var(--vael-cursor-not-allowed);
+}
+body [data-cursor="help"] {
+  cursor: var(--vael-cursor-help);
+}
+body [data-cursor="zoom-in"] {
+  cursor: var(--vael-cursor-zoom-in);
+}
+body [data-cursor="zoom-out"] {
+  cursor: var(--vael-cursor-zoom-out);
+}
+body [data-cursor="copy"] {
+  cursor: var(--vael-cursor-copy);
+}
+body [data-cursor="alias"] {
+  cursor: var(--vael-cursor-alias);
+}
+body [data-cursor="context-menu"] {
+  cursor: var(--vael-cursor-context-menu);
+}
+body [data-cursor="cell"] {
+  cursor: var(--vael-cursor-cell);
+}
+body [data-cursor="auto"] {
+  cursor: var(--vael-cursor-auto);
+}
+body [data-cursor="no-drop"] {
+  cursor: var(--vael-cursor-no-drop);
+}
+body [data-cursor="all-scroll"] {
+  cursor: var(--vael-cursor-all-scroll);
+}
+body [data-cursor="n-resize"] {
+  cursor: var(--vael-cursor-n-resize);
+}
+body [data-cursor="s-resize"] {
+  cursor: var(--vael-cursor-s-resize);
+}
+body [data-cursor="e-resize"] {
+  cursor: var(--vael-cursor-e-resize);
+}
+body [data-cursor="w-resize"] {
+  cursor: var(--vael-cursor-w-resize);
+}
+body [data-cursor="ne-resize"] {
+  cursor: var(--vael-cursor-ne-resize);
+}
+body [data-cursor="nw-resize"] {
+  cursor: var(--vael-cursor-nw-resize);
+}
+body [data-cursor="se-resize"] {
+  cursor: var(--vael-cursor-se-resize);
+}
+body [data-cursor="sw-resize"] {
+  cursor: var(--vael-cursor-sw-resize);
+}
+body.vael98
+  :is(
+    a[href],
+    button,
+    [role="button"],
+    [role="menuitem"],
+    [role="tab"],
+    summary,
+    select,
+    label:has(input:is([type="radio"], [type="checkbox"]))
+  )
+  :is(span, svg, strong, small, h1, h2, h3, h4, h5, h6) {
+  cursor: inherit;
+}

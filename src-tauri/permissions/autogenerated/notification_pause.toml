@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-notification-pause"
+description = "Enables the notification_pause command without any pre-configured scope."
+commands.allow = ["notification_pause"]
+
+[[permission]]
+identifier = "deny-notification-pause"
+description = "Denies the notification_pause command without any pre-configured scope."
+commands.deny = ["notification_pause"]

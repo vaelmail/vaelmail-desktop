@@ -1,0 +1,847 @@
+body.vael98 :is(.wm, .wm-dialog, .wm-drawer, .wm-menu, .wm-tooltip, .wm-compose, .wm-toast) {
+  --w-bg: var(--v98-surface);
+  --w-surface: var(--v98-surface-raised);
+  --w-soft: var(--v98-surface-inset);
+  --w-fg: var(--v98-text);
+  --w-muted: var(--v98-muted);
+  --w-subtle: var(--v98-muted);
+  --w-accent: var(--v98-accent);
+  --w-line: var(--v98-shadow);
+  --w-hover: var(--v98-surface-raised);
+  --w-active: var(--v98-selection);
+  --w-danger: var(--v98-danger);
+  --w-shadow: var(--v98-raised);
+  color-scheme: inherit;
+  font-family: var(--v98-font-body);
+  font-size: 13px;
+}
+.v98-window-content > .wm,
+.v98-window-content .v98-resource-app {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  overflow: auto;
+}
+body.vael98 .wm-button,
+body.vael98 .wm-icon {
+  border-radius: 0;
+  box-shadow: var(--v98-raised);
+  background: linear-gradient(var(--v98-metal-top), var(--v98-metal-bottom));
+  color: var(--v98-text);
+  min-height: var(--v98-control-height);
+  border: 0;
+  transform: none;
+}
+body.vael98 .wm-button.primary {
+  background: var(--v98-accent);
+  color: var(--v98-accent-text);
+}
+body.vael98 .wm-button.danger,
+body.vael98 .wm-menu-item.danger {
+  color: var(--v98-danger);
+}
+body.vael98 .wm-button:active,
+body.vael98 .wm-icon:active {
+  box-shadow: var(--v98-sunken);
+  transform: translateY(1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  body.vael98 .wm-button:active,
+  body.vael98 .wm-icon:active {
+    transform: none;
+  }
+}
+body.vael98 :is(.wm-dialog, .wm-drawer, .wm-menu, .wm-toast) {
+  border-radius: 0;
+  box-shadow: var(--v98-raised);
+}
+body.vael98 .wm-backdrop {
+  z-index: 400;
+}
+body.vael98 :is(.wm-dialog, .wm-drawer-viewport, .wm-drawer, .wm-compose) {
+  z-index: 401;
+}
+body.vael98 .wm-menu {
+  z-index: 300;
+}
+body.vael98 .wm-tooltip {
+  z-index: 350;
+}
+body.vael98 .wm-toast {
+  margin-bottom: calc(var(--v98-taskbar-height) + env(safe-area-inset-bottom));
+}
+body.vael98 .v98-compose-body {
+  position: static;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+.v98-compose-state {
+  padding: 20px;
+}
+.v98-compose-body .wm-compose-scroll {
+  padding-inline: 14px;
+}
+.v98-compose-body .wm-compose-format,
+.v98-compose-body .wm-compose-footer {
+  border-radius: 0;
+}
+.v98-resource-app .wm-settings,
+.v98-resource-app .wm-resources {
+  min-height: 100%;
+}
+body.vael98 .wm input,
+body.vael98 .wm textarea,
+body.vael98 .wm .vael-select {
+  border-radius: 0;
+}
+body.vael98 .da {
+  height: 100%;
+  grid-template-rows: 46px 44px minmax(0, 1fr);
+}
+body.vael98 .da-topnav {
+  overflow-x: auto;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .da-topnav-inner {
+  padding-inline: 12px;
+  gap: 8px;
+  min-width: max-content;
+}
+body.vael98 .da-topnav nav {
+  gap: 4px;
+}
+body.vael98 .da-topnav nav a {
+  padding: 8px 12px;
+  border: 0;
+  min-height: 36px;
+  font-size: 14px;
+  font-weight: 500;
+}
+body.vael98 .da-topnav nav a.active {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .da-main {
+  overflow: auto;
+}
+body.vael98 .da-content {
+  max-width: none;
+  padding: 24px;
+}
+body.vael98 .da-header {
+  min-height: 46px;
+  padding: 6px 16px;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .da-header-brand .brand {
+  font-size: 20px;
+  min-height: 32px;
+}
+body.vael98 .da-header-brand .brand-mark {
+  width: 18px;
+  height: 20px;
+}
+body.vael98 .da h1 {
+  font: 700 24px/1.25 var(--v98-font-body);
+}
+body.vael98 .da h2 {
+  font: 600 20px/1.3 var(--v98-font-body);
+}
+body.vael98 .da h3 {
+  font: 600 16px/1.4 var(--v98-font-body);
+}
+body.vael98
+  .da
+  :is(.da-card, .da-notice, .da-panel, .da-metric, .da-account-menu, .da-overview-hero) {
+  border-radius: 0;
+  box-shadow: none;
+}
+body.vael98 .da :is(.da-card, .da-panel, .da-overview-hero) {
+  padding: 20px;
+  box-shadow: var(--v98-sunken);
+  background: var(--v98-surface-inset);
+}
+body.vael98 .da :is(.da-card-title, .da-panel-heading) {
+  margin-block: 10px;
+}
+body.vael98 .da .da-checkup-bar {
+  gap: 2px;
+  padding: 2px;
+  background: var(--v98-surface);
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .da .da-checkup-bar > span {
+  height: 12px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .da .da-checkup-bar > span.on {
+  background: var(--v98-accent);
+  box-shadow:
+    inset 1px 1px #ffffff55,
+    inset -1px -1px #00000040;
+}
+body.vael98 .da .da-checkup-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+body.vael98 .da .da-checkup-card > :is(.da-card-title, .da-checkup-bar) {
+  width: 100%;
+}
+body.vael98 .da .da-checkup-card .da-text-link {
+  margin-top: auto;
+}
+body.vael98 .da .da-checkup-label {
+  color: var(--v98-text);
+}
+body.vael98 .da :is(.da-stat-value, .da-hero-value) {
+  font-family: var(--v98-font-body);
+  font-size: 28px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+body.vael98 .da :is(h1, h2, h3) {
+  letter-spacing: -0.015em;
+}
+body.vael98 .da-page-heading {
+  margin-bottom: 24px;
+}
+body.vael98
+  .da
+  :is(
+    time,
+    code,
+    .da-plan-meta strong,
+    .da-order-meta,
+    .da-crypto-amount,
+    .da-countdown,
+    .da-stat-value,
+    .da-hero-value,
+    .da-storage-total strong,
+    .da-storage-percent,
+    .da-storage-remaining,
+    .da-storage-breakdown strong,
+    .da-activity time,
+    .da-recovery-codes code,
+    .da-secret-value code,
+    .da-identity code,
+    .da-money,
+    .da-order-total strong,
+    .wm-count,
+    .wm-storage
+  ) {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+body.vael98 .da :is(button, a, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--v98-focus);
+  outline-offset: 2px;
+}
+body.vael98
+  .da
+  :is(
+    .da-status,
+    .da-nav-plan,
+    .da-plan-meta span,
+    .da-storage-total span,
+    .da-purchase-summary span,
+    .da-comparison-header,
+    .da-declined,
+    .da-empty-inline span,
+    .da-lab,
+    .da-empty-message
+  ) {
+  font-size: 12px;
+}
+body.vael98 .da :is(.da-small, .da-purchase-history time) {
+  font-size: 12px !important;
+}
+body.vael98 .da .da-text-link {
+  font-size: 13px;
+  font-weight: 500;
+}
+body.vael98 .da-empty-message {
+  padding: 16px 0;
+  font-size: 13px;
+  color: var(--v98-muted);
+}
+@media (max-width: 767px) {
+  body.vael98 .wm input,
+  body.vael98 .wm textarea,
+  body.vael98 .wm .vael-select {
+    font-size: 16px;
+  }
+  body.vael98 .wm-button,
+  body.vael98 .wm-icon {
+    min-height: 40px;
+  }
+  body.vael98 .da-header-brand {
+    display: none;
+  }
+  body.vael98 .da-header {
+    justify-content: flex-end;
+  }
+  body.vael98 .da-content {
+    padding: 16px;
+  }
+  .v98-compose-body .wm-compose-scroll {
+    padding-inline: 10px;
+  }
+}
+body.vael98 {
+  --background: var(--v98-surface);
+  --surface: var(--v98-surface-raised);
+  --surface-soft: var(--v98-surface-inset);
+  --foreground: var(--v98-text);
+  --muted: var(--v98-muted);
+  --subtle: var(--v98-muted);
+  --accent: var(--v98-accent);
+  --line: var(--v98-shadow);
+}
+body.vael98
+  :is(.wm, .wm-dialog, .wm-drawer, .wm-compose)
+  :not(.da-billing-ack):not(.save-confirmation)
+  > input:is([type="checkbox"], [type="radio"]),
+body.vael98
+  :is(.wm, .wm-dialog, .wm-drawer, .wm-compose)
+  > input:is([type="checkbox"], [type="radio"]) {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+  margin: 0;
+  flex-shrink: 0;
+}
+body.vael98 :is(.wm, .wm-dialog, .wm-drawer, .wm-compose) input[type="radio"] {
+  appearance: auto;
+  accent-color: var(--v98-accent);
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+}
+body.vael98
+  :is(.wm, .wm-dialog, .wm-drawer, .wm-compose)
+  input:is([type="checkbox"], [type="radio"])
+  + label::before,
+body.vael98
+  :is(.wm, .wm-dialog, .wm-drawer, .wm-compose)
+  input:is([type="checkbox"], [type="radio"])
+  + label::after {
+  content: none;
+}
+.v98-mail-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.v98-mail-menubar {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1px;
+  padding: 2px 4px;
+  border-bottom: 1px solid var(--v98-shadow);
+  background: var(--v98-surface);
+}
+.vael98 .v98-mail-menubar .v98-button {
+  min-width: 0;
+  min-height: 26px;
+  padding: 3px 9px;
+  background: transparent;
+  box-shadow: none;
+  font: 13px/1.3 var(--v98-font-body);
+}
+.vael98 .v98-mail-menubar .v98-button[data-popup-open] {
+  box-shadow: var(--v98-sunken);
+}
+.v98-mail-toolbar {
+  display: flex;
+  flex-shrink: 0;
+  gap: 5px;
+  padding: 6px;
+  background: var(--v98-surface-raised);
+  box-shadow:
+    inset 0-1px var(--v98-shadow),
+    inset 0-2px var(--v98-highlight);
+  overflow-x: auto;
+}
+body.vael98 .v98-mail-toolbar .wm-button {
+  font-size: 12px;
+  padding: 5px 8px;
+  gap: 5px;
+}
+body.vael98 .v98-mail-app {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+body.vael98 .v98-mail-app .wm-sidebar {
+  width: 190px;
+  padding: 8px;
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .v98-mail-app.is-collapsed .wm-sidebar {
+  width: 58px;
+}
+body.vael98 .v98-mail-app .wm-nav-brand {
+  padding: 0 0 6px;
+  min-height: 30px;
+}
+body.vael98 .v98-mail-app .wm-nav-brand .brand {
+  display: none;
+}
+body.vael98 .v98-mail-app .wm-nav-brand::before {
+  content: "Folders";
+  font: bold 13px var(--v98-font-body);
+}
+body.vael98 .v98-mail-app.is-collapsed .wm-nav-brand::before {
+  display: none;
+}
+body.vael98 .v98-mail-app .wm-sidebar > .wm-dashboard-button,
+body.vael98 .v98-mail-app .wm-sidebar > .wm-compose-button {
+  display: none;
+}
+body.vael98 .v98-mail-app .wm-sidebar nav > a {
+  border-radius: 0;
+  min-height: 28px;
+  padding: 5px 7px;
+  font: 12px/1.3 var(--v98-font-body);
+  text-decoration: none;
+}
+body.vael98 .v98-mail-app .wm-sidebar nav > a.active {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .v98-mail-app .wm-nav-label {
+  margin-top: 10px;
+}
+body.vael98 .v98-mail-app .wm-account {
+  margin-top: 10px;
+  padding: 8px 0;
+}
+body.vael98 .v98-mail-app .wm-avatar {
+  border-radius: 0;
+  width: 24px;
+  height: 24px;
+}
+body.vael98 .v98-mail-app .wm-topbar {
+  min-height: 42px;
+  height: 42px;
+  padding: 5px 8px;
+  gap: 6px;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .v98-mail-app .wm-search {
+  height: 30px;
+  border-radius: 0;
+  box-shadow: var(--v98-sunken);
+  flex: 1;
+  width: auto;
+  max-width: 520px;
+}
+body.vael98 .v98-mail-app .wm-search input {
+  min-height: 26px;
+  padding: 3px;
+  box-shadow: none;
+}
+body.vael98 .v98-mail-app .wm-list-heading {
+  padding: 8px;
+}
+body.vael98 .v98-mail-app .wm-list-title {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+body.vael98 .v98-mail-app .wm-list-title h1 {
+  font: bold 16px/1.3 var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-list-tools,
+body.vael98 .v98-mail-app .wm-smart-filters {
+  padding: 4px 8px;
+  gap: 3px;
+}
+body.vael98 .v98-mail-app .wm-filters button,
+body.vael98 .v98-mail-app .wm-smart-filters button {
+  padding: 4px 6px;
+  min-height: 25px;
+  font-size: 11px;
+  border-radius: 0;
+}
+body.vael98 .v98-mail-app .wm-date-section {
+  font: bold 11px/1.3 var(--v98-font-body);
+  padding: 6px 10px;
+  background: var(--v98-surface-raised);
+  color: var(--v98-muted);
+}
+body.vael98 .v98-mail-app .wm-mail-row {
+  padding: 3px 7px;
+  min-height: 32px;
+  gap: 5px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .v98-mail-app .wm-mail-row.active,
+body.vael98 .v98-mail-app .wm-mail-row.selected {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .v98-mail-app .wm-mail-hit {
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  min-height: 28px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 18px minmax(70px, 0.85fr) minmax(90px, 1.3fr) 48px;
+  gap: 5px;
+  color: inherit;
+}
+body.vael98 .v98-mail-app .wm-mail-hit {
+  font-family: var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-mail-copy,
+body.vael98 .v98-mail-app .wm-mail-top {
+  display: contents;
+}
+body.vael98 .v98-mail-app .wm-mail-sender {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.vael98 .v98-mail-app .wm-mail-subject {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 12px;
+  min-width: 0;
+}
+body.vael98 .v98-mail-app .wm-mail-top time {
+  grid-column: 4;
+  grid-row: 1;
+  font-size: 10px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+body.vael98 .v98-mail-app .wm-sender-icon {
+  grid-column: 1;
+  grid-row: 1;
+  height: 18px;
+  width: 18px;
+  flex-basis: 18px;
+  border-radius: 0;
+}
+body.vael98 .v98-mail-app .wm-sender-icon img {
+  width: 16px;
+  height: 16px;
+}
+body.vael98 .v98-mail-app .wm-unread-dot {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: var(--v98-accent);
+}
+body.vael98 .v98-mail-app .wm-mail-row > .wm-icon,
+body.vael98 .v98-mail-app .wm-row-menu {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 3px;
+}
+.v98-mail-columns {
+  display: grid;
+  grid-template-columns: minmax(70px, 0.85fr) minmax(90px, 1.3fr) 48px;
+  padding: 0 60px 0 49px;
+  background: var(--v98-surface-raised);
+  box-shadow: var(--v98-raised);
+  font: 11px/1.3 var(--v98-font-body);
+}
+.v98-mail-columns span {
+  padding: 5px 3px;
+  border-right: 1px solid var(--v98-shadow);
+}
+body.vael98 .v98-mail-app .wm-reader-idle {
+  background: var(--v98-surface-inset);
+  font-family: var(--v98-font-body);
+  padding: 24px;
+  text-align: center;
+}
+body.vael98 .v98-mail-app .wm-reader-mark {
+  opacity: 0.65;
+}
+body.vael98 .v98-mail-app .wm-reader-mark .brand {
+  font: bold 24px var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-reader-mark .brand-mark {
+  width: 24px;
+  height: 24px;
+}
+body.vael98 .v98-mail-app .wm-reader-idle > p {
+  font: bold 16px/1.4 var(--v98-font-body);
+  color: var(--v98-text);
+}
+body.vael98 .v98-mail-app .wm-reader-idle > span {
+  font: 13px/1.5 var(--v98-font-body);
+  color: var(--v98-muted);
+}
+body.vael98 :is(.wm-resource-page, .wm-settings-content) {
+  padding: 18px;
+}
+body.vael98 .wm-page-heading {
+  margin-bottom: 18px;
+  align-items: flex-start;
+  gap: 12px;
+}
+body.vael98 .wm-page-heading :is(h1, h2) {
+  font: bold 22px/1.3 var(--v98-font-body);
+  margin-bottom: 6px;
+  letter-spacing: 0;
+}
+body.vael98 .wm-page-heading .wm-eyebrow {
+  font: 12px/1.4 var(--v98-font-body);
+  margin-bottom: 5px;
+  letter-spacing: 0;
+}
+body.vael98 .wm-resource-row {
+  padding: 9px 10px;
+  border-radius: 0;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .wm-settings-nav {
+  width: 170px;
+  padding: 14px 10px;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .wm-settings-nav nav > a {
+  padding: 6px 9px;
+  border-radius: 0;
+  font: 12px/1.4 var(--v98-font-body);
+}
+body.vael98 .wm-settings-nav nav > a.active {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .wm-settings-search {
+  border-radius: 0;
+  box-shadow: var(--v98-sunken);
+  background: var(--v98-surface-inset);
+}
+body.vael98 .wm-setting-row {
+  padding: 13px 0;
+}
+body.vael98 .wm-plugin-group h2 {
+  font: bold 13px/1.4 var(--v98-font-body);
+  letter-spacing: 0;
+}
+body.vael98 .wm-plugin-row {
+  padding: 13px 0;
+}
+body.vael98 .wm-dialog {
+  padding: 20px;
+}
+body.vael98 .wm-title {
+  font: bold 18px/1.3 var(--v98-font-body);
+  letter-spacing: 0;
+}
+body.vael98 .wm-compose-format {
+  padding: 5px 8px;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .v98-compose-body :is(.wm-recipient-row, .wm-compose-from, .wm-compose-subject) {
+  padding-block: 7px;
+}
+body.vael98 .v98-compose-body .wm-editor {
+  font-size: 14px;
+  background: var(--v98-surface-inset);
+  color: var(--v98-text);
+  padding: 12px;
+}
+body.vael98 .v98-compose-body .wm-compose-footer {
+  padding: 8px 12px;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .v98-mail-app .wm-reader-toolbar {
+  padding: 5px 8px;
+  background: var(--v98-surface-raised);
+}
+body.vael98 .v98-mail-app .wm-reader-header {
+  padding: 16px;
+}
+body.vael98 .v98-mail-app .wm-reader h2 {
+  font: bold 20px/1.3 var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-statusbar {
+  display: flex;
+  padding: 4px 8px;
+  min-height: 24px;
+  background: var(--v98-surface);
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .v98-mail-app .wm-statusbar .wm-status-dot {
+  display: none;
+}
+@media (max-width: 767px) {
+  body.vael98 .wm-settings-nav {
+    width: 100%;
+    padding: 10px;
+  }
+  body.vael98 .da {
+    grid-template-rows: 44px 44px minmax(0, 1fr);
+  }
+  .v98-mail-menubar {
+    overflow-x: auto;
+  }
+  .vael98 .v98-mail-menubar .v98-button {
+    min-height: 34px;
+  }
+  .v98-mail-toolbar {
+    gap: 5px;
+  }
+  body.vael98 .v98-mail-toolbar .wm-button {
+    min-height: 38px;
+  }
+  body.vael98 .v98-mail-app .wm-sidebar {
+    display: none;
+  }
+  body.vael98 .v98-mail-app .wm-topbar {
+    min-height: 48px;
+    height: 48px;
+  }
+  body.vael98 .v98-mail-app .wm-search {
+    height: 40px;
+  }
+  body.vael98 .v98-mail-app .wm-search input {
+    min-height: 36px;
+    font-size: 16px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-row {
+    min-height: 64px;
+    padding: 7px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-hit {
+    display: flex;
+    min-height: 44px;
+    gap: 8px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-copy {
+    display: block;
+    flex: 1;
+    min-width: 0;
+  }
+  body.vael98 .v98-mail-app .wm-mail-top {
+    display: flex;
+  }
+  body.vael98 .v98-mail-app .wm-mail-subject {
+    display: flex;
+  }
+  body.vael98 .v98-mail-app .wm-sender-icon {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-row > .wm-icon,
+  body.vael98 .v98-mail-app .wm-row-menu {
+    min-width: 32px;
+    width: 32px;
+    min-height: 40px;
+    height: 40px;
+  }
+  .v98-mail-columns {
+    display: none;
+  }
+}
+.v98-admin-console {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.v98-admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px;
+  border-bottom: 1px solid var(--v98-shadow);
+  background: var(--v98-surface);
+}
+.v98-admin-toolbar .v98-button {
+  min-height: 24px;
+  min-width: 28px;
+  padding: 2px 6px;
+  justify-content: center;
+}
+.v98-admin-toolbar .v98-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+.v98-admin-hint {
+  flex: 1;
+  min-width: 0;
+  color: var(--v98-muted);
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.v98-admin-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: var(--v98-surface);
+}
+.v98-admin-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.v98-admin-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  pointer-events: none;
+  color: var(--v98-muted);
+}
+.v98-admin-notice {
+  flex: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.v98-admin-notice h2 {
+  margin: 0;
+  font-size: 1.1em;
+}
+.v98-admin-notice p {
+  margin: 0;
+}
+.v98-admin-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.v98-admin-actions .v98-button {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}

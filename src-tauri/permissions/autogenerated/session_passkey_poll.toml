@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-session-passkey-poll"
+description = "Enables the session_passkey_poll command without any pre-configured scope."
+commands.allow = ["session_passkey_poll"]
+
+[[permission]]
+identifier = "deny-session-passkey-poll"
+description = "Denies the session_passkey_poll command without any pre-configured scope."
+commands.deny = ["session_passkey_poll"]

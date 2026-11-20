@@ -1,0 +1,198 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.vd-signin-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.vd-signin-window {
+  width: min(460px, 100%);
+}
+
+.vd-signin-body {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.vd-signin-heading {
+  margin: 0;
+  font: bold 22px/1.25 var(--v98-font-body);
+}
+
+.vd-key-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+}
+
+.vd-signin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.vd-passkey {
+  display: grid;
+  gap: 12px;
+}
+
+.vd-passkey-intro {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  color: var(--v98-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.vd-passkey-intro p {
+  margin: 0;
+}
+
+.vd-passkey-intro svg {
+  color: var(--v98-accent);
+}
+
+.vd-passkey-waiting {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 14px;
+}
+
+.vd-passkey-label,
+.vd-passkey-status {
+  color: var(--v98-muted);
+  font-size: 12px;
+}
+
+.vd-passkey-code {
+  font: bold 30px/1.1 var(--v98-font-mono);
+  letter-spacing: 6px;
+}
+
+.vd-passkey-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vd-passkey-pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--v98-accent);
+  animation: vd-pulse 1.2s steps(2, jump-none) infinite;
+}
+
+@keyframes vd-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.vd-loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: var(--v98-muted);
+}
+
+.vd-placeholder {
+  padding: 24px;
+}
+
+.vd-about {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+  color: var(--v98-text);
+  font: 13px/1.5 var(--v98-font-body);
+}
+
+.vd-about-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.vd-about-brand h1 {
+  margin: 0;
+  font: bold 22px/1.2 var(--v98-font-body);
+}
+
+.vd-about-brand p {
+  margin: 0;
+  color: var(--v98-muted);
+}
+
+.vd-about-facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  margin: 0;
+}
+
+.vd-about-facts dt {
+  color: var(--v98-muted);
+}
+
+.vd-about-facts dd {
+  margin: 0;
+}
+
+.vd-about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vd-about-notices {
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  max-height: 320px;
+  background: var(--v98-surface-inset);
+  box-shadow: var(--v98-sunken);
+  white-space: pre-wrap;
+  font: 12px/1.5 var(--v98-font-mono);
+}
+
+.v98-compose-body .wm-compose-scroll {
+  display: flex;
+  flex-direction: column;
+}
+
+.v98-compose-body .wm-compose-scroll > div:has(> .wm-editor) {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 180px;
+}
+
+.v98-compose-body .wm-compose-scroll > div:has(> .wm-editor) > .wm-editor {
+  flex: 1 1 auto;
+}
+
+.vd-passkey-dialog {
+  width: min(440px, calc(100vw - 32px));
+}
+
+body.vael98
+  .v98-mail-app
+  .wm-mail-row:is(.active, .selected)
+  :is(.wm-mail-sender, .wm-mail-subject, .wm-mail-copy span, time, .wm-sender-icon) {
+  color: var(--v98-selection-text);
+}

@@ -1,0 +1,130 @@
+.vael98 {
+  --v98-desktop: #101716;
+  --v98-surface: #303432;
+  --v98-surface-raised: #414643;
+  --v98-surface-inset: #181d1b;
+  --v98-metal-top: #545a55;
+  --v98-metal-bottom: #303632;
+  --v98-text: #e6e9dc;
+  --v98-muted: #b0b9a9;
+  --v98-disabled: #969f92;
+  --v98-highlight: #7c857a;
+  --v98-light: #596155;
+  --v98-shadow: #1e241f;
+  --v98-edge: #090e0a;
+  --v98-accent: #b9d778;
+  --v98-accent-text: #111b09;
+  --v98-selection: #3e5830;
+  --v98-selection-text: #f1f6df;
+  --v98-caption-start: #3e5433;
+  --v98-caption-end: #222e25;
+  --v98-caption-text: #edf3df;
+  --v98-danger: #ffb2a0;
+  --v98-focus: #d0e791;
+  --v98-link: #c8e491;
+  --v98-font-ui: "Vael98 Pixel", var(--font-sans), Tahoma, Arial, sans-serif;
+  --v98-font-body:
+    var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --v98-font-mono: var(--font-mono), "Geist Mono", monospace;
+  --v98-ui-size: 13px;
+  --v98-body-size: 16px;
+  --v98-control-height: 28px;
+  --v98-taskbar-height: 36px;
+  --v98-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --v98-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --v98-duration-press: 100ms;
+  --v98-duration-menu: 150ms;
+  --v98-duration-window: 180ms;
+  --v98-duration-intro: 200ms;
+  --v98-raised:
+    inset 1px 1px var(--v98-highlight), inset -1px -1px var(--v98-edge),
+    inset 2px 2px var(--v98-light), inset -2px -2px var(--v98-shadow);
+  --v98-sunken:
+    inset 1px 1px var(--v98-edge), inset -1px -1px var(--v98-highlight),
+    inset 2px 2px var(--v98-shadow), inset -2px -2px var(--v98-light);
+  color-scheme: dark;
+}
+.vael98[data-v98-theme="light"],
+html[data-vael-theme="light"] body.vael98 {
+  --v98-desktop: #bdc5ba;
+  --v98-surface: #d9ded4;
+  --v98-surface-raised: #ebeee6;
+  --v98-surface-inset: #f8faf4;
+  --v98-metal-top: #f0f3eb;
+  --v98-metal-bottom: #c9cfc3;
+  --v98-text: #20271e;
+  --v98-muted: #4b5746;
+  --v98-disabled: #596452;
+  --v98-highlight: #ffffff;
+  --v98-light: #ebeee6;
+  --v98-shadow: #8d9886;
+  --v98-edge: #394632;
+  --v98-accent: #3e5830;
+  --v98-accent-text: #ffffff;
+  --v98-selection: #3e5830;
+  --v98-selection-text: #ffffff;
+  --v98-caption-start: #3e5433;
+  --v98-caption-end: #222e25;
+  --v98-caption-text: #ffffff;
+  --v98-danger: #8b2316;
+  --v98-focus: #304a21;
+  --v98-link: #304a21;
+  color-scheme: light;
+}
+.vael98[data-v98-theme="classic"] {
+  --v98-desktop: #008080;
+  --v98-surface: #c0c0c0;
+  --v98-surface-raised: #dfdfdf;
+  --v98-surface-inset: #fff;
+  --v98-metal-top: #dfdfdf;
+  --v98-metal-bottom: #b4b4b4;
+  --v98-text: #161616;
+  --v98-muted: #454545;
+  --v98-disabled: #666;
+  --v98-highlight: #fff;
+  --v98-light: #dfdfdf;
+  --v98-shadow: #808080;
+  --v98-edge: #0a0a0a;
+  --v98-accent: #000080;
+  --v98-accent-text: #fff;
+  --v98-selection: #000080;
+  --v98-selection-text: #fff;
+  --v98-caption-start: #000080;
+  --v98-caption-end: #1084d0;
+  --v98-caption-text: #fff;
+  --v98-danger: #8b1b14;
+  --v98-focus: #111;
+  --v98-link: #000080;
+  color-scheme: light;
+}
+@media (pointer: coarse) {
+  .vael98 {
+    --v98-control-height: 44px;
+    --v98-taskbar-height: 48px;
+    --v98-ui-size: 14px;
+  }
+}
+@media (forced-colors: active) {
+  .vael98 {
+    --v98-desktop: Canvas;
+    --v98-surface: Canvas;
+    --v98-surface-raised: ButtonFace;
+    --v98-surface-inset: Canvas;
+    --v98-text: CanvasText;
+    --v98-muted: CanvasText;
+    --v98-disabled: GrayText;
+    --v98-highlight: ButtonBorder;
+    --v98-light: ButtonBorder;
+    --v98-shadow: ButtonBorder;
+    --v98-edge: ButtonBorder;
+    --v98-accent: Highlight;
+    --v98-accent-text: HighlightText;
+    --v98-selection: Highlight;
+    --v98-selection-text: HighlightText;
+    --v98-caption-start: Highlight;
+    --v98-caption-end: Highlight;
+    --v98-caption-text: HighlightText;
+    --v98-focus: Highlight;
+    --v98-link: LinkText;
+  }
+}

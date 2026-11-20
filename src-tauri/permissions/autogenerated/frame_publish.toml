@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-frame-publish"
+description = "Enables the frame_publish command without any pre-configured scope."
+commands.allow = ["frame_publish"]
+
+[[permission]]
+identifier = "deny-frame-publish"
+description = "Denies the frame_publish command without any pre-configured scope."
+commands.deny = ["frame_publish"]

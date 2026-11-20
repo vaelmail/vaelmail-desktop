@@ -1,0 +1,2473 @@
+body.vael98 {
+  --v98-control-height: 32px;
+  --v98-taskbar-height: 40px;
+}
+body.vael98 :is(button, input, label, legend, textarea, select, option, table) {
+  font-family: var(--v98-font-body);
+  font-size: 13px;
+}
+body.vael98 button {
+  min-width: 0;
+}
+body.vael98 :is(.wm-button, .v98-button) {
+  min-height: 32px;
+  padding: 6px 12px;
+  font: 13px/1.35 var(--v98-font-body);
+  white-space: nowrap;
+  gap: 7px;
+}
+body.vael98 .wm-button {
+  min-width: 72px;
+}
+body.vael98 .wm-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+}
+body.vael98 :is(.wm-button, .wm-icon):disabled {
+  opacity: 0.55;
+}
+body.vael98 :is(.wm-menu, .wm-dialog, .wm-drawer) {
+  color: var(--v98-text);
+  font-family: var(--v98-font-body);
+}
+body.vael98 .wm-menu-item {
+  min-height: 34px;
+  padding: 7px 12px;
+  gap: 9px;
+  font-size: 13px;
+}
+body.vael98 .wm-menu-item[data-checked] {
+  color: var(--v98-accent);
+}
+body.vael98 .wm-menu-item[data-highlighted] {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .wm-form {
+  gap: 16px;
+}
+body.vael98 .wm-form label {
+  font-size: 13px;
+  line-height: 1.5;
+}
+body.vael98
+  :is(.wm, .wm-dialog, .wm-compose)
+  :is(input:not([type="checkbox"]):not([type="radio"]), textarea, .vael-select) {
+  font-family: var(--v98-font-body);
+  font-size: 13px;
+}
+body.vael98 .wm-modal-actions {
+  gap: 8px;
+  padding-top: 16px;
+  flex-wrap: wrap;
+}
+body.vael98 .wm-dialog {
+  max-height: calc(100dvh - 80px);
+  padding: 24px;
+}
+body.vael98 .wm-title {
+  margin: 0 32px 10px 0;
+  font-size: 20px;
+}
+body.vael98 .wm-description {
+  font-size: 13px;
+  line-height: 1.6;
+}
+body.vael98 .wm-dialog-close {
+  min-width: 28px;
+  width: 28px;
+  min-height: 28px;
+  height: 28px;
+  padding: 0;
+}
+body.vael98 .wm-empty {
+  padding: 36px 20px;
+}
+body.vael98 .wm-empty h2 {
+  font-size: 18px;
+  line-height: 1.4;
+}
+body.vael98 .wm-empty p {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 48ch;
+}
+body.vael98 .wm-empty-symbol {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body.vael98 .v98-desktop-shortcuts {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: auto;
+  overflow: auto;
+}
+body.vael98 .v98-desktop-shortcuts button {
+  position: absolute;
+  width: 88px;
+  min-height: 76px;
+  height: 76px;
+  padding: 7px 2px;
+  gap: 7px;
+  pointer-events: auto;
+  touch-action: none;
+  border: 1px solid transparent;
+  font: 12px/1.3 var(--v98-font-body);
+}
+body.vael98 .v98-desktop-shortcuts button span {
+  padding: 2px 4px;
+  max-width: 100%;
+  text-wrap: balance;
+}
+body.vael98 .v98-desktop-shortcuts button {
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+body.vael98 .v98-desktop-shortcuts .v98-app-icon {
+  display: block;
+  flex: 0 0 34px;
+}
+body.vael98 :is(.wm-icon, .title-bar-controls button, .v98-toast-close) > svg {
+  display: block;
+  flex-shrink: 0;
+}
+body.vael98 .v98-desktop-shortcuts button[data-dragging] {
+  z-index: 2;
+  background: var(--v98-selection);
+  border: 1px dotted var(--v98-focus);
+  opacity: 0.9;
+}
+body.vael98 .v98-desktop-shortcuts button:focus-visible {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: -2px;
+}
+body.vael98 .v98-desktop-shortcuts [data-icon="document"] .v98-app-icon {
+  color: var(--v98-text);
+}
+body.vael98 .v98-desktop-shortcuts [data-icon="services"] .v98-app-icon {
+  color: var(--v98-muted);
+}
+body.vael98 .v98-start-group-label {
+  padding: 10px 12px 4px;
+  font: bold 11px/1.4 var(--v98-font-body);
+  color: var(--v98-muted);
+}
+body.vael98 .v98-start-menu {
+  width: 276px;
+}
+body.vael98 .v98-start-menu .v98-menu-item {
+  font: 13px/1.4 var(--v98-font-body);
+  padding-block: 6px;
+  justify-content: flex-start;
+  gap: 10px;
+}
+body.vael98 .v98-start-menu .v98-menu-item > svg {
+  display: block;
+  flex-shrink: 0;
+}
+body.vael98 .v98-start-heading {
+  padding: 12px;
+  font-size: 17px;
+}
+body.vael98 .v98-taskbar {
+  min-height: 40px;
+}
+body.vael98 .v98-task-button {
+  min-height: 30px;
+  font: 12px/1.25 var(--v98-font-ui);
+}
+body.vael98 .v98-show-desktop {
+  min-height: 30px;
+}
+body.vael98 .v98-tray .privacy-toggle {
+  display: grid;
+  place-items: center;
+  box-shadow: none;
+  background: transparent;
+  min-width: 26px;
+  min-height: 26px;
+  width: 26px;
+  height: 26px;
+}
+body.vael98 .v98-desktop-window .title-bar {
+  min-height: 30px;
+}
+body.vael98 .v98-window-menu .v98-button {
+  min-width: 24px;
+  width: 24px;
+  min-height: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: 0;
+}
+body.vael98 .v98-window-menu .v98-button::after {
+  font: 16px/1 var(--v98-font-body);
+}
+body.vael98 .v98-desktop-window .title-bar-controls button {
+  width: 24px;
+  min-width: 24px;
+  height: 22px;
+  min-height: 22px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: linear-gradient(var(--v98-metal-top), var(--v98-metal-bottom));
+}
+body.vael98 .v98-resize-grip {
+  z-index: 20;
+  clip-path: none;
+  background: none;
+}
+body.vael98 .v98-resize-grip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 3px,
+    var(--v98-highlight) 3px 4px,
+    var(--v98-shadow) 4px 5px
+  );
+  clip-path: polygon(100%0, 100% 100%, 0 100%);
+}
+body.vael98 .v98-mail-root {
+  container: mail-app/inline-size;
+}
+body.vael98 .v98-mail-menubar {
+  padding: 1px 6px;
+  background: var(--v98-surface);
+}
+body.vael98 .v98-mail-menubar .v98-button {
+  font-size: 12px;
+  min-height: 25px;
+  padding: 3px 9px;
+}
+body.vael98 .v98-mail-app .wm-topbar {
+  height: 52px;
+  min-height: 52px;
+  padding: 9px 10px;
+  gap: 10px;
+  background: var(--v98-surface);
+  border-bottom: 1px solid var(--v98-shadow);
+}
+body.vael98 .v98-mail-app .wm-mobile-menu {
+  display: none;
+}
+body.vael98 .v98-mail-app .wm-search {
+  max-width: none;
+  height: 34px;
+  padding-inline: 9px 3px;
+  gap: 6px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .v98-mail-app .wm-search input {
+  height: 30px;
+  min-height: 30px;
+  font: 13px var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-search :is(.wm-icon, .wm-search-key) {
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+  box-shadow: none;
+  background: transparent;
+}
+body.vael98 .v98-mail-app .v98-new-message {
+  min-height: 34px;
+  flex-shrink: 0;
+}
+body.vael98 .v98-mail-app .wm-sidebar {
+  width: 188px;
+  background: var(--v98-surface);
+  padding: 8px 7px;
+  box-shadow: none;
+}
+body.vael98 .v98-mail-app .wm-nav-brand {
+  min-height: 34px;
+  padding: 0 5px 7px;
+  color: var(--v98-muted);
+}
+body.vael98 .v98-mail-app .wm-nav-brand::before {
+  font-size: 12px;
+  font-weight: 400;
+}
+body.vael98 .v98-mail-app .wm-sidebar nav > a {
+  min-height: 32px;
+  padding: 7px 8px;
+  font-size: 13px;
+  gap: 9px;
+}
+body.vael98 .v98-mail-app .wm-count {
+  font: 11px var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-nav-label {
+  margin-top: 15px;
+  padding-inline: 8px;
+  font-size: 11px;
+}
+body.vael98 .wm-more-folders {
+  margin-block: 4px;
+}
+body.vael98 .wm-more-folders summary {
+  padding: 8px;
+  font-size: 12px;
+  color: var(--v98-muted);
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+body.vael98 .wm-more-folders a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 32px;
+  padding: 7px 8px;
+  color: var(--v98-muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+body.vael98 .wm-more-folders a.active {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .wm-more-folders a .wm-count {
+  margin-left: auto;
+}
+body.vael98 .wm-more-folders a > span:first-of-type {
+  flex: 1;
+}
+body.vael98 .v98-mail-app.is-collapsed .wm-more-folders summary {
+  font-size: 0;
+  padding-inline: 7px;
+}
+body.vael98 .v98-mail-app.is-collapsed .wm-more-folders a > span {
+  display: none;
+}
+body.vael98 .v98-mail-app .wm-account {
+  padding: 12px 3px 4px;
+  margin-top: 12px;
+  gap: 8px;
+}
+body.vael98 .v98-mail-app .wm-account strong {
+  font: bold 12px var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-copy-address {
+  display: block;
+  min-height: 20px;
+  height: auto;
+  max-width: 120px;
+  padding: 2px 0;
+  box-shadow: none;
+  background: transparent;
+  color: var(--v98-muted);
+  font: 11px/1.4 var(--v98-font-body);
+  text-align: left;
+}
+body.vael98 .v98-mail-app .wm-storage {
+  padding: 8px 3px;
+  font: 11px var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-mail-list {
+  container: mail-list/inline-size;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .v98-mail-app .wm-list-heading {
+  padding: 12px 12px 6px;
+  min-height: 49px;
+}
+body.vael98 .v98-mail-app .wm-list-title {
+  gap: 8px;
+}
+body.vael98 .v98-mail-app .wm-list-title h1 {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+body.vael98 .v98-mail-app .wm-list-title .wm-muted {
+  font-size: 11px;
+}
+body.vael98 .v98-mail-app .wm-list-tools {
+  padding: 3px 12px 8px;
+  min-height: 40px;
+  gap: 8px;
+}
+body.vael98 .v98-mail-app .wm-selectbar {
+  order: 0;
+}
+body.vael98 .v98-mail-app .wm-selectbar > span {
+  font-size: 11px;
+}
+body.vael98 .v98-mail-app .v98-filter-trigger {
+  order: 1;
+  width: auto;
+  min-width: 72px;
+  padding-inline: 8px;
+  gap: 6px;
+  background: transparent;
+  box-shadow: none;
+  font-size: 12px;
+}
+body.vael98 .v98-filter-check {
+  display: inline-block;
+  width: 14px;
+  flex-shrink: 0;
+  color: var(--v98-accent);
+}
+body.vael98 .v98-mail-app .wm-date-section {
+  padding: 7px 12px;
+  background: var(--v98-surface-inset);
+  font-size: 11px;
+  border-bottom: 1px solid var(--v98-shadow);
+}
+body.vael98 .v98-mail-app .wm-mail-row {
+  min-height: 46px;
+  padding: 6px 10px;
+  gap: 8px;
+  border-bottom: 1px solid var(--v98-shadow);
+}
+body.vael98 .v98-mail-app .wm-mail-row {
+  isolation: isolate;
+  box-shadow: var(--v98-raised);
+}
+body.vael98 .v98-mail-app .wm-mail-hit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+body.vael98 .v98-mail-app .wm-mail-row > :is(.wm-row-side, .wm-icon) {
+  position: relative;
+  z-index: 1;
+}
+body.vael98 .v98-mail-app .wm-mail-row:is(.active, .selected),
+body.vael98 .v98-mail-app .wm-mail-row:has(.wm-mail-hit:active) {
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .v98-mail-app .wm-mail-row:has(.wm-mail-hit:focus-visible) {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: -4px;
+}
+body.vael98 .v98-mail-app .wm-mail-hit:is(:active, :focus, :focus-visible) {
+  box-shadow: none;
+  outline: none;
+  padding: 0;
+  text-shadow: none;
+  transform: none;
+}
+body.vael98 .v98-mail-app .wm-mail-hit {
+  min-height: 30px;
+  grid-template-columns: 22px minmax(110px, 0.8fr) minmax(160px, 1.6fr) 52px;
+  gap: 9px;
+}
+body.vael98 .v98-mail-app :is(.wm-mail-sender, .wm-mail-subject) {
+  font-size: 13px;
+  line-height: 1.45;
+}
+body.vael98 .v98-mail-app .wm-mail-top time {
+  font-size: 11px;
+}
+body.vael98 .v98-mail-app .wm-sender-icon {
+  width: 22px;
+  height: 22px;
+  flex-basis: 22px;
+}
+body.vael98 .v98-mail-app .wm-mail-row > .wm-icon {
+  background: transparent;
+  box-shadow: none;
+  width: 26px;
+  min-width: 26px;
+  height: 30px;
+  min-height: 30px;
+  color: var(--v98-muted);
+}
+body.vael98 .v98-mail-app .wm-mail-row > .wm-icon.starred {
+  color: var(--v98-accent);
+}
+body.vael98 .v98-mail-app .wm-row-menu {
+  display: none;
+}
+body.vael98 .v98-mail-columns {
+  padding: 0 45px 0 67px;
+  grid-template-columns: minmax(110px, 0.8fr) minmax(160px, 1.6fr) 52px;
+  box-shadow: none;
+  border-block: 1px solid var(--v98-shadow);
+}
+body.vael98 .v98-mail-columns span {
+  font-size: 11px;
+  padding: 6px 3px;
+}
+body.vael98 .v98-mail-app .wm-reader-toolbar {
+  min-height: 44px;
+  padding: 6px 12px;
+  background: var(--v98-surface);
+}
+body.vael98 .v98-mail-app .wm-reader-scroll {
+  padding: 0 0 24px;
+}
+body.vael98 .v98-mail-app .wm-subject-heading {
+  padding: 22px 24px 16px;
+}
+body.vael98 .v98-mail-app .wm-subject-heading h1 {
+  font: bold 22px/1.35 var(--v98-font-body);
+  letter-spacing: -0.015em;
+  overflow-wrap: anywhere;
+}
+body.vael98 .v98-mail-app .wm-subject-heading .wm-eyebrow {
+  font-size: 11px;
+  margin-bottom: 7px;
+  color: var(--v98-muted);
+}
+body.vael98 .v98-mail-app .wm-message {
+  padding: 16px 24px;
+}
+body.vael98 .v98-mail-app .wm-subject-heading {
+  margin-bottom: 8px;
+}
+body.vael98 .v98-mail-app .wm-message.collapsed {
+  padding-block: 12px;
+  margin-bottom: 8px;
+}
+body.vael98 .v98-mail-app .wm-message-heading {
+  gap: 10px;
+  align-items: flex-start;
+}
+body.vael98 .v98-mail-app .wm-sender {
+  padding: 0;
+  min-height: 32px;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  font: 13px/1.5 var(--v98-font-body);
+}
+body.vael98 .v98-mail-app .wm-sender strong {
+  font-size: 13px;
+}
+body.vael98 .v98-mail-app .wm-sender > span {
+  font-size: 12px;
+  line-height: 1.5;
+}
+body.vael98 .v98-mail-app .wm-message-heading time {
+  font-size: 11px;
+  white-space: normal;
+}
+body.vael98 .v98-mail-app .wm-reply-actions {
+  gap: 8px;
+  padding-block: 18px;
+  flex-wrap: wrap;
+}
+body.vael98 .v98-mail-app .wm-reader-idle {
+  background: var(--v98-surface-inset);
+}
+body.vael98 .v98-mail-app .wm-reader-mark {
+  opacity: 0.3;
+}
+body.vael98 .v98-mail-app .wm-statusbar {
+  min-height: 25px;
+  padding: 5px 10px;
+  box-shadow: none;
+  border-top: 1px solid var(--v98-shadow);
+  font: 11px/1.4 var(--v98-font-body);
+}
+@container mail-list (max-width:580px) {
+  body.vael98 .v98-mail-columns {
+    display: none;
+  }
+  body.vael98 .v98-mail-app .wm-mail-row {
+    min-height: 68px;
+    padding: 9px 10px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-hit {
+    display: flex;
+    gap: 9px;
+    min-height: 42px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-copy {
+    display: block;
+    flex: 1;
+    min-width: 0;
+  }
+  body.vael98 .v98-mail-app .wm-mail-top {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+  body.vael98 .v98-mail-app .wm-mail-sender {
+    flex: 1;
+  }
+  body.vael98 .v98-mail-app .wm-mail-subject {
+    display: flex;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  body.vael98 .v98-mail-app .wm-sender-icon {
+    align-self: center;
+    margin-top: 0;
+  }
+}
+@container mail-app (max-width:700px) {
+  body.vael98 .v98-mail-app .wm-sidebar {
+    display: none;
+  }
+  body.vael98 .v98-mail-app .wm-mobile-menu {
+    display: inline-flex;
+  }
+  body.vael98 .v98-mail-app .v98-new-message {
+    min-width: 34px;
+    padding-inline: 9px;
+  }
+  body.vael98 .v98-mail-app .v98-new-message span {
+    display: none;
+  }
+}
+body.vael98 .v98-compose-body :is(.wm-compose-from, .wm-recipient-row, .wm-compose-subject) {
+  padding: 9px 2px;
+  gap: 10px;
+}
+body.vael98 .v98-compose-body :is(.wm-compose-from, .wm-recipient-row) > label,
+body.vael98 .v98-compose-body .wm-compose-subject > span {
+  width: 54px;
+  flex-shrink: 0;
+  color: var(--v98-muted);
+  font-size: 12px;
+}
+body.vael98 .v98-compose-body .wm-compose-format {
+  padding: 6px 10px;
+  gap: 3px;
+  background: var(--v98-surface);
+}
+body.vael98 .v98-compose-body .wm-compose-format button {
+  min-width: 28px;
+  min-height: 28px;
+  width: 28px;
+  padding: 4px;
+  box-shadow: none;
+  background: transparent;
+}
+body.vael98 .v98-compose-body .wm-compose-format button[aria-pressed="true"] {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .v98-compose-body .wm-editor {
+  min-height: 180px;
+  font-size: 15px;
+  line-height: 1.65;
+  padding: 16px;
+}
+body.vael98 .v98-compose-body .wm-compose-footer {
+  padding: 10px 14px;
+  gap: 10px;
+}
+body.vael98 .v98-compose-body .wm-save-status {
+  font: 11px/1.4 var(--v98-font-body);
+}
+body.vael98 .v98-compose-body .wm-file {
+  border-radius: 0;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+body.vael98 .da {
+  container: account-app/inline-size;
+  grid-template-rows: 44px 42px minmax(0, 1fr);
+}
+body.vael98 .da-header {
+  padding: 6px 14px;
+  background: var(--v98-surface);
+  gap: 10px;
+}
+body.vael98 .da-header-brand {
+  gap: 10px;
+}
+body.vael98 .da-header-brand .brand {
+  display: none;
+}
+body.vael98 .da-header-divider {
+  display: none;
+}
+body.vael98 .da-header-label {
+  color: var(--v98-muted);
+  font-size: 12px;
+}
+body.vael98 .da-header-actions {
+  gap: 8px;
+}
+body.vael98 .da-header-actions > .privacy-toggle {
+  display: none;
+}
+body.vael98 .da-topnav {
+  background: var(--v98-surface);
+}
+body.vael98 .da-topnav-inner {
+  padding-inline: 10px;
+  max-width: none;
+  gap: 8px;
+}
+body.vael98 .da-topnav nav {
+  gap: 2px;
+}
+body.vael98 .da-topnav nav a {
+  text-decoration: none;
+  font-size: 12px;
+  padding: 9px 10px;
+  gap: 7px;
+}
+body.vael98 .da-topnav nav a.active {
+  box-shadow: none;
+  background: var(--v98-surface-inset);
+  border-bottom: 2px solid var(--v98-accent);
+  color: var(--v98-text);
+}
+body.vael98 .da-nav-plan {
+  padding-right: 8px;
+}
+body.vael98 .da-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+body.vael98 .da-page-heading {
+  margin-bottom: 24px;
+}
+body.vael98 .da-page-heading h1 {
+  margin: 0 0 6px;
+  text-transform: capitalize;
+  font-size: 23px;
+}
+body.vael98 .da-page-heading p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+body.vael98 .da :is(.da-card, .da-panel, .da-overview-hero) {
+  box-shadow: none;
+  border: 1px solid var(--v98-shadow);
+  padding: 20px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .da :is(.da-section, .da-panel) {
+  margin-top: 22px;
+}
+body.vael98 .da-section-heading {
+  gap: 10px;
+  margin-bottom: 14px;
+}
+body.vael98 .da-section-heading h2 {
+  font-size: 17px;
+}
+body.vael98 .da :is(.da-panel-heading, .da-section-heading) p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+body.vael98 .da :is(.da-setting-row, .da-export-row) {
+  padding: 16px 0;
+  gap: 20px;
+  align-items: center;
+}
+body.vael98 .da-setting-row > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
+body.vael98 .da-setting-row :is(h3, p) {
+  max-width: 60ch;
+}
+body.vael98 .da-setting-row h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+body.vael98 .da-setting-row p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+body.vael98 .da-setting-row > :is(.wm-button, .vael-select) {
+  flex-shrink: 0;
+}
+body.vael98 .da-section :is(input:not([type="checkbox"]):not([type="radio"]), .vael-select) {
+  min-height: 34px;
+  font-size: 13px;
+  max-width: 260px;
+}
+body.vael98
+  .da
+  :is(
+    .da-status-pill,
+    .da-tabs,
+    .da-task-icon,
+    .da-checkbox-art,
+    .da-account-menu,
+    .da-periods label
+  ) {
+  border-radius: 0;
+}
+body.vael98 .da :is(.da-muted, .da-small) {
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.vael98 .da-content > footer {
+  font-size: 11px;
+  margin-top: 24px;
+  line-height: 1.6;
+}
+body.vael98 .da-notice {
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+body.vael98 .da[data-account-page="overview"] .da-identity {
+  padding: 0 0 22px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  gap: 14px;
+}
+body.vael98 .da-identity h2 {
+  font-size: 19px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+body.vael98 .da-identity-actions {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body.vael98 .da-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+body.vael98 .da-overview-grid .da-storage-card {
+  grid-column: 1/-1;
+}
+body.vael98 .da-storage-card .da-storage-total {
+  margin-block: 12px;
+}
+body.vael98 .da-storage-card .da-storage-total strong {
+  font-size: 25px;
+}
+body.vael98 .da-plan-meta {
+  margin-block: 16px;
+}
+body.vael98 .da-plan-meta strong {
+  font-size: 14px;
+}
+body.vael98 .da-task-row {
+  padding: 14px 0;
+  gap: 12px;
+  text-decoration: none;
+}
+body.vael98 .da-task-row h3 {
+  font-size: 14px;
+}
+body.vael98 .da-task-row p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.vael98 .da[data-account-page="storage"] .da-storage-total strong {
+  font: bold 32px/1.3 var(--v98-font-body);
+}
+body.vael98 .da-storage-breakdown > div {
+  padding-block: 13px;
+  font-size: 13px;
+}
+body.vael98 .da[data-account-page="billing"] .da-billing-current {
+  padding: 0 0 18px;
+  border: 0;
+  border-bottom: 1px solid var(--v98-shadow);
+  border-radius: 0;
+  background: transparent;
+}
+body.vael98 .da-purchase-intro {
+  margin-bottom: 18px;
+}
+body.vael98 .da-periods {
+  gap: 10px;
+  margin-block: 18px;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+body.vael98 .da-periods label {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--v98-highlight);
+  box-shadow: none;
+  background: var(--v98-surface);
+}
+body.vael98 .da-periods label.selected {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+  border-color: var(--v98-accent);
+}
+body.vael98 .da-periods strong {
+  font: bold 21px var(--v98-font-body);
+}
+body.vael98 .da-periods small {
+  font-size: 12px;
+  color: inherit;
+  opacity: 0.85;
+}
+body.vael98 .da-discount-tag {
+  background: rgba(185, 215, 120, 0.16);
+  color: #d2f283;
+  border: 1px solid rgba(185, 215, 120, 0.4);
+  font: bold 10px/1.2 var(--v98-font-body);
+  letter-spacing: 0.02em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-shadow: none;
+  white-space: nowrap;
+}
+body.vael98 .da-periods label.selected .da-discount-tag,
+body.vael98 .da-order-total-values .da-discount-tag {
+  background: var(--v98-accent, #b9d778);
+  color: var(--v98-accent-text, #111b09);
+  border: 1px solid #d4f494;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+body.vael98[data-v98-theme="light"] .da-discount-tag,
+html[data-vael-theme="light"] body.vael98 .da-discount-tag {
+  background: rgba(62, 88, 48, 0.12);
+  color: #273e1c;
+  border: 1px solid rgba(62, 88, 48, 0.3);
+}
+body.vael98[data-v98-theme="light"] .da-periods label.selected .da-discount-tag,
+body.vael98[data-v98-theme="light"] .da-order-total-values .da-discount-tag,
+html[data-vael-theme="light"] body.vael98 .da-periods label.selected .da-discount-tag,
+html[data-vael-theme="light"] body.vael98 .da-order-total-values .da-discount-tag {
+  background: #3e5830;
+  color: #ffffff;
+  border-color: #3e5830;
+}
+body.vael98 .da-periods label.selected .da-period-standard,
+body.vael98 .da-periods label.selected del {
+  color: var(--v98-selection-text);
+  opacity: 0.7;
+}
+body.vael98 .da-order-total {
+  padding-block: 18px;
+  align-items: baseline;
+  gap: 12px;
+}
+body.vael98 .da-order-total strong {
+  font: bold 28px var(--v98-font-body);
+}
+body.vael98 .da-checkout {
+  padding: 16px;
+  background: var(--v98-surface);
+  border: 1px solid var(--v98-shadow);
+}
+body.vael98 .da-checkout dl > div {
+  gap: 14px;
+  padding-block: 9px;
+}
+body.vael98 .da-payment-network {
+  gap: 8px;
+}
+body.vael98 .da-coins {
+  margin: 0 0 4px;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+body.vael98
+  :is(
+    .da-coin,
+    .da-pay-body,
+    .da-pay-result,
+    .da-pay-note,
+    .da-pay-timer,
+    .da-pay-field dd,
+    .da-pay-copy
+  ) {
+  border-radius: 0;
+}
+body.vael98 :is(.da-coin, .da-pay-body, .da-pay-result, .da-pay-timer) {
+  background: var(--v98-surface);
+  border-color: var(--v98-shadow);
+}
+body.vael98 .da-coin.selected {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+  border-color: var(--v98-accent);
+  box-shadow: none;
+}
+body.vael98 .da-coin.selected small {
+  color: inherit;
+  opacity: 0.8;
+}
+body.vael98 .da-network {
+  border-radius: 0;
+}
+body.vael98 .da-network.selected {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+  border-color: var(--v98-accent);
+}
+body.vael98 .da-network.selected small {
+  color: inherit;
+  opacity: 0.8;
+}
+body.vael98 .da-pay-amount {
+  font: bold 21px var(--v98-font-mono, monospace);
+}
+body.vael98 .da-pay-timer time {
+  font: bold 18px var(--v98-font-mono, monospace);
+}
+body.vael98 .da-pay-head h2 {
+  font: bold 20px var(--v98-font-body);
+}
+body.vael98 .da-billing-ack {
+  align-items: flex-start;
+  line-height: 1.6;
+  margin-block: 18px;
+  position: relative;
+}
+body.vael98 .da-billing-ack input[type="checkbox"] {
+  position: absolute !important;
+  inset: auto !important;
+  top: 14px !important;
+  left: 16px !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+  pointer-events: auto !important;
+  cursor: var(--vael-cursor-pointer, pointer) !important;
+  z-index: 2 !important;
+}
+body.vael98 .da-billing-ack input[type="checkbox"]::before,
+body.vael98 .da-billing-ack input[type="checkbox"]::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+}
+@media (max-width: 680px) {
+  body.vael98 .da-billing-ack input[type="checkbox"] {
+    top: 12px !important;
+    left: 14px !important;
+  }
+}
+body.vael98 .da-address-summary {
+  padding: 14px;
+  gap: 10px;
+  background: var(--v98-surface-inset);
+  border: 1px solid var(--v98-shadow);
+}
+body.vael98 .da-address-summary code {
+  font-size: 13px;
+}
+body.vael98 .da-tabs {
+  gap: 4px;
+  margin-block: 18px;
+  border-bottom: 1px solid var(--v98-highlight);
+}
+body.vael98 .da-tabs a {
+  padding: 10px 14px;
+  text-decoration: none;
+  font-size: 13px;
+}
+body.vael98 .da-tabs a[aria-current="page"] {
+  color: var(--v98-text);
+  background: var(--v98-surface-inset);
+  border-bottom: 2px solid var(--v98-accent);
+}
+body.vael98 .da-security-summary {
+  gap: 14px;
+  padding: 16px;
+  background: var(--v98-surface-inset);
+  border: 1px solid var(--v98-shadow);
+  border-radius: 0;
+}
+body.vael98 .da-security-summary p {
+  margin-top: 5px;
+  line-height: 1.6;
+  font-size: 13px;
+}
+body.vael98 .da[data-account-page="security"] .da-connection-help {
+  margin-top: 16px;
+  padding: 12px 0;
+}
+body.vael98 .da-connection-help summary {
+  font-size: 13px;
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+body.vael98 .da-connection-details {
+  gap: 12px;
+  font-size: 13px;
+}
+body.vael98 .da-export-row {
+  display: flex;
+}
+body.vael98 .da-export-row > div {
+  flex: 1;
+  min-width: 0;
+}
+body.vael98 .da-export-row h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+body.vael98 .da-export-row p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+body.vael98 .da-export-row > .wm-button {
+  flex-shrink: 0;
+}
+body.vael98 .da-inline-actions {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+body.vael98 .da-panel.danger {
+  border-color: var(--v98-danger);
+}
+body.vael98 .da-recovery-codes {
+  gap: 10px;
+  padding: 16px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .da-recovery-codes li {
+  font: 13px/1.6 var(--v98-font-mono);
+}
+body.vael98 .da-qr-panel {
+  padding: 16px;
+}
+body.vael98 .v98-resource-app {
+  container: resource-app/inline-size;
+}
+body.vael98 .v98-resource-app {
+  display: block;
+}
+body.vael98 .v98-resource-app > .wm-resource-page {
+  width: 100%;
+}
+body.vael98 :is(.wm-resource-page, .wm-settings-content) {
+  padding: 24px;
+}
+body.vael98 .wm-page-heading {
+  margin-bottom: 22px;
+  gap: 16px;
+}
+body.vael98 .wm-page-heading :is(h1, h2) {
+  font-size: 22px;
+  text-transform: capitalize;
+}
+body.vael98 .wm-page-heading p {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 58ch;
+}
+body.vael98 .wm-page-heading .wm-eyebrow {
+  display: none;
+}
+body.vael98 .wm-resource-filter {
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+body.vael98 .wm-resource-filter > input {
+  min-height: 34px;
+  font-size: 13px;
+}
+body.vael98 .wm-resource-list {
+  border-top: 1px solid var(--v98-shadow);
+}
+body.vael98 .wm-resource-row {
+  padding: 12px;
+  gap: 12px;
+  background: var(--v98-surface-inset);
+  border-bottom: 1px solid var(--v98-shadow);
+}
+body.vael98 .wm-resource-name {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  min-height: 34px;
+  text-align: left;
+}
+body.vael98 .wm-resource-name strong {
+  font: bold 13px/1.5 var(--v98-font-body);
+}
+body.vael98 .wm-resource-name > span {
+  font: 12px/1.5 var(--v98-font-body);
+}
+body.vael98 .wm-resource-row > .wm-icon {
+  background: transparent;
+  box-shadow: none;
+}
+body.vael98 .wm-quota-row {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+body.vael98 .wm-resource-embedded {
+  padding: 0;
+}
+body.vael98 .wm-resource-embedded .wm-page-heading {
+  margin-bottom: 16px;
+}
+body.vael98 .wm-resource-embedded .wm-page-heading :is(h1, h2) {
+  font-size: 17px;
+}
+body.vael98 .wm-resource-embedded .wm-page-heading .wm-button {
+  min-height: 32px;
+  padding: 6px 12px;
+}
+body.vael98 .wm-alias-primary {
+  padding: 12px 0;
+  gap: 10px;
+  font-size: 12px;
+}
+body.vael98 .wm-alias-primary code {
+  font-size: 13px;
+}
+body.vael98 .wm-alias-allowance {
+  padding: 16px 0;
+  gap: 10px 22px;
+  font-size: 12px;
+}
+body.vael98 .wm-alias-allowance small {
+  font-size: 11px;
+  line-height: 1.5;
+}
+body.vael98 .wm-alias-filters {
+  gap: 10px;
+  margin: 4px 0 16px;
+}
+body.vael98 .wm-alias-filters > label {
+  min-width: 160px;
+}
+body.vael98 .wm-alias-filters input {
+  min-height: 34px;
+  height: 34px;
+  font-size: 13px;
+}
+body.vael98 .wm-alias-filters button {
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.vael98 .wm-alias-filters button[aria-pressed="true"] {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .wm-alias-list {
+  border-top: 1px solid var(--v98-shadow);
+}
+body.vael98 .wm-alias-row {
+  padding: 12px;
+  gap: 8px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .wm-alias-details {
+  min-width: 0;
+}
+body.vael98 .wm-alias-details code {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+body.vael98 .wm-alias-details p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+body.vael98 .wm-alias-row .wm-icon {
+  background: transparent;
+  box-shadow: none;
+}
+body.vael98 .wm-alias-mark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+body.vael98 .wm-domain-detail {
+  padding: 18px;
+  border-radius: 0;
+  background: var(--v98-surface-inset);
+  box-shadow: none;
+  border: 1px solid var(--v98-shadow);
+}
+body.vael98 .wm-domain-heading {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+body.vael98 .wm-domain-heading h3 {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+body.vael98 .wm-domain-records {
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+}
+body.vael98 .wm-domain-records :is(dt, dd, code) {
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.vael98 .wm-domain-records dd {
+  min-width: 0;
+}
+body.vael98 .wm-domain-records dd code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+body.vael98 .wm-domain-recipients li {
+  gap: 10px;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+body.vael98 .wm-domain-footer {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.vael98 .wm-service-entry {
+  padding: 14px 12px;
+  gap: 12px;
+  border-radius: 0;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .wm-service-entry strong {
+  font: bold 14px/1.4 var(--v98-font-body);
+}
+body.vael98 .wm-service-entry :is(p, small, .wm-service-activity) {
+  font-size: 12px;
+  line-height: 1.5;
+}
+body.vael98 .wm-service-suggestions {
+  margin-top: 26px;
+}
+body.vael98 .wm-service-suggestions h2 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+body.vael98 .wm-service-detail {
+  gap: 16px;
+  font-size: 13px;
+}
+body.vael98 :is(.wm-dns-record, .wm-rule-group, .wm-csv-preview) {
+  border-radius: 0;
+  padding: 12px;
+  background: var(--v98-surface-inset);
+}
+body.vael98 .wm-dns-record code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+body.vael98 .wm-rule-line {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+body.vael98 .wm-rule-line input {
+  flex: 1;
+  min-width: 130px;
+}
+body.vael98 .wm-sieve-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 12px 0 10px;
+  border-bottom: 2px solid var(--v98-shadow);
+  padding-bottom: 6px;
+}
+body.vael98 .wm-sieve-tab {
+  padding: 4px 10px;
+  font: 11px var(--v98-font-mono, monospace);
+  background: var(--v98-surface);
+  border: 1px solid var(--v98-shadow);
+  color: var(--v98-text-muted);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+body.vael98 .wm-sieve-tab.is-active {
+  background: var(--v98-surface-inset);
+  color: var(--v98-accent, #b9d778);
+  border-color: var(--v98-accent, #b9d778);
+  font-weight: bold;
+}
+body.vael98 .wm-sieve-starters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 12px;
+}
+body.vael98 .wm-sieve-starter-btn {
+  padding: 3px 8px;
+  font-size: 11px;
+  background: var(--v98-surface);
+  border: 1px solid var(--v98-border);
+  color: var(--v98-text);
+  cursor: pointer;
+}
+body.vael98 .wm-sieve-starter-btn:hover {
+  background: var(--v98-surface-highlight);
+  border-color: var(--v98-accent);
+}
+body.vael98 .wm-sieve-terminal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  padding: 2px 6px;
+  background: #3c2420;
+  color: #ff9d8f;
+  border: 1px solid #703328;
+  margin-left: 6px;
+}
+body.vael98 .wm-sieve-code-panel {
+  background: #0d1211;
+  border: 1px solid var(--v98-shadow);
+  padding: 12px;
+  margin: 8px 0;
+  font-family: var(--v98-font-mono, monospace);
+  font-size: 11px;
+  line-height: 1.5;
+  color: #c9e89d;
+  white-space: pre;
+  overflow-x: auto;
+  user-select: text;
+}
+body.vael98 .wm-sieve-test-result {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  background: var(--v98-surface-inset);
+  border-left: 3px solid var(--v98-accent, #b9d778);
+}
+body.vael98 .wm-settings {
+  container: settings-app/inline-size;
+}
+body.vael98 .wm-settings-nav {
+  width: 184px;
+  padding: 18px 10px;
+  background: var(--v98-surface);
+}
+body.vael98 .wm-settings-nav > div {
+  margin-bottom: 16px;
+  gap: 9px;
+}
+body.vael98 .wm-settings-nav h1 {
+  font-size: 16px;
+}
+body.vael98 .wm-settings-nav nav > a {
+  font-size: 13px;
+  padding: 9px 10px;
+  text-decoration: none;
+  margin-bottom: 2px;
+}
+body.vael98 .wm-settings-search {
+  padding-left: 8px;
+  margin-bottom: 16px;
+}
+body.vael98 .wm-settings-search input {
+  box-shadow: none;
+  background: transparent;
+  font-size: 12px;
+}
+body.vael98 .wm-settings-content {
+  padding: 24px;
+}
+body.vael98 .wm-settings-content .wm-page-heading h1 {
+  font-size: 22px;
+}
+body.vael98 .wm-setting-row {
+  gap: 20px;
+  padding: 17px 0;
+}
+body.vael98 .wm-setting-row h2 {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+body.vael98 .wm-setting-row p {
+  font-size: 12px;
+  line-height: 1.65;
+  max-width: 48ch;
+}
+body.vael98 .wm-setting-control {
+  max-width: 45%;
+}
+body.vael98 .wm-setting-control :is(.vael-select, input:not([type="checkbox"])) {
+  font-size: 13px;
+  min-height: 32px;
+}
+body.vael98 .wm-autosaved {
+  font: 11px var(--v98-font-body);
+  gap: 5px;
+  padding-top: 5px;
+}
+body.vael98 .wm-theme-preview {
+  gap: 12px;
+  padding: 18px 0;
+}
+body.vael98 .wm-theme-preview > button {
+  border-radius: 0;
+}
+body.vael98 .wm-theme-window {
+  border-radius: 0;
+}
+body.vael98 .wm-plugin-group {
+  margin-top: 22px;
+}
+body.vael98 .wm-plugin-group h2 {
+  font-size: 13px;
+  color: var(--v98-text);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--v98-shadow);
+}
+body.vael98 .wm-plugin-row {
+  gap: 12px;
+  padding: 16px 0;
+}
+body.vael98 .wm-plugin-copy > label {
+  font-size: 14px;
+}
+body.vael98 .wm-plugin-copy :is(p, summary) {
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.vael98 .wm-settings-note {
+  font-size: 12px;
+  padding-block: 18px;
+  line-height: 1.65;
+}
+body.vael98 .wm-shortcuts {
+  font-size: 13px;
+}
+body.vael98 :is(.wm, .da) kbd {
+  border-radius: 0;
+  font: 11px/1.5 var(--v98-font-mono);
+  padding: 2px 5px;
+}
+@container account-app (max-width:720px) {
+  body.vael98 .da-topnav-inner {
+    min-width: 0;
+    padding: 0;
+  }
+  body.vael98 .da-topnav nav {
+    gap: 0;
+  }
+  body.vael98 .da-topnav nav a {
+    padding-inline: 10px;
+  }
+  body.vael98 .da-topnav nav svg {
+    display: none;
+  }
+  body.vael98 .da-nav-plan {
+    display: none;
+  }
+  body.vael98 .da-content {
+    padding: 18px;
+  }
+  body.vael98 .da :is(.da-setting-row, .da-export-row) {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  body.vael98 .da-setting-row > div:first-child {
+    flex-basis: 100%;
+  }
+  body.vael98 .da-export-row > div {
+    flex-basis: calc(100% - 45px);
+  }
+  body.vael98 .da-export-row > .wm-button {
+    margin-left: 34px;
+  }
+  body.vael98 .da-identity {
+    flex-direction: column;
+  }
+  body.vael98 .da-periods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container account-app (max-width:480px) {
+  body.vael98 .da-overview-grid {
+    grid-template-columns: 1fr;
+  }
+  body.vael98 .da-security-summary {
+    flex-wrap: wrap;
+  }
+  body.vael98 .da-topnav nav {
+    overflow-x: auto;
+  }
+}
+@container settings-app (max-width:620px) {
+  body.vael98 .wm-settings-nav {
+    width: 150px;
+  }
+  body.vael98 .wm-settings-content {
+    padding: 18px;
+  }
+  body.vael98 .wm-setting-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  body.vael98 .wm-setting-control {
+    max-width: 100%;
+  }
+}
+@container resource-app (max-width:500px) {
+  body.vael98 .wm-page-heading {
+    flex-wrap: wrap;
+  }
+  body.vael98 .wm-resource-filter {
+    flex-wrap: wrap;
+  }
+  body.vael98 .wm-service-entry {
+    flex-wrap: wrap;
+  }
+  body.vael98 .wm-alias-row {
+    flex-wrap: wrap;
+  }
+  body.vael98 .wm-alias-mark {
+    display: none;
+  }
+  body.vael98 .wm-alias-details {
+    flex-basis: calc(100% - 70px);
+  }
+}
+body.vael98 .v98-public-content {
+  container: public-app/inline-size;
+  line-height: 1.65;
+}
+body.vael98 .v98-public-toolbar {
+  padding: 6px 8px;
+  min-height: 43px;
+  gap: 8px;
+  background: var(--v98-surface);
+}
+@media (min-width: 768px) {
+  body.vael98 .v98-public-navigation > a,
+  body.vael98 .v98-public-menu-trigger {
+    min-height: 30px;
+    padding: 6px 9px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 767px) {
+  body.vael98 .v98-public-toolbar {
+    min-height: 52px;
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  body.vael98 .v98-public-navigation > a,
+  body.vael98 .v98-public-menu-trigger {
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+body.vael98 .v98-domain-list {
+  gap: 14px;
+}
+body.vael98 .v98-domain-list dt {
+  font-size: 14px;
+}
+body.vael98 .v98-domain-list dd {
+  font-size: 12px;
+}
+body.vael98 .v98-key-note {
+  margin-top: 16px;
+  padding: 14px;
+  box-shadow: none;
+  border-left: 2px solid var(--v98-accent);
+  background: var(--v98-surface-inset);
+}
+body.vael98 .v98-trust-details {
+  margin-top: 12px;
+}
+body.vael98 .v98-trust-details p {
+  margin-block: 12px;
+  max-width: 66ch;
+}
+body.vael98 .v98-public-footer {
+  padding: 20px 28px;
+  gap: 12px;
+  border-top-color: var(--v98-shadow);
+}
+body.vael98 .v98-public-footer nav {
+  gap: 8px 18px;
+}
+body.vael98 .v98-public-footer a {
+  font-size: 12px;
+  padding-block: 3px;
+}
+body.vael98 [data-sonner-toaster] {
+  --width: 368px;
+  font-family: var(--v98-font-body);
+  z-index: 4500;
+}
+body.vael98 .wm-toast {
+  --normal-bg: var(--v98-surface-raised);
+  --normal-text: var(--v98-text);
+  --normal-border: var(--v98-highlight);
+  margin: 0;
+  padding: 16px 46px 16px 16px !important;
+  border-radius: 0 !important;
+  background: var(--v98-surface-raised) !important;
+  color: var(--v98-text) !important;
+  box-shadow: var(--v98-raised) !important;
+  font: 13px/1.5 var(--v98-font-body) !important;
+  gap: 10px !important;
+}
+body.vael98 .wm-toast [data-description] {
+  color: var(--v98-muted) !important;
+  font-size: 12px;
+  line-height: 1.5;
+}
+body.vael98 .wm-toast .v98-toast-close {
+  inset: 8px 8px auto auto !important;
+  transform: none !important;
+  width: 26px !important;
+  min-width: 26px !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--v98-surface) !important;
+  color: var(--v98-text) !important;
+  box-shadow: var(--v98-raised) !important;
+}
+body.vael98 .wm-toast :is(.v98-toast-action, .v98-toast-cancel) {
+  min-width: 48px;
+  min-height: 30px;
+  height: auto;
+  padding: 5px 9px !important;
+  border-radius: 0 !important;
+  font: 12px/1.4 var(--v98-font-body) !important;
+  background: var(--v98-accent) !important;
+  color: var(--v98-accent-text) !important;
+  box-shadow: var(--v98-raised);
+}
+body.vael98 .wm-toast .v98-toast-cancel {
+  background: var(--v98-surface) !important;
+  color: var(--v98-text) !important;
+}
+body.vael98 .wm-toast [data-icon] {
+  color: var(--v98-accent);
+}
+body.vael98 .wm-toast[data-type="error"] [data-icon] {
+  color: var(--v98-danger);
+}
+body.vael98 .wm-toast button:focus-visible {
+  outline: 2px solid var(--v98-focus);
+  outline-offset: 2px;
+}
+body.vael98 .account-form-section {
+  max-width: 520px;
+}
+body.vael98 .account-panel {
+  padding: 22px;
+}
+body.vael98 .account-panel :is(label, input, button) {
+  font-family: var(--v98-font-body);
+  font-size: 14px;
+}
+body.vael98 .account-panel :is(input:not([type="checkbox"]), .account-submit) {
+  min-height: 40px;
+}
+body.vael98 .account-panel .field-group {
+  gap: 8px;
+}
+body.vael98 .key-created .account-key {
+  line-height: 1.7;
+  padding: 16px;
+}
+body.vael98 .be-toolbar button {
+  min-width: 30px;
+  min-height: 30px;
+  box-shadow: none;
+}
+body.vael98 .be-fields label {
+  font-size: 13px;
+}
+body.vael98 .be-root .be-content {
+  padding: 20px;
+  line-height: 1.75;
+}
+@media (max-width: 767px) {
+  body.vael98 {
+    --v98-control-height: 44px;
+    --v98-taskbar-height: 52px;
+  }
+  body.vael98 :is(.wm-button, .v98-button, .wm-icon) {
+    min-height: 44px;
+  }
+  body.vael98 .wm-icon {
+    min-width: 44px;
+    width: 44px;
+    height: 44px;
+  }
+  body.vael98 .v98-desktop-window .title-bar-controls button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+  body.vael98 .v98-window-menu .v98-button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+  body.vael98 .account-panel :is(input:not([type="checkbox"]), .account-submit) {
+    min-height: 44px;
+  }
+  body.vael98 .v98-tray .privacy-toggle {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+  body.vael98 .v98-tray .v98-clock-button {
+    min-height: 44px;
+  }
+  body.vael98 .wm-domain-records {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  body.vael98 .wm-domain-records dd {
+    margin-bottom: 10px;
+  }
+  body.vael98 .v98-mail-app .wm-topbar {
+    height: 56px;
+    min-height: 56px;
+    padding: 7px;
+    gap: 6px;
+  }
+  body.vael98 .v98-mail-app .wm-search {
+    height: 40px;
+    padding-inline: 7px 2px;
+  }
+  body.vael98 .v98-mail-app .wm-search input {
+    min-height: 36px;
+    font-size: 16px;
+  }
+  body.vael98 .v98-mail-app .wm-search .wm-search-key {
+    display: none;
+  }
+  body.vael98 .v98-mail-app .wm-search .wm-icon {
+    min-width: 32px;
+    width: 32px;
+    height: 36px;
+    min-height: 36px;
+  }
+  body.vael98 .v98-mail-app .v98-new-message {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px;
+  }
+  body.vael98 .v98-mail-app .wm-list-heading {
+    padding: 12px 10px 6px;
+  }
+  body.vael98 .v98-mail-app .wm-list-tools {
+    padding-inline: 10px;
+  }
+  body.vael98 .v98-mail-app .wm-reader-toolbar {
+    padding-inline: 8px;
+  }
+  body.vael98 .v98-mail-app .wm-row-menu {
+    display: inline-flex;
+  }
+  body.vael98 .v98-mail-app :is(.wm-subject-heading, .wm-message) {
+    padding-inline: 16px;
+  }
+  body.vael98 .v98-compose-body .wm-compose-format {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  body.vael98 .v98-compose-body .wm-compose-format button {
+    min-height: 36px;
+    min-width: 34px;
+    width: 34px;
+  }
+  body.vael98 .da {
+    grid-template-rows: 52px 44px minmax(0, 1fr);
+  }
+  body.vael98 .da-header {
+    padding-inline: 10px;
+  }
+  body.vael98 .da-header-brand {
+    display: none;
+  }
+  body.vael98 .da-topnav nav {
+    display: flex;
+  }
+  body.vael98 .da-mobile-section {
+    display: none;
+  }
+  body.vael98 .da-content {
+    padding: 18px 16px;
+  }
+  body.vael98 .da :is(.da-card, .da-panel) {
+    padding: 16px;
+  }
+  body.vael98 .wm-settings {
+    flex-direction: column;
+  }
+  body.vael98 .wm-settings-nav {
+    width: 100%;
+    padding: 12px;
+    max-height: 220px;
+  }
+  body.vael98 .wm-settings-nav > div {
+    display: none;
+  }
+  body.vael98 .wm-settings-nav nav {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  body.vael98 .wm-settings-nav nav a {
+    white-space: nowrap;
+    padding: 10px;
+    margin: 0;
+  }
+  body.vael98 .wm-settings-search {
+    margin-bottom: 10px;
+  }
+  body.vael98 .wm-settings-content,
+  body.vael98 .wm-resource-page {
+    padding: 18px 16px;
+  }
+  body.vael98 .wm-setting-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  body.vael98 .wm-setting-control {
+    max-width: 100%;
+  }
+  body.vael98 .wm-menu-item {
+    min-height: 44px;
+  }
+  body.vael98 .v98-public-footer {
+    padding: 18px 16px;
+  }
+  body.vael98 .wm-toast {
+    padding: 16px 54px 16px 14px !important;
+  }
+  body.vael98 .wm-toast .v98-toast-close {
+    min-width: 36px !important;
+    width: 36px !important;
+    min-height: 36px !important;
+    height: 36px !important;
+  }
+  body.vael98 .wm-toast :is(.v98-toast-action, .v98-toast-cancel) {
+    min-height: 40px;
+  }
+}
+@media (pointer: coarse) {
+  body.vael98
+    :is(.wm, .wm-dialog, .wm-compose, .account-panel)
+    :is(input:not([type="checkbox"]):not([type="radio"]), textarea, .vael-select) {
+    font-size: 16px !important;
+    min-height: 44px;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  body.vael98 .v98-mail-app .wm-mail-row:not(.active):not(.selected):hover {
+    background: var(--v98-surface);
+  }
+  body.vael98 :is(.wm-resource-row, .wm-service-entry):hover {
+    background: var(--v98-surface);
+  }
+}
+@media (forced-colors: active) {
+  body.vael98 :is(.wm-toast, .da-card, .da-panel, .wm-resource-row) {
+    border: 1px solid CanvasText !important;
+  }
+  body.vael98 .wm-toast .v98-toast-close {
+    border: 1px solid ButtonText !important;
+  }
+}
+body.vael98 .v98-desktop-window {
+  overflow: clip;
+}
+body.vael98 .v98-desktop-shell,
+body.vael98 .v98-desktop-area {
+  overflow: clip;
+}
+body.vael98 .v98-window-layer {
+  display: contents;
+}
+body.vael98 .v98-desktop-shortcuts {
+  bottom: 0;
+}
+body.vael98 .v98-network-shortcuts {
+  position: absolute;
+  bottom: 10px;
+  left: max(8px, env(safe-area-inset-left));
+  display: flex;
+  gap: 6px;
+}
+body.vael98 .v98-network-shortcuts :is(a, button) {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 64px;
+  min-height: 68px;
+  color: var(--v98-text);
+  text-decoration: none;
+  font: 12px/1.3 var(--v98-font-body);
+}
+body.vael98 .v98-network-shortcuts svg {
+  display: block;
+  color: var(--v98-accent);
+  filter: drop-shadow(1px 2px var(--v98-edge));
+}
+body.vael98 .v98-network-shortcuts :is(a, button):focus-visible {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: -2px;
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+body.vael98 .v98-startup {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: max(24px, calc(40vh - 64px)) 16px 24px;
+  background: var(--v98-desktop);
+  color: var(--v98-text);
+  box-shadow: none;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity var(--v98-duration-intro) var(--v98-ease-out);
+}
+body.vael98 .v98-startup[data-leaving="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+body.vael98 .v98-boot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(420px, 100%);
+}
+body.vael98 .v98-boot-brand {
+  font: bold clamp(28px, 7vw, 36px)/1.1 var(--v98-font-ui);
+  letter-spacing: 0.02em;
+}
+body.vael98 .v98-boot-label {
+  min-height: 19px;
+  color: var(--v98-muted);
+  font: 13px/1.45 var(--v98-font-ui);
+}
+body.vael98 .v98-boot-track {
+  height: 22px;
+  padding: 3px;
+  overflow: clip;
+  box-shadow: var(--v98-sunken);
+  background: var(--v98-surface-inset);
+}
+body.vael98 .v98-boot-track > i {
+  display: block;
+  width: 34%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, var(--v98-accent) 0 9px, transparent 9px 12px);
+  animation: v98-boot-activity 1400ms steps(24) infinite;
+}
+@keyframes v98-boot-activity {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+body.vael98 .v98-appearance {
+  padding: 20px;
+  font: 14px/1.5 var(--v98-font-body);
+}
+body.vael98 .v98-appearance h1 {
+  font: bold 20px/1.3 var(--v98-font-body);
+}
+body.vael98 .v98-scheme-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  margin: 0;
+}
+body.vael98 .v98-scheme-choice {
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding: 8px;
+  box-shadow: var(--v98-raised);
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+body.vael98 .v98-scheme-choice[data-selected="true"] {
+  outline: 1px solid var(--v98-accent);
+  background: var(--v98-surface-raised);
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .v98-scheme-choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  opacity: 0;
+}
+body.vael98 .v98-scheme-choice:has(input:focus-visible) {
+  outline: 2px solid var(--v98-focus);
+  outline-offset: 2px;
+}
+body.vael98 .v98-scheme-name {
+  display: block;
+  font: bold 12px/1.5 var(--v98-font-body);
+}
+body.vael98 .v98-scheme-choice small {
+  display: block;
+  margin-top: 4px;
+  font: 11px/1.4 var(--v98-font-body);
+  color: var(--v98-muted);
+}
+body.vael98 .v98-scheme-preview {
+  display: block;
+  height: 62px;
+  padding: 8px;
+  margin-bottom: 10px;
+  background: #101716;
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .v98-scheme-preview > .v98-scheme-caption {
+  display: block;
+  height: 10px;
+  background: #3e5433;
+}
+body.vael98 .v98-scheme-preview > .v98-scheme-paper {
+  display: block;
+  height: 24px;
+  border: 3px solid #303432;
+  background: #181d1b;
+}
+body.vael98 .v98-scheme-preview > i {
+  display: block;
+  height: 5px;
+  margin-top: 4px;
+  background: #414643;
+}
+body.vael98 [data-scheme="light"] .v98-scheme-preview {
+  background: #bdc5ba;
+}
+body.vael98 [data-scheme="light"] .v98-scheme-preview > .v98-scheme-paper {
+  border-color: #d9ded4;
+  background: #f8faf4;
+}
+body.vael98 [data-scheme="light"] .v98-scheme-preview > i {
+  background: #ebeee6;
+}
+body.vael98 [data-scheme="system"] .v98-scheme-preview {
+  background: linear-gradient(90deg, #101716 50%, #bdc5ba 50%);
+}
+body.vael98 [data-scheme="system"] .v98-scheme-preview > .v98-scheme-paper {
+  border-color: #7c857a;
+  background: linear-gradient(90deg, #181d1b 50%, #f8faf4 50%);
+}
+@media (hover: hover) and (pointer: fine) {
+  body.vael98 .v98-network-shortcuts :is(a, button):hover span,
+  body.vael98 .v98-welcome-index a:hover {
+    background: var(--v98-selection);
+    color: var(--v98-selection-text);
+  }
+}
+@media (max-width: 767px) {
+  body.vael98 .v98-appearance {
+    padding: 16px;
+  }
+  body.vael98 .v98-scheme-choices {
+    gap: 7px;
+    padding: 10px;
+  }
+  body.vael98 .v98-scheme-choice {
+    padding: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.vael98 .v98-startup {
+    transition: none;
+  }
+  body.vael98 .v98-boot-track > i {
+    animation: none;
+    width: 100%;
+  }
+}
+@media (forced-colors: active) {
+  body.vael98 :is(.v98-boot-track, .v98-welcome-postmark, .v98-scheme-choice, .v98-scheme-preview) {
+    border: 1px solid CanvasText;
+  }
+  body.vael98 .v98-boot-track i {
+    background: Highlight;
+  }
+}
+body.vael98 .v98-mail-app .wm-sender-icon {
+  align-self: center;
+  margin-top: 0;
+  display: grid;
+  place-items: center;
+}
+body.vael98 .wm-plain-message {
+  background: var(--v98-surface-inset);
+  color: var(--v98-text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 14px;
+  border: 1px solid var(--v98-shadow);
+  box-shadow: none;
+}
+body.vael98 .wm-resource-row .wm-avatar {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: transparent;
+  color: var(--v98-text);
+}
+body.vael98 .wm-resource-row .wm-avatar > svg {
+  display: block;
+  margin: 0;
+  position: static;
+  transform: none;
+}
+body.vael98 .wm-resource-embedded {
+  background: transparent;
+  padding: 0;
+  min-width: 0;
+}
+body.vael98 .wm-resource-embedded .wm-page-heading {
+  padding: 0 0 16px;
+}
+body.vael98 .wm-collapse-navigation {
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  min-width: 28px;
+  min-height: 28px;
+}
+@media (max-width: 760px) {
+  body.vael98 .v98-mail-app .wm-mail-row {
+    min-height: 68px;
+  }
+}
+body.vael98 .wm-nav-label > button {
+  display: grid;
+  place-items: center;
+  padding: 3px;
+  width: 26px;
+  height: 26px;
+  background: var(--v98-surface);
+  box-shadow: var(--v98-raised);
+}
+body.vael98 .wm-nav-label > button:active {
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .wm-skeleton {
+  padding: 12px;
+  display: grid;
+  gap: 1px;
+}
+body.vael98 .wm-skeleton > div {
+  display: grid;
+  grid-template-columns: 24px minmax(80px, 1fr) minmax(120px, 2fr);
+  gap: 12px;
+  align-items: center;
+  min-height: 46px;
+  padding: 8px;
+}
+body.vael98 .wm-skeleton > div > span {
+  height: 10px;
+  background: var(--v98-shadow);
+  opacity: 0.5;
+}
+body.vael98 .wm-skeleton > div > span:first-child {
+  height: 22px;
+  width: 22px;
+}
+body.vael98 .wm-skeleton > div:nth-child(even) > span:last-child {
+  width: 72%;
+}
+body.vael98 .wm-resource-embedded .wm-resource-row {
+  padding-block: 12px;
+}
+body.vael98 .wm-alias-mark svg {
+  display: block;
+  margin: 0;
+  position: static;
+  transform: none;
+}
+body.vael98 .da .wm-resource-embedded {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.vael98 .da .wm-resource-embedded > .wm-page-heading {
+  margin: 0 0 12px;
+  padding: 0;
+  align-items: flex-start;
+}
+body.vael98 .da .wm-alias-row {
+  padding: 14px 0;
+  background: transparent;
+  box-shadow: none;
+}
+body.vael98 .da .wm-alias-allowance {
+  padding: 12px 0;
+}
+body.vael98 .wm-skeleton span {
+  animation: none;
+  margin: 0;
+}
+body.vael98 .wm-skeleton-panel > div {
+  grid-template-columns: minmax(90px, 1fr) minmax(100px, 2fr) 60px;
+  min-height: 62px;
+  border-bottom: 1px solid var(--v98-shadow);
+}
+body.vael98 .wm-skeleton-panel > div > span:first-child {
+  width: 75%;
+  height: 10px;
+}
+body.vael98 .wm-skeleton-reader {
+  padding: 20px;
+  gap: 16px;
+}
+body.vael98 .wm-skeleton-reader > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  border: 0;
+}
+body.vael98 .wm-skeleton-reader > div > span {
+  width: 90%;
+  height: 10px;
+}
+body.vael98 .wm-skeleton-reader > div > span:first-child {
+  width: 65%;
+  height: 14px;
+}
+@container mail-list (max-width:580px) {
+  body.vael98 .wm-skeleton-list > div {
+    min-height: 68px;
+  }
+}
+@media (max-width: 767px) {
+  body.vael98 .v98-taskbar {
+    gap: 4px;
+    padding-top: 4px;
+  }
+  body.vael98 .v98-show-desktop {
+    display: none !important;
+  }
+  body.vael98 .v98-start-button {
+    min-width: 44px;
+    width: 44px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  body.vael98 .v98-start-button > span:not(.brand-mark) {
+    display: none;
+  }
+  body.vael98 .v98-start-button .brand-mark {
+    width: 26px;
+    height: 26px;
+  }
+  body.vael98 .v98-launcher-button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  body.vael98 .v98-task-buttons {
+    gap: 4px;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+  body.vael98 .v98-task-buttons::-webkit-scrollbar {
+    display: none;
+  }
+  body.vael98 .v98-task-button {
+    flex: 0 0 44px;
+    min-width: 44px;
+    width: 44px;
+    max-width: 44px;
+    padding: 0;
+    justify-content: center;
+    position: relative;
+    scroll-snap-align: start;
+  }
+  body.vael98
+    .v98-task-button
+    > span:not(.v98-task-notification):not(.v98-task-attention):not(.sr-only) {
+    display: none;
+  }
+  body.vael98 .v98-task-button[aria-pressed="true"] {
+    flex-basis: 44px;
+  }
+  body.vael98 .v98-tray {
+    margin-right: 0;
+    padding-inline: 4px;
+    flex-shrink: 0;
+  }
+  body.vael98 .v98-tray .v98-connection-label,
+  body.vael98 .v98-tray-clock {
+    min-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  body.vael98 .v98-task-notification,
+  body.vael98 .v98-task-attention {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    margin: 0;
+  }
+  body.vael98 .v98-task-attention {
+    padding: 0 3px;
+    font-size: 10px;
+    line-height: 1.2;
+    background: var(--v98-surface);
+  }
+}

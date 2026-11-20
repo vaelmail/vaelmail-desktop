@@ -1,0 +1,37 @@
+.privacy-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--w-muted, var(--muted));
+  background: transparent;
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+.privacy-toggle[aria-pressed="true"] {
+  color: var(--w-accent, var(--accent));
+  background: var(--w-surface, var(--surface));
+  border-color: var(--w-line, var(--line));
+}
+@media (hover: hover) and (pointer: fine) {
+  .privacy-toggle:hover {
+    color: var(--w-fg, var(--foreground));
+    background: var(--w-surface, var(--surface));
+  }
+}
+@media (max-width: 520px) {
+  .da-header-actions > a > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

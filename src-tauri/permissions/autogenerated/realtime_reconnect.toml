@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-realtime-reconnect"
+description = "Enables the realtime_reconnect command without any pre-configured scope."
+commands.allow = ["realtime_reconnect"]
+
+[[permission]]
+identifier = "deny-realtime-reconnect"
+description = "Denies the realtime_reconnect command without any pre-configured scope."
+commands.deny = ["realtime_reconnect"]

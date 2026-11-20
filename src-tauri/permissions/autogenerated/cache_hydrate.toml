@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cache-hydrate"
+description = "Enables the cache_hydrate command without any pre-configured scope."
+commands.allow = ["cache_hydrate"]
+
+[[permission]]
+identifier = "deny-cache-hydrate"
+description = "Denies the cache_hydrate command without any pre-configured scope."
+commands.deny = ["cache_hydrate"]

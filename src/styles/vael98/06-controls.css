@@ -1,0 +1,544 @@
+.vael98 {
+  box-sizing: border-box;
+  color: var(--v98-text);
+  background: var(--v98-surface);
+  font-family: var(--v98-font-body);
+  font-size: var(--v98-body-size);
+  line-height: 1.5;
+  -webkit-font-smoothing: auto;
+}
+.vael98 *,
+.vael98 *::before,
+.vael98 *::after {
+  box-sizing: border-box;
+}
+.vael98 :is(button, input, label, legend, textarea, select, option, table, .title-bar, .window) {
+  font-family: var(--v98-font-ui);
+  font-size: var(--v98-ui-size);
+  -webkit-font-smoothing: auto;
+}
+.vael98 :is(h1, h2, h3, h4, p) {
+  margin: 0;
+}
+.vael98 h1 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.vael98 h2 {
+  font-size: 18px;
+  line-height: 1.3;
+}
+.vael98 h3 {
+  font-size: 15px;
+  line-height: 1.4;
+}
+.vael98 a {
+  color: var(--v98-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.vael98 ::selection {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+.vael98 :focus-visible {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: 3px;
+}
+.vael98 :is(button, [role="button"], .v98-button) {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.vael98 :is(button, .v98-button) {
+  border: 0;
+  border-radius: 0;
+  color: var(--v98-text);
+  text-shadow: none;
+  background: linear-gradient(var(--v98-metal-top), var(--v98-metal-bottom));
+  box-shadow: var(--v98-raised);
+  min-height: var(--v98-control-height);
+  padding: 5px 12px;
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+.vael98 .v98-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.vael98 :is(button, .v98-button):active:not(:disabled) {
+  box-shadow: var(--v98-sunken);
+  transform: translateY(1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .vael98 :is(button, .v98-button):active:not(:disabled) {
+    transform: none;
+  }
+}
+.vael98 :is(button, .v98-button):focus-visible {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: -5px;
+}
+.vael98 :is(button, input, select, textarea):disabled,
+.vael98 [data-disabled] {
+  color: var(--v98-disabled);
+  text-shadow: none;
+  cursor: var(--vael-cursor-default, default);
+}
+.vael98 .v98-button[data-variant="primary"] {
+  color: var(--v98-accent-text);
+  background: var(--v98-accent);
+}
+.vael98 .v98-button[data-variant="danger"] {
+  color: var(--v98-danger);
+}
+.vael98 .window {
+  padding: 3px;
+  background: var(--v98-surface);
+  color: var(--v98-text);
+  box-shadow: var(--v98-raised);
+  max-width: 100%;
+}
+.vael98 .title-bar {
+  min-height: 26px;
+  padding: 3px 4px;
+  background: linear-gradient(90deg, var(--v98-caption-start), var(--v98-caption-end));
+  color: var(--v98-caption-text);
+  gap: 8px;
+}
+.vael98 .title-bar.inactive {
+  background: linear-gradient(90deg, var(--v98-surface-raised), var(--v98-surface));
+  color: var(--v98-muted);
+}
+.vael98 .title-bar-text {
+  font-size: var(--v98-ui-size);
+  font-weight: 700;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+.vael98 .title-bar-controls {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.vael98 .title-bar-controls button {
+  min-height: 20px;
+  min-width: 22px;
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  background-image: none;
+  display: grid;
+  place-items: center;
+}
+.vael98 .v98-caption-glyph {
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--v98-text);
+}
+.vael98 .window-body {
+  margin: 10px;
+  min-width: 0;
+  font-family: var(--v98-font-body);
+  font-size: var(--v98-body-size);
+}
+.vael98 .status-bar {
+  gap: 2px;
+  margin: 2px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.vael98 .status-bar-field {
+  box-shadow:
+    inset 1px 1px var(--v98-shadow),
+    inset -1px -1px var(--v98-highlight);
+  padding: 3px 6px;
+  color: var(--v98-muted);
+  min-width: 0;
+  font-size: var(--v98-ui-size);
+}
+.vael98 .v98-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.vael98
+  :is(
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="search"],
+    input[type="number"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="datetime-local"],
+    textarea,
+    select
+  ) {
+  border: 0;
+  border-radius: 0;
+  background: var(--v98-surface-inset);
+  color: var(--v98-text);
+  box-shadow: var(--v98-sunken);
+  min-height: var(--v98-control-height);
+  padding: 6px 8px;
+  line-height: 1.4;
+  width: 100%;
+}
+.vael98 input::placeholder,
+.vael98 textarea::placeholder {
+  color: var(--v98-muted);
+  opacity: 1;
+}
+.vael98 input[aria-invalid="true"],
+.vael98 textarea[aria-invalid="true"] {
+  outline: 1px solid var(--v98-danger);
+  outline-offset: 1px;
+}
+.vael98 select {
+  appearance: auto;
+  background-image: none;
+}
+.vael98 textarea {
+  resize: vertical;
+  min-height: 90px;
+  font-family: var(--v98-font-body);
+  font-size: var(--v98-body-size);
+}
+.vael98 .v98-field-description {
+  color: var(--v98-muted);
+  font-size: 12px;
+}
+.vael98 .v98-field-error {
+  color: var(--v98-danger);
+  font-size: 12px;
+}
+.vael98 fieldset {
+  padding: 12px;
+  border: 1px solid var(--v98-shadow);
+  border-image: none;
+  box-shadow: inset 1px 1px var(--v98-highlight);
+}
+.vael98 legend {
+  padding: 0 5px;
+  color: var(--v98-text);
+  background: var(--v98-surface);
+}
+.vael98 .v98-choice {
+  min-height: var(--v98-control-height);
+  display: flex;
+  align-items: center;
+}
+.vael98 .v98-choice label {
+  min-height: var(--v98-control-height);
+  line-height: 1.4;
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+.vael98 .v98-choice input:disabled + label {
+  color: var(--v98-disabled);
+  cursor: var(--vael-cursor-default, default);
+}
+.vael98 .v98-choice input:focus-visible + label {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: 3px;
+}
+.vael98 input[type="checkbox"] + label::before {
+  background: var(--v98-surface-inset);
+  box-shadow: var(--v98-sunken);
+}
+.vael98 input[type="checkbox"]:checked + label::after {
+  filter: invert(1);
+}
+.vael98[data-v98-theme="classic"] input[type="checkbox"]:checked + label::after {
+  filter: none;
+}
+.vael98 input[type="radio"] + label::before {
+  background: var(--v98-surface-inset);
+  border: 1px solid var(--v98-highlight);
+  border-radius: 50%;
+  box-shadow: inset 1px 1px var(--v98-edge);
+}
+.vael98 input[type="radio"]:checked + label::after {
+  background: var(--v98-accent);
+  border-radius: 50%;
+}
+.vael98 input[type="range"] {
+  width: 100%;
+  accent-color: var(--v98-accent);
+}
+.vael98 input[type="range"]::-webkit-slider-thumb {
+  background: linear-gradient(var(--v98-metal-top), var(--v98-metal-bottom));
+  box-shadow: var(--v98-raised);
+  border: 0;
+}
+.vael98 input[type="range"]::-moz-range-thumb {
+  background: var(--v98-surface-raised);
+  box-shadow: var(--v98-raised);
+  border: 0;
+}
+.vael98 .v98-panel {
+  padding: 10px;
+  background: var(--v98-surface-inset);
+  box-shadow: var(--v98-sunken);
+  min-width: 0;
+}
+.vael98 .sunken-panel {
+  background: var(--v98-surface-inset);
+  border-image: none;
+  border: 0;
+  box-shadow: var(--v98-sunken);
+}
+.vael98 .tree-view {
+  background: var(--v98-surface-inset);
+  color: var(--v98-text);
+  box-shadow: var(--v98-sunken);
+  padding: 10px;
+  border: 0;
+}
+.vael98 .tree-view ul {
+  border-left-color: var(--v98-muted);
+}
+.vael98 .tree-view summary {
+  cursor: var(--vael-cursor-pointer, pointer);
+}
+.vael98 .v98-table-scroll {
+  overflow: auto;
+  box-shadow: var(--v98-sunken);
+  background: var(--v98-surface-inset);
+  padding: 2px;
+}
+.vael98 table {
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--v98-text);
+  background: var(--v98-surface-inset);
+}
+.vael98 thead th {
+  position: static;
+  background: var(--v98-surface);
+  color: var(--v98-text);
+  box-shadow: var(--v98-raised);
+  font-weight: 400;
+  text-align: left;
+  padding: 5px 8px;
+}
+.vael98 tbody td {
+  padding: 6px 8px;
+}
+.vael98 tbody tr[aria-selected="true"] {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+}
+.vael98 .v98-tabs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 0 2px;
+  margin: 0;
+}
+.vael98 .v98-tab {
+  min-width: 70px;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 0;
+  background: var(--v98-surface);
+  box-shadow: var(--v98-raised);
+}
+.vael98 .v98-tab[data-active] {
+  background: var(--v98-surface-raised);
+  color: var(--v98-text);
+  box-shadow:
+    inset 1px 1px var(--v98-highlight),
+    inset -1px 0 var(--v98-edge);
+  position: relative;
+  z-index: 1;
+}
+.vael98 .v98-tab-panel {
+  padding: 14px;
+  background: var(--v98-surface);
+  box-shadow: var(--v98-raised);
+}
+.vael98 .v98-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-bottom: 1px solid var(--v98-shadow);
+}
+.vael98 .v98-toolbar-separator {
+  align-self: stretch;
+  width: 2px;
+  background: var(--v98-shadow);
+  border-right: 1px solid var(--v98-highlight);
+  margin: 2px 4px;
+}
+.vael98 .v98-progress {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 20px;
+  padding: 3px;
+  border: 0;
+  background: var(--v98-surface-inset);
+  box-shadow: var(--v98-sunken);
+  color: var(--v98-accent);
+}
+.vael98 .v98-progress::-webkit-progress-bar {
+  background: var(--v98-surface-inset);
+}
+.vael98 .v98-progress::-webkit-progress-value {
+  background: var(--v98-accent);
+}
+.vael98 .v98-progress::-moz-progress-bar {
+  background: var(--v98-accent);
+}
+.vael98 .v98-menu-positioner {
+  z-index: 2100;
+}
+.vael98 .v98-menu-popup {
+  min-width: 180px;
+  background: var(--v98-surface);
+  color: var(--v98-text);
+  box-shadow: var(--v98-raised);
+  padding: 3px;
+  outline: none;
+}
+.vael98 .v98-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: var(--v98-control-height);
+  padding: 5px 12px;
+  cursor: var(--vael-cursor-default, default);
+  font-family: var(--v98-font-ui);
+  font-size: var(--v98-ui-size);
+}
+.vael98 .v98-menu-item[data-highlighted] {
+  background: var(--v98-selection);
+  color: var(--v98-selection-text);
+  outline: none;
+}
+.vael98 .v98-menu-item[data-disabled] {
+  color: var(--v98-disabled);
+}
+.vael98 .v98-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: #0008;
+}
+.vael98 .v98-dialog-popup {
+  position: fixed;
+  z-index: 3001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(460px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  outline: none;
+}
+.vael98 .v98-dialog-description {
+  margin-bottom: 12px;
+  color: var(--v98-muted);
+}
+.vael98 .v98-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.vael98 .v98-stack {
+  display: grid;
+  gap: 12px;
+}
+.vael98 .v98-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.vael98 .v98-muted {
+  color: var(--v98-muted);
+}
+.vael98 .v98-mono {
+  font-family: var(--v98-font-mono);
+}
+.vael98 .v98-lab {
+  min-height: 100dvh;
+  padding: clamp(12px, 3vw, 40px);
+  background: var(--v98-desktop);
+}
+.vael98 .v98-lab-layout {
+  display: grid;
+  gap: 18px;
+  max-width: 1080px;
+  margin: auto;
+}
+.vael98 .v98-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 700px) {
+  .vael98 .v98-lab-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .vael98 .title-bar-controls button {
+    min-width: 32px;
+    width: 32px;
+    min-height: 30px;
+    height: 30px;
+  }
+  .vael98 :is(input, textarea, select) {
+    font-size: 16px;
+  }
+}
+@media (pointer: coarse) {
+  .vael98 :is(input, textarea, select) {
+    font-size: 16px;
+  }
+}
+@media (forced-colors: active) {
+  .vael98
+    :is(
+      button,
+      .window,
+      .v98-panel,
+      .v98-tab,
+      .v98-tab-panel,
+      .v98-menu-popup,
+      .v98-dialog-popup,
+      .v98-progress
+    ) {
+    border: 1px solid ButtonBorder;
+    box-shadow: none;
+  }
+  .vael98 :is(button, .title-bar) {
+    background: var(--v98-surface);
+  }
+  .vael98 input[type="checkbox"]:checked + label::after {
+    filter: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vael98 {
+    --v98-duration-press: 0ms;
+    --v98-duration-menu: 0ms;
+    --v98-duration-window: 0ms;
+    --v98-duration-intro: 0ms;
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-mail-handler-register"
+description = "Enables the mail_handler_register command without any pre-configured scope."
+commands.allow = ["mail_handler_register"]
+
+[[permission]]
+identifier = "deny-mail-handler-register"
+description = "Denies the mail_handler_register command without any pre-configured scope."
+commands.deny = ["mail_handler_register"]

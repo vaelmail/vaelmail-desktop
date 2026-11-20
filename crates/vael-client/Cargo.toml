@@ -1,0 +1,26 @@
+[package]
+name = "vael-client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "json", "multipart", "stream", "socks", "gzip", "brotli"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "net", "io-util"] }
+tokio-tungstenite = { version = "0.30", features = ["rustls-tls-webpki-roots"] }
+tokio-socks = "0.5"
+futures-util = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4"] }
+url = "2"
+sha2 = "0.11"
+zeroize = "1"
+bytes = "1"
+percent-encoding = "2"
+regex = "1"
+base64 = "0.22"
+
+[lints]
+workspace = true

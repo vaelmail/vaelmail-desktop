@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-attachment-drag"
+description = "Enables the attachment_drag command without any pre-configured scope."
+commands.allow = ["attachment_drag"]
+
+[[permission]]
+identifier = "deny-attachment-drag"
+description = "Denies the attachment_drag command without any pre-configured scope."
+commands.deny = ["attachment_drag"]

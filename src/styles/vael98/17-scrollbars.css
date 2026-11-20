@@ -1,0 +1,58 @@
+:is(html, .vael98, .vael98 *) {
+  scrollbar-width: auto;
+  scrollbar-color: var(--v98-highlight, #7c857a) var(--v98-surface-inset, #181d1b);
+}
+@supports selector(::-webkit-scrollbar) {
+  :is(html, .vael98, .vael98 *) {
+    scrollbar-color: auto;
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-track {
+    background: var(--v98-surface-inset, #181d1b);
+    box-shadow: inset 1px 1px var(--v98-edge, #090e0a);
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-thumb {
+    min-height: 28px;
+    min-width: 28px;
+    border: 2px solid var(--v98-surface-inset, #181d1b);
+    border-radius: 0;
+    background: var(--v98-surface-raised, #414643);
+    box-shadow:
+      inset 1px 1px var(--v98-highlight, #7c857a),
+      inset -1px -1px var(--v98-edge, #090e0a);
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-thumb:hover {
+    background: var(--v98-highlight, #7c857a);
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-thumb:active {
+    background: var(--v98-accent, #b9d778);
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-corner {
+    background: var(--v98-surface-inset, #181d1b);
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-button {
+    display: none !important;
+  }
+}
+@media (forced-colors: active) {
+  :is(html, .vael98, .vael98 *) {
+    scrollbar-color: auto;
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-track,
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-corner {
+    background: Canvas;
+    box-shadow: none;
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-thumb {
+    background: ButtonText;
+    border-color: Canvas;
+    box-shadow: none;
+  }
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-thumb:hover,
+  :is(html, .vael98, .vael98 *)::-webkit-scrollbar-thumb:active {
+    background: Highlight;
+  }
+}

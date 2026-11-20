@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-session-action-passkey-start"
+description = "Enables the session_action_passkey_start command without any pre-configured scope."
+commands.allow = ["session_action_passkey_start"]
+
+[[permission]]
+identifier = "deny-session-action-passkey-start"
+description = "Denies the session_action_passkey_start command without any pre-configured scope."
+commands.deny = ["session_action_passkey_start"]

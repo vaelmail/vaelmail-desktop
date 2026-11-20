@@ -1,0 +1,130 @@
+body.vael98 .account-panel {
+  padding: 22px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--v98-sunken);
+  background: var(--v98-surface-raised);
+}
+body.vael98 .account-panel h1 {
+  font: bold 24px/1.25 var(--v98-font-body);
+  letter-spacing: 0;
+}
+body.vael98 .account-panel form,
+body.vael98 .key-created .account-field {
+  margin-top: 22px;
+}
+body.vael98 .account-field label {
+  color: var(--v98-text);
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+body.vael98 .account-input-wrap {
+  min-height: 38px;
+  border: 0;
+  border-radius: 0;
+  background: var(--v98-surface-inset);
+  box-shadow: var(--v98-sunken);
+}
+body.vael98 .account-input-wrap input {
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font: 16px/1.3 var(--v98-font-body);
+}
+body.vael98 .account-input-wrap:focus-within {
+  outline: 1px dotted var(--v98-focus);
+  outline-offset: 3px;
+}
+body.vael98 .account-input-wrap[data-invalid] {
+  outline: 1px solid var(--v98-danger);
+}
+body.vael98 :is(.key-reveal, .input-suffix) {
+  color: var(--v98-muted);
+}
+body.vael98 .account-input-wrap .domain-select {
+  border-left: 0;
+  border-radius: 0;
+  color: var(--v98-text);
+  font-family: var(--v98-font-body);
+}
+body.vael98 :is(.selected-plan, .field-hint, .form-note, .account-panel-bottom) {
+  color: var(--v98-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+body.vael98 .form-notice {
+  padding: 10px;
+  border: 1px solid var(--v98-danger);
+  background: var(--v98-surface-inset);
+  color: var(--v98-text);
+  border-radius: 0;
+}
+body.vael98 .lf-backdrop {
+  z-index: 400;
+}
+body.vael98 .lf-dialog {
+  z-index: 401;
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--v98-raised);
+  padding: 22px;
+  background: var(--v98-surface);
+  color: var(--v98-text);
+  transition-property: opacity;
+}
+body.vael98 .lf-dialog[data-starting-style],
+body.vael98 .lf-dialog[data-ending-style] {
+  transform: none;
+}
+body.vael98 :is(.lf-symbol, .lf-close, .lf-choices button) {
+  border-radius: 0;
+}
+body.vael98 .lf-title {
+  font: bold 22px/1.3 var(--v98-font-body);
+  letter-spacing: 0;
+}
+body.vael98 .lf-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+body.vael98 .lf-choices button {
+  padding: 12px;
+  box-shadow: var(--v98-raised);
+  background: var(--v98-surface-raised);
+}
+body.vael98 .key-created .created-address {
+  overflow-wrap: anywhere;
+}
+@media (prefers-reduced-motion: no-preference) {
+  body.vael98 .key-created {
+    animation: v98-key-result 240ms var(--v98-ease-out) both;
+  }
+  @keyframes v98-key-result {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+@media (max-width: 767px) {
+  body.vael98 .account-panel {
+    padding: 18px 14px;
+  }
+  body.vael98 .account-submit {
+    min-height: 44px;
+  }
+  body.vael98 .lf-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    padding: 20px;
+  }
+}
+body.vael98 .account-field:has(#register-address) :is(.field-hint, .field-error) {
+  min-height: 2.6em;
+}

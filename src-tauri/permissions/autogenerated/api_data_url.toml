@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-api-data-url"
+description = "Enables the api_data_url command without any pre-configured scope."
+commands.allow = ["api_data_url"]
+
+[[permission]]
+identifier = "deny-api-data-url"
+description = "Denies the api_data_url command without any pre-configured scope."
+commands.deny = ["api_data_url"]
