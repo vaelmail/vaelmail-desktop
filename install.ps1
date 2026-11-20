@@ -1,11 +1,11 @@
 <#
   VaelMail Desktop installer for Windows.
 
-    irm https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.ps1 | iex
+    irm https://vaelmail.com/desktop/install.ps1 | iex
 
   Options (use the scriptblock form to pass them):
 
-    & ([scriptblock]::Create((irm https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.ps1))) -Quiet
+    & ([scriptblock]::Create((irm https://vaelmail.com/desktop/install.ps1))) -Quiet
 
     -Quiet       install without showing the setup window
     -Uninstall   open the uninstaller
@@ -206,7 +206,7 @@ function Install-VaelMail {
   Banner
 
   if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
-    Stop-WithError 'This script is for Windows. On Linux and macOS, use install.sh from the same place.'
+    Stop-WithError 'This script is for Windows. On Linux and macOS, use https://vaelmail.com/desktop/install.sh instead.'
   }
 
   $build = [Environment]::OSVersion.Version.Build

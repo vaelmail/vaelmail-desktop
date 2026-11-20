@@ -2,7 +2,7 @@
 #
 # VaelMail Desktop installer for Linux and macOS.
 #
-#   curl -fsSL https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.sh | bash
+#   curl -fsSL https://vaelmail.com/desktop/install.sh | bash
 #
 # Options (pass them after "bash -s --" when piping):
 #   -y, --yes          install with the defaults, no questions
@@ -23,6 +23,7 @@ BINARY="vaelmail-desktop"
 IDENTIFIER="com.vaelmail.desktop"
 DOWNLOAD="https://github.com/${REPO}/releases/latest/download"
 RAW="https://raw.githubusercontent.com/${REPO}/main"
+INSTALL_URL="https://vaelmail.com/desktop/install.sh"
 
 OPT_YES=0
 OPT_METHOD=""
@@ -55,8 +56,8 @@ usage() {
   cat <<EOF
 VaelMail Desktop installer
 
-  curl -fsSL ${RAW}/install.sh | bash
-  curl -fsSL ${RAW}/install.sh | bash -s -- [options]
+  curl -fsSL ${INSTALL_URL} | bash
+  curl -fsSL ${INSTALL_URL} | bash -s -- [options]
 
 Options:
   -y, --yes       install with the defaults, no questions
@@ -1080,7 +1081,7 @@ main() {
   case "$os" in
     Linux) linux_detect ;;
     Darwin) mac_detect ;;
-    *) die "This installer is for Linux and macOS. On Windows, use install.ps1 from the same place." ;;
+    *) die "This installer is for Linux and macOS. On Windows, use https://vaelmail.com/desktop/install.ps1 instead." ;;
   esac
 
   if [ "$OPT_UNINSTALL" = 0 ]; then

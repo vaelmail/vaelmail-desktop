@@ -14,13 +14,13 @@ and keeps your settings when you run it again to update or repair.
 **Linux and macOS**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.sh | bash
+curl -fsSL https://vaelmail.com/desktop/install.sh | bash
 ```
 
 **Windows** (PowerShell)
 
 ```powershell
-irm https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.ps1 | iex
+irm https://vaelmail.com/desktop/install.ps1 | iex
 ```
 
 On Linux the installer asks whether you want the AppImage in your home folder (no sudo, updates
@@ -42,13 +42,13 @@ Options go after `bash -s --` on Linux and macOS:
 | `--no-launch` | Don't open VaelMail when it's done                                  |
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.sh | bash -s -- --uninstall
+curl -fsSL https://vaelmail.com/desktop/install.sh | bash -s -- --uninstall
 ```
 
 On Windows, use `-Quiet` to install without the setup window or `-Uninstall` to remove it:
 
 ```powershell
-& ([scriptblock]::Create((irm https://raw.githubusercontent.com/vaelmail/vaelmail-desktop/main/install.ps1))) -Quiet
+& ([scriptblock]::Create((irm https://vaelmail.com/desktop/install.ps1))) -Quiet
 ```
 
 ## Download
@@ -172,6 +172,9 @@ Networking, storage and everything native are in Rust.
 | `install.sh`         | The one-line installer for Linux and macOS                        |
 | `install.ps1`        | The one-line installer for Windows                                |
 | `docs`               | [Architecture notes](docs/architecture.md)                        |
+
+`vaelmail.com/desktop/install.sh` and `/install.ps1` serve copies of the two installer scripts, so
+copy them to the website when you change them here.
 
 Releases are built by GitHub Actions when a `vX.Y.Z` tag is pushed. The workflow builds the
 installers and portable archives for every platform, signs the update files with the project's
