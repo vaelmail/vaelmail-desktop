@@ -173,8 +173,8 @@ Networking, storage and everything native are in Rust.
 | `install.ps1`        | The one-line installer for Windows                                |
 | `docs`               | [Architecture notes](docs/architecture.md)                        |
 
-`vaelmail.com/desktop/install.sh` and `/install.ps1` serve copies of the two installer scripts, so
-copy them to the website when you change them here.
+`vaelmail.com/desktop/install.sh` and `/install.ps1` redirect to the two installer scripts on
+`main` here, so a change to them is live as soon as it's merged.
 
 Releases are built by GitHub Actions when a `vX.Y.Z` tag is pushed. The workflow builds the
 installers and portable archives for every platform, signs the update files with the project's
