@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
@@ -31,6 +31,7 @@ if (process.platform === "win32") {
 }
 if (!payload) throw new Error("no app bundle found to put inside VaelMail Setup");
 
+copyFileSync(join(root, "installer/setup.conf.json"), join(root, "installer/tauri.conf.json"));
 const env = { VAEL_SETUP_PAYLOAD: payload, VAEL_SETUP_VERSION: version };
 if (process.platform === "darwin") {
   run("pnpm", ["exec", "tauri", "build", "--bundles", "app", ...(target ? ["--target", target] : [])], env, join(root, "installer"));
