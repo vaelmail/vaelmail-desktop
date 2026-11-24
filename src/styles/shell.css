@@ -1,6 +1,6 @@
-.vx-app {
+body.vael98 {
   --vx-titlebar: 46px;
-  --vx-sidebar: 236px;
+  --vx-sidebar: 224px;
   --vx-radius: 8px;
   --vx-line: color-mix(in srgb, var(--v98-highlight) 22%, transparent);
   --vx-line-strong: color-mix(in srgb, var(--v98-highlight) 38%, transparent);
@@ -8,6 +8,9 @@
   --vx-press: color-mix(in srgb, var(--v98-text) 12%, transparent);
   --vx-rail: color-mix(in srgb, var(--v98-desktop) 82%, var(--v98-surface));
   --vx-shadow: 0 18px 48px rgb(0 0 0 / 0.42), 0 2px 8px rgb(0 0 0 / 0.28);
+}
+
+.vx-app {
   position: relative;
   display: grid;
   grid-template-rows: var(--vx-titlebar) minmax(0, 1fr);
@@ -22,10 +25,12 @@
 }
 
 .vx-app[data-sidebar="collapsed"] {
-  --vx-sidebar: 64px;
+  --vx-sidebar: 76px;
 }
 
-body.vael98 .vx-app :is(input, textarea, [contenteditable="true"], .wm-reader, .wm-message, iframe) {
+body.vael98
+  .vx-app
+  :is(input, textarea, [contenteditable="true"], .wm-reader, .wm-message, iframe) {
   user-select: text;
 }
 
@@ -38,7 +43,11 @@ body.vael98 .vx-titlebar {
   gap: 12px;
   padding-left: 14px;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--v98-caption-start) 70%, transparent), transparent 46%),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--v98-caption-start) 70%, transparent),
+      transparent 46%
+    ),
     var(--vx-rail);
   border-bottom: 1px solid var(--vx-line);
   color: var(--v98-caption-text);
@@ -251,37 +260,32 @@ body.vael98 .vx-body {
 body.vael98 .vx-sidebar {
   display: flex;
   flex-direction: column;
+  gap: 6px;
   min-height: 0;
   overflow: hidden;
-  padding: 12px 10px 10px;
+  padding: 10px 8px 8px;
   background: var(--vx-rail);
   border-right: 1px solid var(--vx-line);
-}
-
-body.vael98 .vx-sidebar-top {
-  padding-bottom: 10px;
 }
 
 body.vael98 .vx-compose {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 9px;
+  gap: 10px;
   width: 100%;
-  height: 40px;
+  height: 38px;
+  margin-bottom: 6px;
   padding: 0 12px;
   border: 0;
   border-radius: var(--vx-radius);
   background: var(--v98-accent);
   color: var(--v98-accent-text);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.28),
-    0 1px 2px rgb(0 0 0 / 0.3);
-  font: 700 13.5px/1 var(--v98-font-body);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25);
+  font: 700 13px/1 var(--v98-font-body);
   cursor: pointer;
   transition:
-    filter 120ms var(--v98-ease-out),
-    transform 100ms var(--v98-ease-out);
+    filter 120ms ease,
+    transform 120ms var(--v98-ease-out);
 }
 
 body.vael98 .vx-compose:hover {
@@ -289,32 +293,18 @@ body.vael98 .vx-compose:hover {
 }
 
 body.vael98 .vx-compose:active {
-  transform: translateY(1px);
-}
-
-body.vael98 .vx-sidebar-scroll {
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
-  scrollbar-width: none;
+  transform: scale(0.97);
 }
 
 body.vael98 .vx-nav-group {
   display: grid;
   gap: 2px;
-  padding: 8px 0;
 }
 
-body.vael98 .vx-nav-group + .vx-nav-group {
+body.vael98 .vx-nav-bottom {
+  margin-top: auto;
+  padding-top: 8px;
   border-top: 1px solid var(--vx-line);
-}
-
-body.vael98 .vx-nav-heading {
-  padding: 4px 10px 6px;
-  color: var(--v98-muted);
-  font: 700 10.5px/1 var(--v98-font-body);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 body.vael98 .vx-nav-item {
@@ -328,14 +318,15 @@ body.vael98 .vx-nav-item {
   border: 0;
   border-radius: 7px;
   background: transparent;
-  color: color-mix(in srgb, var(--v98-text) 86%, transparent);
+  color: color-mix(in srgb, var(--v98-text) 80%, transparent);
   box-shadow: none;
   font: 600 13px/1 var(--v98-font-body);
   text-align: left;
   cursor: pointer;
   transition:
-    background 120ms var(--v98-ease-out),
-    color 120ms var(--v98-ease-out);
+    background 120ms ease,
+    color 120ms ease,
+    transform 120ms var(--v98-ease-out);
 }
 
 body.vael98 .vx-nav-item:hover {
@@ -343,29 +334,24 @@ body.vael98 .vx-nav-item:hover {
   color: var(--v98-text);
 }
 
+body.vael98 .vx-nav-item:active {
+  transform: scale(0.97);
+}
+
 body.vael98 .vx-nav-item[aria-current="page"] {
-  background: color-mix(in srgb, var(--v98-selection) 78%, transparent);
-  color: var(--v98-selection-text);
-}
-
-body.vael98 .vx-nav-item[aria-current="page"]::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 8px;
-  bottom: 8px;
-  width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: var(--v98-accent);
-}
-
-body.vael98 .vx-nav-item .v98-app-icon {
-  flex: none;
-  color: inherit;
+  background: color-mix(in srgb, var(--v98-accent) 14%, transparent);
+  color: var(--v98-text);
 }
 
 body.vael98 .vx-nav-item[aria-current="page"] .v98-app-icon {
   color: var(--v98-accent);
+}
+
+body.vael98 .vx-nav-icon {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
 }
 
 body.vael98 .vx-nav-label {
@@ -377,29 +363,39 @@ body.vael98 .vx-nav-label {
 }
 
 body.vael98 .vx-nav-badge {
-  min-width: 20px;
-  padding: 3px 6px;
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  min-width: 17px;
+  padding: 2px 4px;
   border-radius: 999px;
   background: var(--v98-accent);
   color: var(--v98-accent-text);
-  font: 700 11px/1 var(--v98-font-body);
+  box-shadow: 0 0 0 2px var(--vx-rail);
+  font: 800 10px/1 var(--v98-font-body);
   text-align: center;
-}
-
-body.vael98 .vx-sidebar-bottom {
-  display: grid;
-  gap: 2px;
-  padding-top: 8px;
-  border-top: 1px solid var(--vx-line);
 }
 
 body.vael98 .vx-identity {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-top: 8px;
-  padding: 8px 4px 0 6px;
-  border-top: 1px solid var(--vx-line);
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--v98-text);
+  box-shadow: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+body.vael98 .vx-identity:hover,
+body.vael98 .vx-identity[data-popup-open] {
+  background: var(--vx-hover);
 }
 
 body.vael98 .vx-avatar {
@@ -409,7 +405,7 @@ body.vael98 .vx-avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--v98-caption-start), var(--v98-caption-end));
+  background: var(--v98-caption-start);
   color: var(--v98-caption-text);
   font: 700 13px/1 var(--v98-font-body);
   box-shadow: inset 0 0 0 1px var(--vx-line-strong);
@@ -426,6 +422,7 @@ body.vael98 .vx-identity-address {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 12.5px;
   font-weight: 600;
 }
 
@@ -435,30 +432,151 @@ body.vael98 .vx-identity-plan {
 }
 
 body.vael98 .vx-sidebar[data-collapsed] {
-  padding-inline: 10px;
-}
-
-body.vael98 .vx-sidebar[data-collapsed] :is(.vx-nav-label, .vx-nav-heading, .vx-identity-text) {
-  display: none;
+  gap: 4px;
+  padding: 10px 6px 8px;
 }
 
 body.vael98 .vx-sidebar[data-collapsed] :is(.vx-nav-item, .vx-compose) {
+  flex-direction: column;
   justify-content: center;
+  gap: 5px;
+  height: 54px;
   padding: 0;
 }
 
-body.vael98 .vx-sidebar[data-collapsed] .vx-nav-badge {
-  position: absolute;
-  top: 3px;
-  right: 2px;
-  min-width: 16px;
-  padding: 2px 4px;
-  font-size: 9.5px;
+body.vael98 .vx-sidebar[data-collapsed] .vx-compose {
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+body.vael98 .vx-sidebar[data-collapsed] .vx-nav-label {
+  flex: none;
+  max-width: 100%;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
 }
 
 body.vael98 .vx-sidebar[data-collapsed] .vx-identity {
+  justify-content: center;
+  padding: 6px 0;
+}
+
+body.vael98 .vx-sidebar[data-collapsed] .vx-identity-text {
+  display: none;
+}
+
+body.vael98 .vx-menu-positioner {
+  z-index: 950;
+}
+
+body.vael98 .vx-menu {
+  min-width: 240px;
+  padding: 6px;
+  border: 1px solid var(--vx-line-strong);
+  border-radius: 10px;
+  background: var(--v98-surface);
+  color: var(--v98-text);
+  box-shadow: var(--vx-shadow);
+  font-family: var(--v98-font-body);
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity 150ms var(--v98-ease-out),
+    transform 150ms var(--v98-ease-out);
+}
+
+body.vael98 .vx-menu[data-starting-style],
+body.vael98 .vx-menu[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+body.vael98 .vx-menu-head {
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px 10px;
+  border-bottom: 1px solid var(--vx-line);
+  margin-bottom: 4px;
+}
+
+body.vael98 .vx-menu-head span {
+  color: var(--v98-muted);
+  font-size: 12px;
+}
+
+body.vael98 .vx-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
+body.vael98 .vx-menu-item kbd {
+  margin-left: auto;
+}
+
+body.vael98 .vx-menu-item[data-highlighted] {
+  background: color-mix(in srgb, var(--v98-accent) 14%, transparent);
+}
+
+body.vael98 .vx-menu-item[data-danger] {
+  color: var(--v98-danger);
+}
+
+body.vael98 .vx-menu-separator {
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--vx-line);
+}
+
+body.vael98 .vx-fault {
+  display: flex;
   flex-direction: column;
-  padding-inline: 0;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  max-width: 560px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 32px;
+  color: var(--v98-text);
+}
+
+body.vael98 .vx-fault svg {
+  color: var(--v98-danger);
+}
+
+body.vael98 .vx-fault h2 {
+  margin: 0;
+  font: 700 18px/1.3 var(--v98-font-body);
+}
+
+body.vael98 .vx-fault p {
+  margin: 0;
+  color: var(--v98-muted);
+}
+
+body.vael98 .vx-fault code {
+  max-width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--v98-surface-inset);
+  color: var(--v98-muted);
+  font: 12px/1.5 var(--v98-font-mono);
+  overflow-wrap: anywhere;
+}
+
+body.vael98 .vx-fault-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
 }
 
 body.vael98 .vx-content {
@@ -761,6 +879,16 @@ body.vael98 .vx-button[data-primary] {
   color: var(--v98-accent-text);
 }
 
+body.vael98 .vx-button {
+  transition:
+    transform 120ms var(--v98-ease-out),
+    filter 120ms ease;
+}
+
+body.vael98 .vx-button:not(:disabled):active {
+  transform: scale(0.97);
+}
+
 body.vael98 .vx-button:disabled {
   opacity: 0.5;
   cursor: default;
@@ -808,7 +936,6 @@ body.vael98 .vx-launcher {
   box-shadow: var(--vx-shadow);
   font-family: var(--v98-font-body);
   transform: translateX(-50%);
-  animation: vx-drop 180ms var(--v98-ease-out);
 }
 
 body.vael98 .vx-launcher [cmdk-root] {
@@ -1111,19 +1238,6 @@ body.vael98 [data-sonner-toaster] {
 }
 
 @media (max-width: 900px) {
-  .vx-app {
-    --vx-sidebar: 64px;
-  }
-
-  body.vael98 .vx-sidebar :is(.vx-nav-label, .vx-nav-heading, .vx-identity-text) {
-    display: none;
-  }
-
-  body.vael98 .vx-sidebar :is(.vx-nav-item, .vx-compose) {
-    justify-content: center;
-    padding: 0;
-  }
-
   body.vael98 .vx-signin {
     grid-template-columns: 1fr;
   }

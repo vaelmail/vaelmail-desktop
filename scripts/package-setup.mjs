@@ -17,7 +17,12 @@ function find(directory, test) {
 }
 
 function run(command, args, env, cwd = root) {
-  execFileSync(command, args, { cwd, env: { ...process.env, ...env }, stdio: "inherit", shell: process.platform === "win32" });
+  execFileSync(command, args, {
+    cwd,
+    env: { ...process.env, ...env },
+    stdio: "inherit",
+    shell: process.platform === "win32",
+  });
 }
 
 let payload;
@@ -35,19 +40,33 @@ copyFileSync(join(root, "installer/setup.conf.json"), join(root, "installer/taur
 const env = { VAEL_SETUP_PAYLOAD: payload, VAEL_SETUP_VERSION: version };
 if (process.platform === "darwin") {
   const installer = join(root, "installer");
-  run("pnpm", ["exec", "tauri", "build", "--bundles", "app", ...(target ? ["--target", target] : [])], {
-    ...env,
-    TAURI_APP_PATH: installer,
-    TAURI_FRONTEND_PATH: installer,
-  });
+  run(
+    "pnpm",
+    ["exec", "tauri", "build", "--bundles", "app", ...(target ? ["--target", target] : [])],
+    {
+      ...env,
+      TAURI_APP_PATH: installer,
+      TAURI_FRONTEND_PATH: installer,
+    },
+  );
   const app = find(join(bundle, "macos"), (name) => name === "VaelMail Setup.app");
   if (!app) throw new Error("VaelMail Setup.app was not built");
   output = join(root, `VaelMail-Setup-macos-${arch === "arm64" ? "apple-silicon" : "intel"}.zip`);
   run("ditto", ["-c", "-k", "--keepParent", app, output], {});
 } else {
-  run("cargo", ["build", "--release", "-p", "vaelmail-setup", ...(target ? ["--target", target] : [])], env);
-  const binary = join(release, process.platform === "win32" ? "vaelmail-setup.exe" : "vaelmail-setup");
-  const name = process.platform === "win32" ? `VaelMail-Setup-windows-${arch}.exe` : `VaelMail-Setup-linux-${arch}`;
+  run(
+    "cargo",
+    ["build", "--release", "-p", "vaelmail-setup", ...(target ? ["--target", target] : [])],
+    env,
+  );
+  const binary = join(
+    release,
+    process.platform === "win32" ? "vaelmail-setup.exe" : "vaelmail-setup",
+  );
+  const name =
+    process.platform === "win32"
+      ? `VaelMail-windows-${arch}-setup.exe`
+      : `VaelMail-Setup-linux-${arch}`;
   output = join(root, name);
   run(process.platform === "win32" ? "copy" : "cp", [binary, output], {});
 }

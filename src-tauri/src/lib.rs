@@ -213,6 +213,7 @@ pub fn run() {
             desktop::mail_handler_register,
             desktop::connection_test,
             desktop::frontend_ready,
+            desktop::frontend_error,
             desktop::mailto_take,
             updates::updates_supported,
             updates::updates_check,

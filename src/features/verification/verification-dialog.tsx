@@ -126,8 +126,8 @@ export function VerificationDialog() {
                 <i style={{ transform: `scaleX(${progress})` }} />
               </div>
               <p className="vx-sheet-foot">
-                Nothing about you is stored. You can hide this and keep working; the check
-                finishes in the background.
+                Nothing about you is stored. You can hide this and keep working; the check finishes
+                in the background.
               </p>
             </div>
           </Dialog.Popup>

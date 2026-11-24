@@ -164,6 +164,31 @@ mod imp {
         !PAYLOAD.is_empty() && !webview_present()
     }
 
+    pub fn passthrough(arguments: &[String]) -> Option<i32> {
+        if PAYLOAD.is_empty() || !arguments.iter().any(|argument| argument.starts_with('/')) {
+            return None;
+        }
+        let installer = staged();
+        if fs::write(&installer, PAYLOAD).is_err() {
+            return Some(1);
+        }
+        let mut command = Command::new(&installer);
+        for argument in arguments {
+            if argument.starts_with("/D=") {
+                command.raw_arg(argument);
+            } else {
+                command.arg(argument);
+            }
+        }
+        let code = command
+            .status()
+            .ok()
+            .and_then(|status| status.code())
+            .unwrap_or(1);
+        let _ = fs::remove_file(&installer);
+        Some(code)
+    }
+
     pub fn fallback() -> Result<(), String> {
         let installer = staged();
         fs::write(&installer, PAYLOAD)
@@ -283,6 +308,10 @@ mod imp {
 
     pub fn needs_fallback() -> bool {
         false
+    }
+
+    pub fn passthrough(_arguments: &[String]) -> Option<i32> {
+        None
     }
 
     pub fn fallback() -> Result<(), String> {
@@ -472,12 +501,18 @@ mod imp {
         false
     }
 
+    pub fn passthrough(_arguments: &[String]) -> Option<i32> {
+        None
+    }
+
     pub fn fallback() -> Result<(), String> {
         Err("There is no other installer on Linux.".into())
     }
 }
 
-pub use imp::{default_dir, fallback, install, installed, launch, needs_fallback, uninstall, NAME};
+pub use imp::{
+    default_dir, fallback, install, installed, launch, needs_fallback, passthrough, uninstall, NAME,
+};
 
 pub fn decorate(window: &tauri::WebviewWindow) {
     let _ = window.set_decorations(false);

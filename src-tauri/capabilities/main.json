@@ -57,6 +57,7 @@
     "allow-mail-handler-register",
     "allow-connection-test",
     "allow-frontend-ready",
+    "allow-frontend-error",
     "allow-mailto-take",
     "allow-updates-supported",
     "allow-updates-check",

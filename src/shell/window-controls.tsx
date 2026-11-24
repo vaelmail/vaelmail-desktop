@@ -26,7 +26,8 @@ function useMaximized(): boolean {
 
 function act(action: "minimize" | "toggleMaximize" | "close") {
   if (!native) return;
-  void getCurrentWindow()[action]().catch(() => undefined);
+  const current = getCurrentWindow();
+  void current[action]().catch(() => undefined);
 }
 
 export function WindowControls() {

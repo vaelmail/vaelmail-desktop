@@ -48,6 +48,7 @@ const COMMANDS: &[&str] = &[
     "mail_handler_register",
     "connection_test",
     "frontend_ready",
+    "frontend_error",
     "mailto_take",
     "updates_supported",
     "updates_check",

@@ -116,6 +116,10 @@ fn setup_close(app: AppHandle) {
 }
 
 fn main() {
+    let arguments: Vec<String> = std::env::args().skip(1).collect();
+    if let Some(code) = platform::passthrough(&arguments) {
+        std::process::exit(code);
+    }
     if platform::needs_fallback() && platform::fallback().is_ok() {
         return;
     }

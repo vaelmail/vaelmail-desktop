@@ -1,33 +1,33 @@
 import { useEffect, useState } from "react";
-import { PencilSimpleIcon, SidebarSimpleIcon } from "@phosphor-icons/react";
+import { Menu } from "@base-ui/react/menu";
+import { PencilSimpleIcon, SidebarSimpleIcon, SignOutIcon } from "@phosphor-icons/react";
 import { useOptionalMail } from "@/features/mailbox/context";
 import { applications, type AppId } from "@/lib/desktop/registry";
+import { useTheme } from "@/lib/theme";
+import { RetroSurface } from "@/ui/retro98";
 import { AppIcon } from "./icons";
 import { modifierLabel } from "./platform";
 import { openHref } from "./store";
 
-const groups: { label: string; ids: AppId[] }[] = [
-  { label: "Mail", ids: ["mail", "contacts", "aliases", "services"] },
-  { label: "Account", ids: ["account", "domains", "security", "billing", "data"] },
-];
+const primary: AppId[] = ["mail", "contacts", "aliases", "services", "account"];
+const secondary: AppId[] = ["settings", "desktop-settings"];
+const accountViews: AppId[] = ["account", "domains", "security", "billing", "data"];
 
-const footer: AppId[] = ["settings", "appearance", "desktop-settings", "about"];
-
-const shortTitles: Partial<Record<AppId, string>> = {
-  account: "Account",
-  billing: "Plus & billing",
-  "desktop-settings": "App settings",
-  about: "About",
+const labels: Partial<Record<AppId, { short: string; long: string }>> = {
+  account: { short: "Account", long: "My account" },
+  settings: { short: "Settings", long: "Mail settings" },
+  "desktop-settings": { short: "App", long: "App settings" },
 };
 
-const COLLAPSED_KEY = "vael:sidebar-collapsed";
+const STORAGE_KEY = "vael:sidebar";
+const shortcuts: AppId[] = ["mail", "contacts", "aliases", "services", "account", "settings"];
 
 export function useSidebarCollapsed(): [boolean, (next: boolean) => void] {
   const [collapsed, setCollapsed] = useState(
-    () => localStorage.getItem(COLLAPSED_KEY) === "1",
+    () => localStorage.getItem(STORAGE_KEY) !== "expanded",
   );
   const update = (next: boolean) => {
-    localStorage.setItem(COLLAPSED_KEY, next ? "1" : "0");
+    localStorage.setItem(STORAGE_KEY, next ? "rail" : "expanded");
     setCollapsed(next);
   };
   return [collapsed, update];
@@ -35,32 +35,105 @@ export function useSidebarCollapsed(): [boolean, (next: boolean) => void] {
 
 function Item({
   id,
-  current,
+  active,
   collapsed,
   badge,
 }: {
   id: AppId;
-  current: AppId | null;
+  active: boolean;
   collapsed: boolean;
   badge?: number;
 }) {
-  const title = shortTitles[id] ?? applications[id].title;
+  const label = labels[id] ?? { short: applications[id].title, long: applications[id].title };
+  const shortcut = shortcuts.indexOf(id) + 1 || null;
   return (
     <button
       type="button"
       className="vx-nav-item"
-      aria-current={current === id ? "page" : undefined}
-      title={collapsed ? title : undefined}
+      aria-current={active ? "page" : undefined}
+      aria-label={label.long}
+      title={shortcut ? `${label.long} (${modifierLabel}+${shortcut})` : label.long}
       onClick={() => void openHref(applications[id].href)}
     >
-      <AppIcon icon={applications[id].icon} size={19} />
-      <span className="vx-nav-label">{title}</span>
-      {!!badge && (
-        <span className="vx-nav-badge" aria-label={`${badge} unread`}>
-          {badge > 999 ? "999+" : badge}
-        </span>
-      )}
+      <span className="vx-nav-icon">
+        <AppIcon icon={applications[id].icon} size={20} />
+        {!!badge && (
+          <span className="vx-nav-badge" aria-label={`${badge} unread`}>
+            {badge > 99 ? "99+" : badge}
+          </span>
+        )}
+      </span>
+      <span className="vx-nav-label">{collapsed ? label.short : label.long}</span>
     </button>
+  );
+}
+
+function AccountMenu({
+  collapsed,
+  onCollapse,
+  onSignOut,
+}: {
+  collapsed: boolean;
+  onCollapse: (next: boolean) => void;
+  onSignOut: () => void;
+}) {
+  const mail = useOptionalMail();
+  const resolved = useTheme((state) => state.resolved);
+  const address = mail?.data.mailbox.address ?? "";
+  const plan = mail?.data.mailbox.plan === "plus" ? "Plus" : "Free";
+  return (
+    <Menu.Root>
+      <Menu.Trigger
+        className="vx-identity"
+        aria-label={`Account menu for ${address || "VaelMail"}`}
+      >
+        <span className="vx-avatar" aria-hidden>
+          {(address[0] ?? "v").toUpperCase()}
+        </span>
+        <span className="vx-identity-text">
+          <span className="vx-identity-address" translate="no">
+            {address || "VaelMail"}
+          </span>
+          <span className="vx-identity-plan">{plan}</span>
+        </span>
+      </Menu.Trigger>
+      <Menu.Portal>
+        <RetroSurface theme={resolved === "light" ? "light" : "graphite"}>
+          <Menu.Positioner side="right" align="end" sideOffset={10} className="vx-menu-positioner">
+            <Menu.Popup className="vx-menu">
+              <div className="vx-menu-head">
+                <strong translate="no">{address}</strong>
+                <span>{plan} plan</span>
+              </div>
+              <Menu.Item
+                className="vx-menu-item"
+                onClick={() => void openHref(applications.appearance.href)}
+              >
+                <AppIcon icon="appearance" size={17} />
+                Appearance
+              </Menu.Item>
+              <Menu.Item
+                className="vx-menu-item"
+                onClick={() => void openHref(applications.about.href)}
+              >
+                <AppIcon icon="about" size={17} />
+                About VaelMail
+              </Menu.Item>
+              <Menu.Item className="vx-menu-item" onClick={() => onCollapse(!collapsed)}>
+                <SidebarSimpleIcon size={17} />
+                {collapsed ? "Show labels in the sidebar" : "Use the narrow sidebar"}
+                <kbd>{modifierLabel} \</kbd>
+              </Menu.Item>
+              <Menu.Separator className="vx-menu-separator" />
+              <Menu.Item className="vx-menu-item" data-danger onClick={onSignOut}>
+                <SignOutIcon size={17} />
+                Sign out
+              </Menu.Item>
+            </Menu.Popup>
+          </Menu.Positioner>
+        </RetroSurface>
+      </Menu.Portal>
+    </Menu.Root>
   );
 }
 
@@ -68,15 +141,17 @@ export function Sidebar({
   current,
   collapsed,
   onCollapse,
+  onSignOut,
 }: {
   current: AppId | null;
   collapsed: boolean;
   onCollapse: (next: boolean) => void;
+  onSignOut: () => void;
 }) {
   const mail = useOptionalMail();
   const unread = mail?.data.counts.inbox ?? 0;
-  const address = mail?.data.mailbox.address ?? "";
-  const plan = mail?.data.mailbox.plan;
+  const selected = (id: AppId) =>
+    id === "account" ? accountViews.includes(current ?? "mail") : current === id;
 
   useEffect(() => {
     const toggle = (event: KeyboardEvent) => {
@@ -91,58 +166,33 @@ export function Sidebar({
 
   return (
     <nav className="vx-sidebar" data-collapsed={collapsed || undefined} aria-label="VaelMail">
-      <div className="vx-sidebar-top">
-        <button
-          type="button"
-          className="vx-compose"
-          onClick={() => void mail?.compose()}
-          disabled={!mail}
-          title={collapsed ? "New message" : undefined}
-        >
-          <PencilSimpleIcon size={18} weight="bold" />
-          <span className="vx-nav-label">New message</span>
-        </button>
-      </div>
-      <div className="vx-sidebar-scroll">
-        {groups.map((group) => (
-          <div key={group.label} className="vx-nav-group" role="group" aria-label={group.label}>
-            <span className="vx-nav-heading">{group.label}</span>
-            {group.ids.map((id) => (
-              <Item
-                key={id}
-                id={id}
-                current={current}
-                collapsed={collapsed}
-                badge={id === "mail" ? unread : undefined}
-              />
-            ))}
-          </div>
+      <button
+        type="button"
+        className="vx-compose"
+        onClick={() => void mail?.compose()}
+        disabled={!mail}
+        aria-label="New message"
+        title={collapsed ? "New message (C)" : undefined}
+      >
+        <PencilSimpleIcon size={19} weight="bold" />
+        <span className="vx-nav-label">{collapsed ? "Write" : "New message"}</span>
+      </button>
+      <div className="vx-nav-group">
+        {primary.map((id) => (
+          <Item
+            key={id}
+            id={id}
+            active={selected(id)}
+            collapsed={collapsed}
+            badge={id === "mail" ? unread : undefined}
+          />
         ))}
       </div>
-      <div className="vx-sidebar-bottom">
-        {footer.map((id) => (
-          <Item key={id} id={id} current={current} collapsed={collapsed} />
+      <div className="vx-nav-group vx-nav-bottom">
+        {secondary.map((id) => (
+          <Item key={id} id={id} active={selected(id)} collapsed={collapsed} />
         ))}
-        <div className="vx-identity" title={address}>
-          <span className="vx-avatar" aria-hidden>
-            {(address[0] ?? "v").toUpperCase()}
-          </span>
-          <span className="vx-identity-text">
-            <span className="vx-identity-address" translate="no">
-              {address || "VaelMail"}
-            </span>
-            <span className="vx-identity-plan">{plan === "plus" ? "Plus" : "Free"}</span>
-          </span>
-          <button
-            type="button"
-            className="vx-icon-button vx-collapse"
-            onClick={() => onCollapse(!collapsed)}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            title={`${collapsed ? "Expand" : "Collapse"} sidebar (${modifierLabel}+\\)`}
-          >
-            <SidebarSimpleIcon size={17} />
-          </button>
-        </div>
+        <AccountMenu collapsed={collapsed} onCollapse={onCollapse} onSignOut={onSignOut} />
       </div>
     </nav>
   );

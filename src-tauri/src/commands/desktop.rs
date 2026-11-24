@@ -149,6 +149,13 @@ pub fn frontend_ready(app: AppHandle, state: State<'_, AppState>) {
 }
 
 #[tauri::command]
+pub fn frontend_error(message: String, detail: Option<String>) {
+    let message: String = message.chars().take(500).collect();
+    let detail: String = detail.unwrap_or_default().chars().take(4000).collect();
+    log::error!("interface error: {message}\n{detail}");
+}
+
+#[tauri::command]
 pub fn mailto_take(state: State<'_, AppState>) -> Vec<vael_client::mailto::Mailto> {
     std::mem::take(&mut *state.pending_mailto.lock().unwrap())
 }

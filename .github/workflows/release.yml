@@ -101,8 +101,6 @@ jobs:
           while IFS='|' read -r source alias; do
             gh release download "v${version}" --pattern "$source" --output "$alias"
           done <<EOF
-          VaelMail_${version}_x64-setup.exe|VaelMail-windows-x64-setup.exe
-          VaelMail_${version}_arm64-setup.exe|VaelMail-windows-arm64-setup.exe
           VaelMail_${version}_windows-x64-portable.zip|VaelMail-windows-x64-portable.zip
           VaelMail_${version}_windows-arm64-portable.zip|VaelMail-windows-arm64-portable.zip
           VaelMail_${version}_aarch64.dmg|VaelMail-macos-apple-silicon.dmg

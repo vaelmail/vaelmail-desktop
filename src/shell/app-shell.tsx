@@ -9,6 +9,7 @@ import { Launcher } from "./launcher";
 import { Sidebar, useSidebarCollapsed } from "./sidebar";
 import { openHref, useDesktop } from "./store";
 import { TitleBar } from "./title-bar";
+import { ViewBoundary } from "./view-boundary";
 import { ViewFrame } from "./view-frame";
 import { ResizeEdges } from "./window-controls";
 import { WindowContext } from "./window-context";
@@ -24,16 +25,21 @@ function Content({ window }: { window: DesktopWindow }) {
         instanceId: window.instanceId,
       }}
     >
-      <Suspense
-        fallback={
-          <div className="vx-loading">
-            <span className="vx-spinner" aria-hidden />
-            Loading {applications[window.appId].title.toLowerCase()}…
-          </div>
-        }
+      <ViewBoundary
+        label={applications[window.appId].title}
+        onHome={window.appId === "mail" ? undefined : () => void openHref(applications.mail.href)}
       >
-        <Component />
-      </Suspense>
+        <Suspense
+          fallback={
+            <div className="vx-loading">
+              <span className="vx-spinner" aria-hidden />
+              Loading {applications[window.appId].title.toLowerCase()}…
+            </div>
+          }
+        >
+          <Component />
+        </Suspense>
+      </ViewBoundary>
     </WindowContext.Provider>
   );
 }
@@ -81,6 +87,20 @@ export function AppShell({ onSignOut }: { onSignOut: () => void }) {
   }, []);
 
   useEffect(() => {
+    const order = ["mail", "contacts", "aliases", "services", "account", "settings"] as const;
+    const jump = (event: KeyboardEvent) => {
+      if (!(event.ctrlKey || event.metaKey) || event.altKey || event.shiftKey) return;
+      const index = Number(event.key) - 1;
+      const id = order[index];
+      if (!id) return;
+      event.preventDefault();
+      void openHref(applications[id].href);
+    };
+    window.addEventListener("keydown", jump);
+    return () => window.removeEventListener("keydown", jump);
+  }, []);
+
+  useEffect(() => {
     document.title = title ? `${title} · VaelMail` : "VaelMail";
   }, [title]);
 
@@ -88,9 +108,14 @@ export function AppShell({ onSignOut }: { onSignOut: () => void }) {
     <RetroThemeScope theme={resolved === "light" ? "light" : "graphite"}>
       <div className="vx-app" data-sidebar={collapsed ? "collapsed" : "expanded"}>
         <ResizeEdges />
-        <TitleBar title={title} onSignOut={onSignOut} />
+        <TitleBar title={title} signedIn />
         <div className="vx-body">
-          <Sidebar current={currentApp} collapsed={collapsed} onCollapse={setCollapsed} />
+          <Sidebar
+            current={currentApp}
+            collapsed={collapsed}
+            onCollapse={setCollapsed}
+            onSignOut={onSignOut}
+          />
           <main
             className="vx-content"
             ref={content}

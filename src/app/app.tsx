@@ -6,6 +6,8 @@ import { useTheme } from "@/lib/theme";
 import { MailboxProvider } from "@/features/mailbox/provider";
 import { OutboxRunner } from "@/features/mailbox/outbox";
 import { watchVerification } from "@/features/verification/store";
+import { watchErrors } from "@/lib/bridge/report";
+import { ViewBoundary } from "@/shell/view-boundary";
 import { VerificationDialog } from "@/features/verification/verification-dialog";
 import { AppShell } from "@/shell/app-shell";
 import { useDesktop } from "@/shell/store";
@@ -40,10 +42,12 @@ export function App() {
   useEffect(() => {
     const stop = watchSession();
     const stopVerification = watchVerification();
+    const stopErrors = watchErrors();
     void refresh().finally(() => void bridge.desktop.ready().catch(() => undefined));
     return () => {
       stop();
       stopVerification();
+      stopErrors();
     };
   }, [refresh]);
 
@@ -69,7 +73,9 @@ export function App() {
   }
   return (
     <MailboxProvider>
-      <AppShell onSignOut={() => void signOut()} />
+      <ViewBoundary label="VaelMail">
+        <AppShell onSignOut={() => void signOut()} />
+      </ViewBoundary>
       <VerificationDialog />
       <PasskeyPrompt />
       <OutboxRunner />

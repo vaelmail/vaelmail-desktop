@@ -1,11 +1,11 @@
-import { MagnifyingGlassIcon, SignOutIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { VerificationStatus } from "@/features/verification/verification-dialog";
 import { BrandMark } from "./brand";
 import { ConnectionIndicator } from "./connection";
 import { modifierLabel, platform } from "./platform";
 import { WindowControls } from "./window-controls";
 
-export function TitleBar({ title, onSignOut }: { title: string; onSignOut?: () => void }) {
+export function TitleBar({ title, signedIn = false }: { title: string; signedIn?: boolean }) {
   return (
     <header className="vx-titlebar" data-platform={platform} data-tauri-drag-region>
       <div className="vx-titlebar-brand" data-tauri-drag-region>
@@ -22,7 +22,7 @@ export function TitleBar({ title, onSignOut }: { title: string; onSignOut?: () =
           </>
         )}
       </div>
-      {onSignOut && (
+      {signedIn && (
         <button
           type="button"
           className="vx-search-trigger"
@@ -35,20 +35,7 @@ export function TitleBar({ title, onSignOut }: { title: string; onSignOut?: () =
       )}
       <div className="vx-titlebar-end" data-tauri-drag-region>
         <VerificationStatus />
-        {onSignOut && (
-          <>
-            <ConnectionIndicator />
-            <button
-              type="button"
-              className="vx-icon-button"
-              aria-label="Sign out"
-              title="Sign out"
-              onClick={onSignOut}
-            >
-              <SignOutIcon size={17} />
-            </button>
-          </>
-        )}
+        {signedIn && <ConnectionIndicator />}
         <WindowControls />
       </div>
     </header>

@@ -121,147 +121,148 @@ export function SignIn() {
         </div>
         <div className="vx-signin-art-copy">
           <BrandMark className="vx-signin-mark" />
-          <p className="vx-signin-tagline">Private mail that stays yours.</p>
+          <p className="vx-signin-tagline">Mail without a phone number.</p>
           <p className="vx-signin-sub">
-            No phone number, no name, no recovery email. Your account number is the only key.
+            Your account is a 16-digit number. VaelMail never asks for your name, a phone number or
+            another email address.
           </p>
         </div>
       </aside>
       <section className="vx-signin-panel">
         <div className="vx-signin-card">
-            <div className="vd-signin-body">
-              <h1 className="vd-signin-heading">Sign in</h1>
-              <p className="vx-signin-lead">Welcome back. Enter your account number to open your mailbox.</p>
-              {notice && step === "key" && (
-                <RetroPanel role="status" className="vd-signin-notice">
-                  {notices[notice]}
-                </RetroPanel>
-              )}
-              {step === "key" ? (
-                <form onSubmit={submitKey} noValidate aria-busy={busy}>
-                  <RetroField label="account number" description="your 16-digit account number">
-                    {(control) => (
-                      <div className="vd-key-row">
-                        <RetroInput
-                          {...control}
-                          ref={field}
-                          name="accountKey"
-                          type={revealed ? "text" : "password"}
-                          inputMode="numeric"
-                          autoComplete="off"
-                          spellCheck={false}
-                          maxLength={16}
-                          value={key}
-                          disabled={busy}
-                          onChange={(event) => {
-                            setKey(event.target.value);
-                            setError("");
-                          }}
-                        />
-                        <RetroButton
-                          aria-label={revealed ? "hide account number" : "show account number"}
-                          aria-pressed={revealed}
-                          disabled={busy}
-                          onClick={() => setRevealed((current) => !current)}
-                        >
-                          {revealed ? (
-                            <EyeSlashIcon size={16} aria-hidden />
-                          ) : (
-                            <EyeIcon size={16} aria-hidden />
-                          )}
-                        </RetroButton>
-                      </div>
-                    )}
-                  </RetroField>
-                  {error && (
-                    <p className="v98-field-error" role="alert">
-                      {error}
-                    </p>
-                  )}
-                  <div className="vd-signin-actions">
-                    <RetroButton type="submit" variant="primary" busy={busy}>
-                      {busy ? "checking…" : "sign in"}
-                    </RetroButton>
-                    <RetroButton onClick={register}>
-                      create account <ArrowUpRightIcon size={14} aria-hidden />
-                    </RetroButton>
-                  </div>
-                  <p className="v98-field-description">
-                    a lost account number cannot be recovered. recovery codes only replace your
-                    second factor.
-                  </p>
-                </form>
-              ) : step === "passkey" ? (
-                <PasskeyStep
-                  onSignedIn={signedIn}
-                  onRecovery={() => choose("recovery")}
-                  onTotp={methods.includes("totp") ? () => choose("totp") : undefined}
-                  onRestart={restart}
-                  describe={rejection}
-                />
-              ) : (
-                <form onSubmit={submitFactor} noValidate aria-busy={busy}>
-                  <RetroField
-                    label={step === "totp" ? "authenticator code" : "recovery code"}
-                    description={
-                      step === "totp"
-                        ? "enter the six-digit code from your authenticator app."
-                        : "enter an unused saved recovery code. each code works once."
-                    }
-                  >
-                    {(control) => (
+          <div className="vd-signin-body">
+            <h1 className="vd-signin-heading">Sign in</h1>
+            <p className="vx-signin-lead">Enter the account number you got when you signed up.</p>
+            {notice && step === "key" && (
+              <RetroPanel role="status" className="vd-signin-notice">
+                {notices[notice]}
+              </RetroPanel>
+            )}
+            {step === "key" ? (
+              <form onSubmit={submitKey} noValidate aria-busy={busy}>
+                <RetroField label="account number" description="your 16-digit account number">
+                  {(control) => (
+                    <div className="vd-key-row">
                       <RetroInput
                         {...control}
                         ref={field}
-                        value={factor}
-                        disabled={busy}
-                        inputMode={step === "totp" ? "numeric" : "text"}
-                        autoComplete="one-time-code"
+                        name="accountKey"
+                        type={revealed ? "text" : "password"}
+                        inputMode="numeric"
+                        autoComplete="off"
                         spellCheck={false}
-                        maxLength={step === "totp" ? 6 : 80}
+                        maxLength={16}
+                        value={key}
+                        disabled={busy}
                         onChange={(event) => {
-                          setFactor(event.target.value);
+                          setKey(event.target.value);
                           setError("");
                         }}
                       />
-                    )}
-                  </RetroField>
-                  {error && (
-                    <p className="v98-field-error" role="alert">
-                      {error}
-                    </p>
+                      <RetroButton
+                        aria-label={revealed ? "hide account number" : "show account number"}
+                        aria-pressed={revealed}
+                        disabled={busy}
+                        onClick={() => setRevealed((current) => !current)}
+                      >
+                        {revealed ? (
+                          <EyeSlashIcon size={16} aria-hidden />
+                        ) : (
+                          <EyeIcon size={16} aria-hidden />
+                        )}
+                      </RetroButton>
+                    </div>
                   )}
-                  <div className="vd-signin-actions">
-                    <RetroButton
-                      type="submit"
-                      variant="primary"
-                      busy={busy}
-                      disabled={step === "totp" ? !/^\d{6}$/.test(factor) : factor.trim() === ""}
-                    >
-                      {busy ? "verifying…" : "verify & sign in"}
+                </RetroField>
+                {error && (
+                  <p className="v98-field-error" role="alert">
+                    {error}
+                  </p>
+                )}
+                <div className="vd-signin-actions">
+                  <RetroButton type="submit" variant="primary" busy={busy}>
+                    {busy ? "checking…" : "sign in"}
+                  </RetroButton>
+                  <RetroButton onClick={register}>
+                    create account <ArrowUpRightIcon size={14} aria-hidden />
+                  </RetroButton>
+                </div>
+                <p className="v98-field-description">
+                  a lost account number cannot be recovered. recovery codes only replace your second
+                  factor.
+                </p>
+              </form>
+            ) : step === "passkey" ? (
+              <PasskeyStep
+                onSignedIn={signedIn}
+                onRecovery={() => choose("recovery")}
+                onTotp={methods.includes("totp") ? () => choose("totp") : undefined}
+                onRestart={restart}
+                describe={rejection}
+              />
+            ) : (
+              <form onSubmit={submitFactor} noValidate aria-busy={busy}>
+                <RetroField
+                  label={step === "totp" ? "authenticator code" : "recovery code"}
+                  description={
+                    step === "totp"
+                      ? "enter the six-digit code from your authenticator app."
+                      : "enter an unused saved recovery code. each code works once."
+                  }
+                >
+                  {(control) => (
+                    <RetroInput
+                      {...control}
+                      ref={field}
+                      value={factor}
+                      disabled={busy}
+                      inputMode={step === "totp" ? "numeric" : "text"}
+                      autoComplete="one-time-code"
+                      spellCheck={false}
+                      maxLength={step === "totp" ? 6 : 80}
+                      onChange={(event) => {
+                        setFactor(event.target.value);
+                        setError("");
+                      }}
+                    />
+                  )}
+                </RetroField>
+                {error && (
+                  <p className="v98-field-error" role="alert">
+                    {error}
+                  </p>
+                )}
+                <div className="vd-signin-actions">
+                  <RetroButton
+                    type="submit"
+                    variant="primary"
+                    busy={busy}
+                    disabled={step === "totp" ? !/^\d{6}$/.test(factor) : factor.trim() === ""}
+                  >
+                    {busy ? "verifying…" : "verify & sign in"}
+                  </RetroButton>
+                  {step === "totp" && (
+                    <RetroButton disabled={busy} onClick={() => choose("recovery")}>
+                      use a recovery code
                     </RetroButton>
-                    {step === "totp" && (
-                      <RetroButton disabled={busy} onClick={() => choose("recovery")}>
-                        use a recovery code
-                      </RetroButton>
-                    )}
-                    {step === "recovery" && methods.includes("totp") && (
-                      <RetroButton disabled={busy} onClick={() => choose("totp")}>
-                        use authenticator
-                      </RetroButton>
-                    )}
-                    {methods.includes("passkey") && (
-                      <RetroButton disabled={busy} onClick={() => choose("passkey")}>
-                        use passkey
-                      </RetroButton>
-                    )}
-                    <RetroButton disabled={busy} onClick={restart}>
-                      start over
+                  )}
+                  {step === "recovery" && methods.includes("totp") && (
+                    <RetroButton disabled={busy} onClick={() => choose("totp")}>
+                      use authenticator
                     </RetroButton>
-                  </div>
-                </form>
-              )}
-            </div>
+                  )}
+                  {methods.includes("passkey") && (
+                    <RetroButton disabled={busy} onClick={() => choose("passkey")}>
+                      use passkey
+                    </RetroButton>
+                  )}
+                  <RetroButton disabled={busy} onClick={restart}>
+                    start over
+                  </RetroButton>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </section>
     </div>

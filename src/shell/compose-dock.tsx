@@ -59,9 +59,7 @@ function ComposePanel({ window, children }: { window: DesktopWindow; children: R
               className="vx-icon-button"
               aria-label={collapsed ? "Expand" : "Collapse"}
               title={collapsed ? "Expand" : "Collapse"}
-              onClick={() =>
-                dispatch({ type: collapsed ? "restore" : "minimize", id: window.id })
-              }
+              onClick={() => dispatch({ type: collapsed ? "restore" : "minimize", id: window.id })}
             >
               {collapsed ? <CaretUpIcon size={15} /> : <CaretDownIcon size={15} />}
             </button>
@@ -103,11 +101,7 @@ function ComposePanel({ window, children }: { window: DesktopWindow; children: R
   );
 }
 
-export function ComposeDock({
-  render,
-}: {
-  render: (window: DesktopWindow) => ReactNode;
-}) {
+export function ComposeDock({ render }: { render: (window: DesktopWindow) => ReactNode }) {
   const windows = useDesktop((state) => state.windows);
   const drafts = windows.filter((window) => window.appId === "compose");
   if (drafts.length === 0) return null;
