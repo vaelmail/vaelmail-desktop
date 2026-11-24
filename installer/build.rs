@@ -1,7 +1,9 @@
 use std::path::PathBuf;
 
 fn main() {
-    let manifest = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR is set by cargo"));
+    let manifest = PathBuf::from(
+        std::env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR is set by cargo"),
+    );
     let source = manifest.join("setup.conf.json");
     let config = manifest.join("tauri.conf.json");
     println!("cargo:rerun-if-changed={}", source.display());
