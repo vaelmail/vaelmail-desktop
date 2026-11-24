@@ -34,7 +34,12 @@ if (!payload) throw new Error("no app bundle found to put inside VaelMail Setup"
 copyFileSync(join(root, "installer/setup.conf.json"), join(root, "installer/tauri.conf.json"));
 const env = { VAEL_SETUP_PAYLOAD: payload, VAEL_SETUP_VERSION: version };
 if (process.platform === "darwin") {
-  run("pnpm", ["exec", "tauri", "build", "--bundles", "app", ...(target ? ["--target", target] : [])], env, join(root, "installer"));
+  const installer = join(root, "installer");
+  run("pnpm", ["exec", "tauri", "build", "--bundles", "app", ...(target ? ["--target", target] : [])], {
+    ...env,
+    TAURI_APP_PATH: installer,
+    TAURI_FRONTEND_PATH: installer,
+  });
   const app = find(join(bundle, "macos"), (name) => name === "VaelMail Setup.app");
   if (!app) throw new Error("VaelMail Setup.app was not built");
   output = join(root, `VaelMail-Setup-macos-${arch === "arm64" ? "apple-silicon" : "intel"}.zip`);
