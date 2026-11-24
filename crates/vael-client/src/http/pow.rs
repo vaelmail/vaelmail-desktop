@@ -7,7 +7,7 @@ const DEADLINE: Duration = Duration::from_secs(90);
 const WORKERS: usize = 4;
 const CHECK_INTERVAL: u32 = 1 << 16;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Puzzle {
     pub seed: String,
     pub difficulty: u32,

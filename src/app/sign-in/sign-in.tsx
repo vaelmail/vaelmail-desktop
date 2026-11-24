@@ -3,7 +3,8 @@ import { ArrowUpRightIcon, EyeIcon, EyeSlashIcon } from "@phosphor-icons/react";
 import { bridge, BridgeError } from "@/lib/bridge";
 import type { SessionEndReason } from "@/lib/bridge/events";
 import type { SessionOutcome } from "@/lib/bridge/session";
-import { RetroButton, RetroField, RetroInput, RetroPanel, RetroWindow } from "@/ui/retro98";
+import { RetroButton, RetroField, RetroInput, RetroPanel } from "@/ui/retro98";
+import { BrandMark } from "@/shell/brand";
 import { Wallpaper } from "@/shell/wallpaper";
 import { useSession } from "../session";
 import { PasskeyStep } from "./passkey-step";
@@ -113,13 +114,24 @@ export function SignIn() {
   const register = () => void bridge.files.openExternal("https://vaelmail.com/register");
 
   return (
-    <div className="v98-desktop-shell vd-signin-shell">
-      <div className="v98-desktop-area">
-        <Wallpaper />
-        <div className="vd-signin-center">
-          <RetroWindow title="Sign in to VaelMail" className="vd-signin-window">
+    <div className="vx-signin">
+      <aside className="vx-signin-art" aria-hidden>
+        <div className="vx-signin-art-image">
+          <Wallpaper />
+        </div>
+        <div className="vx-signin-art-copy">
+          <BrandMark className="vx-signin-mark" />
+          <p className="vx-signin-tagline">Private mail that stays yours.</p>
+          <p className="vx-signin-sub">
+            No phone number, no name, no recovery email. Your account number is the only key.
+          </p>
+        </div>
+      </aside>
+      <section className="vx-signin-panel">
+        <div className="vx-signin-card">
             <div className="vd-signin-body">
-              <h1 className="vd-signin-heading">sign in</h1>
+              <h1 className="vd-signin-heading">Sign in</h1>
+              <p className="vx-signin-lead">Welcome back. Enter your account number to open your mailbox.</p>
               {notice && step === "key" && (
                 <RetroPanel role="status" className="vd-signin-notice">
                   {notices[notice]}
@@ -250,9 +262,8 @@ export function SignIn() {
                 </form>
               )}
             </div>
-          </RetroWindow>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -140,8 +140,10 @@ pub async fn connection_test(state: State<'_, AppState>) -> Result<ConnectionTes
 }
 
 #[tauri::command]
-pub fn frontend_ready(app: AppHandle) {
-    if !lifecycle::started_hidden() {
+pub fn frontend_ready(app: AppHandle, state: State<'_, AppState>) {
+    log::info!("interface ready");
+    if !lifecycle::started_hidden() && !state.shown.swap(true, std::sync::atomic::Ordering::Relaxed)
+    {
         lifecycle::show_main(&app);
     }
 }

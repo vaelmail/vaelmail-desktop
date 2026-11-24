@@ -99,7 +99,7 @@ function request(args: Args) {
 export function mockInvoke(command: string, args: Args): unknown {
   switch (command) {
     case "session_status":
-      return { signedIn: true };
+      return { signedIn: new URLSearchParams(window.location.search).get("signedOut") !== "1" };
     case "session_passkey_start":
       return { kind: "started", code: "482913", expiresIn: 300 };
     case "session_passkey_poll":

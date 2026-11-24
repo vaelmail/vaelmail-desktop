@@ -11,6 +11,7 @@ mod portable;
 mod protocols;
 mod state;
 mod tray;
+mod verification;
 
 use std::sync::Arc;
 
@@ -70,6 +71,8 @@ fn plugins(builder: tauri::Builder<tauri::Wry>) -> tauri::Builder<tauri::Wry> {
         .plugin(
             tauri_plugin_log::Builder::new()
                 .level(log::LevelFilter::Warn)
+                .level_for("vaelmail_desktop_lib", log::LevelFilter::Info)
+                .max_file_size(2_000_000)
                 .clear_targets()
                 .target(log_target())
                 .build(),
@@ -77,15 +80,18 @@ fn plugins(builder: tauri::Builder<tauri::Wry>) -> tauri::Builder<tauri::Wry> {
 }
 
 fn main_window(app: &tauri::App) -> tauri::Result<()> {
-    let Some(config) = app.config().app.windows.first() else {
-        return Ok(());
-    };
-    let mut builder = tauri::WebviewWindowBuilder::from_config(app.handle(), config)?;
-    if let Some(folder) = portable::folder("webview") {
-        builder = builder.data_directory(folder);
+    let mut last = None;
+    for attempt in 0..3 {
+        match lifecycle::create_main(app.handle()) {
+            Ok(_) => return Ok(()),
+            Err(error) => {
+                log::error!("the main window could not be created (attempt {attempt}): {error}");
+                last = Some(error);
+                std::thread::sleep(std::time::Duration::from_millis(700));
+            }
+        }
     }
-    builder.build()?;
-    Ok(())
+    Err(last.unwrap_or(tauri::Error::WindowNotFound))
 }
 
 fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
@@ -101,11 +107,16 @@ fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let version = app.package_info().version.to_string();
     let client = Arc::new(Client::new(&version, &settings.proxy)?);
     app.manage(AppState::new(client, settings, settings_file, data_dir));
+    log::info!("starting VaelMail {version}");
+    verification::install(app.handle());
     main_window(app)?;
+    lifecycle::show_soon(app.handle());
 
     drag::clear_staging();
     notify::init(app.handle());
-    tray::build(app.handle())?;
+    if let Err(error) = tray::build(app.handle()) {
+        log::warn!("the tray icon is unavailable: {error}");
+    }
     updates::spawn_auto_check(app.handle().clone());
 
     let handle = app.handle().clone();
@@ -131,6 +142,7 @@ fn purge(arguments: &[String]) {
 }
 
 pub fn run() {
+    lifecycle::install_panic_log();
     let arguments: Vec<String> = std::env::args().collect();
     if arguments.iter().any(|argument| argument == PURGE_FLAG) {
         purge(&arguments);
@@ -149,7 +161,7 @@ pub fn run() {
                 responder.respond(protocols::asset::serve(&app, &request).await);
             });
         })
-        .setup(setup)
+        .setup(|app| setup(app).inspect_err(|error| log::error!("startup failed: {error}")))
         .on_window_event(lifecycle::on_window_event)
         .invoke_handler(tauri::generate_handler![
             session::session_status,
@@ -205,12 +217,14 @@ pub fn run() {
             updates::updates_supported,
             updates::updates_check,
             updates::updates_install,
+            verification::verification_reply,
         ])
         .build(tauri::generate_context!())
         .expect("failed to build VaelMail");
 
     application.run(|app, event| {
         if let RunEvent::Exit = event {
+            log::info!("exiting");
             drag::clear_staging();
         }
         #[cfg(target_os = "macos")]

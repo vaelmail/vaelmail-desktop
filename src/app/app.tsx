@@ -1,17 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import { Toaster } from "sonner";
 import { bridge } from "@/lib/bridge";
 import { RetroThemeScope } from "@/ui/retro98";
 import { useTheme } from "@/lib/theme";
 import { MailboxProvider } from "@/features/mailbox/provider";
 import { OutboxRunner } from "@/features/mailbox/outbox";
-import { Desktop } from "@/shell/desktop";
+import { watchVerification } from "@/features/verification/store";
+import { VerificationDialog } from "@/features/verification/verification-dialog";
+import { AppShell } from "@/shell/app-shell";
 import { useDesktop } from "@/shell/store";
 import { PasskeyPrompt } from "@/shell/passkey-prompt";
+import { TitleBar } from "@/shell/title-bar";
+import { ResizeEdges } from "@/shell/window-controls";
 import { BootScreen } from "./boot";
 import { interceptExternalLinks } from "./external-links";
 import { SignIn } from "./sign-in/sign-in";
 import { useSession, watchSession } from "./session";
+
+function Bare({ children }: { children: ReactNode }) {
+  const resolved = useTheme((state) => state.resolved);
+  return (
+    <RetroThemeScope theme={resolved === "light" ? "light" : "graphite"}>
+      <div className="vx-app vx-bare">
+        <ResizeEdges />
+        <TitleBar title="" />
+        <div className="vx-bare-body">{children}</div>
+        <VerificationDialog />
+      </div>
+    </RetroThemeScope>
+  );
+}
 
 export function App() {
   const phase = useSession((state) => state.phase);
@@ -21,8 +39,12 @@ export function App() {
 
   useEffect(() => {
     const stop = watchSession();
-    void refresh().then(() => bridge.desktop.ready());
-    return stop;
+    const stopVerification = watchVerification();
+    void refresh().finally(() => void bridge.desktop.ready().catch(() => undefined));
+    return () => {
+      stop();
+      stopVerification();
+    };
   }, [refresh]);
 
   useEffect(() => interceptExternalLinks(), []);
@@ -31,28 +53,27 @@ export function App() {
     if (phase === "signedOut") useDesktop.getState().dispatch({ type: "clear" });
   }, [phase]);
 
-  const theme = resolved === "light" ? "light" : "graphite";
-
   if (phase === "loading") {
     return (
-      <RetroThemeScope theme={theme}>
+      <Bare>
         <BootScreen />
-      </RetroThemeScope>
+      </Bare>
     );
   }
   if (phase === "signedOut") {
     return (
-      <RetroThemeScope theme={theme}>
+      <Bare>
         <SignIn />
-      </RetroThemeScope>
+      </Bare>
     );
   }
   return (
     <MailboxProvider>
-      <Desktop onSignOut={() => void signOut()} />
+      <AppShell onSignOut={() => void signOut()} />
+      <VerificationDialog />
       <PasskeyPrompt />
       <OutboxRunner />
-      <Toaster position="bottom-right" theme={resolved} />
+      <Toaster position="bottom-left" theme={resolved} />
     </MailboxProvider>
   );
 }

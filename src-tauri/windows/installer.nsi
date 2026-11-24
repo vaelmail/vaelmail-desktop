@@ -495,6 +495,19 @@ Function .onInit
 
   Call LoadOptionDefaults
 
+  ${GetOptions} $CMDLINE "/NODESKTOP" $R9
+  ${IfNot} ${Errors}
+    StrCpy $OptionDesktop ${BST_UNCHECKED}
+  ${EndIf}
+  ${GetOptions} $CMDLINE "/AUTOSTART" $R9
+  ${IfNot} ${Errors}
+    StrCpy $OptionAutostart ${BST_CHECKED}
+  ${EndIf}
+  ${GetOptions} $CMDLINE "/NOMAILAPP" $R9
+  ${IfNot} ${Errors}
+    StrCpy $OptionMailApp ${BST_UNCHECKED}
+  ${EndIf}
+
   !if "${ALLOWDOWNGRADES}" == "false"
   ${If} $PassiveMode = 1
   ${OrIf} $UpdateMode = 1

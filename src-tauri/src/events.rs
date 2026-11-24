@@ -6,6 +6,7 @@ pub const REALTIME_SNAPSHOT: &str = "realtime:snapshot";
 pub const REALTIME_REFRESH: &str = "realtime:refresh";
 pub const SESSION_ENDED: &str = "session:ended";
 pub const CHALLENGE_REQUIRED: &str = "challenge:required";
+pub const VERIFICATION: &str = "verification:state";
 pub const NOTIFICATION_ACTIVATED: &str = "notification:activated";
 pub const MAILTO_PENDING: &str = "mailto:pending";
 pub const NETWORK_ONLINE: &str = "network:online";

@@ -156,8 +156,8 @@ function open(state: DesktopState, action: Extract<WindowAction, { type: "open" 
     ...location,
     id,
     bounds: defaultBounds(location.appId, state.viewport, state.windows.length * 16, stored),
-    mode: action.background ? "minimized" : "maximized",
-    restoreMode: "maximized",
+    mode: action.background ? "minimized" : location.appId === "compose" ? "normal" : "maximized",
+    restoreMode: location.appId === "compose" ? "normal" : "maximized",
   };
   if (action.background) return { ...state, windows: [next, ...state.windows] };
   return raise(state, next);

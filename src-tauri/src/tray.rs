@@ -82,7 +82,7 @@ fn on_menu(app: &AppHandle, event: MenuEvent) {
         "pause-hour" => notify::pause(app, Some(60)),
         "pause-day" => notify::pause(app, Some(60 * 24)),
         "resume" => notify::pause(app, None),
-        "quit" => app.exit(0),
+        "quit" => lifecycle::quit(app),
         _ => {}
     }
 }

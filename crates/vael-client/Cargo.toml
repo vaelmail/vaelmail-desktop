@@ -20,7 +20,6 @@ zeroize = "1"
 bytes = "1"
 percent-encoding = "2"
 regex = "1"
-base64 = "0.22"
 
 [lints]
 workspace = true

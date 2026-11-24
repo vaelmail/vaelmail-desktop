@@ -1,6 +1,7 @@
 import { listen, type UnlistenFn } from "@tauri-apps/api/event";
 import { native } from "./invoke";
 import type { RealtimeStatus } from "@/features/connection/store";
+import type { VerificationState } from "./verification";
 
 export type SessionEndReason = "expired" | "revoked" | "signedOut";
 
@@ -12,6 +13,7 @@ export type BridgeEvents = {
   "realtime:refresh": { scopes?: string[] };
   "session:ended": { reason: SessionEndReason };
   "challenge:required": { retryAfter: number };
+  "verification:state": VerificationState;
   "notification:activated": { threadId: string | null };
   "mailto:pending": null;
   "mail:arrived": number;

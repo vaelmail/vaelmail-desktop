@@ -40,6 +40,8 @@ enum Exit {
     Stopped,
     Dropped,
     Rejected,
+    Challenged(u8),
+    Forbidden,
 }
 
 struct Shared {
@@ -117,11 +119,26 @@ async fn connect(client: &Client) -> Result<Socket, SocketError> {
     Ok(socket)
 }
 
-fn rejected_status(error: &SocketError) -> Option<u16> {
-    match error {
-        SocketError::Http(response) => Some(response.status().as_u16()),
-        _ => None,
+fn rejection(error: &SocketError) -> Exit {
+    let SocketError::Http(response) = error else {
+        return Exit::Dropped;
+    };
+    let level = crate::http::challenge_level(response.headers());
+    if level > 0 {
+        return Exit::Challenged(level);
     }
+    match response.status().as_u16() {
+        401 => Exit::SessionEnded,
+        403 => Exit::Forbidden,
+        _ => Exit::Rejected,
+    }
+}
+
+async fn session_lost(client: &Client) -> bool {
+    matches!(
+        client.send(&crate::http::Request::get("/api/account")).await,
+        Ok(response) if response.status == 401
+    )
 }
 
 async fn send(sink: &mut Sink, text: String) -> bool {
@@ -349,12 +366,19 @@ pub async fn run(
                 attempt = 0;
                 serve(&mut shared, socket, &mut commands).await
             }
-            Ok(Err(error)) => match rejected_status(&error) {
-                Some(401) | Some(403) => Exit::SessionEnded,
-                Some(_) => Exit::Rejected,
-                None => Exit::Dropped,
-            },
+            Ok(Err(error)) => rejection(&error),
             Err(_) => Exit::Dropped,
+        };
+        let exit = match exit {
+            Exit::Forbidden if session_lost(&shared.client).await => Exit::SessionEnded,
+            Exit::Forbidden => Exit::Rejected,
+            Exit::Challenged(level) => {
+                if shared.client.clear_challenge(level).await {
+                    continue;
+                }
+                Exit::Rejected
+            }
+            other => other,
         };
 
         shared.settle(TransportState::Down);
@@ -366,7 +390,7 @@ pub async fn run(
                 shared.emit(Event::SessionEnded);
                 return;
             }
-            Exit::Dropped | Exit::Rejected => {}
+            Exit::Dropped | Exit::Rejected | Exit::Challenged(_) | Exit::Forbidden => {}
         }
 
         shared.emit(Event::Status(Status::Polling));

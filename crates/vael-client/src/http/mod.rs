@@ -2,23 +2,23 @@ mod challenge;
 mod cookies;
 mod pow;
 mod proxy;
+mod verify;
 
 use std::sync::{Arc, RwLock};
-use std::time::Instant;
 
+use crate::config::{self, GENERATION_HEADER, OPERATION_HEADER, ORIGIN as SITE_ORIGIN};
+use crate::error::{ClientError, Result};
 use bytes::Bytes;
 use reqwest::header::{HeaderMap, HeaderValue, ACCEPT, CONTENT_TYPE, COOKIE, ORIGIN, USER_AGENT};
 use reqwest::Method;
 use serde_json::Value;
-use tokio::sync::Mutex;
 
-use crate::config::{self, GENERATION_HEADER, OPERATION_HEADER, ORIGIN as SITE_ORIGIN};
-use crate::error::{ClientError, Result};
-
+pub use challenge::{level as challenge_level, CLEARANCE_COOKIES};
 pub use cookies::Jar;
 pub use proxy::{open as open_tunnel, ProxyMode, ProxySettings};
+pub use verify::{Answer, Verification};
 
-use challenge::Challenge;
+use verify::Verifier;
 
 pub enum Body {
     None,
@@ -134,7 +134,7 @@ pub struct Client {
     proxy: RwLock<ProxySettings>,
     jar: Arc<Jar>,
     agent: String,
-    solving: Mutex<Option<Instant>>,
+    verifier: Verifier,
 }
 
 fn build(agent: &str, proxy: &ProxySettings) -> Result<reqwest::Client> {
@@ -157,7 +157,7 @@ impl Client {
             proxy: RwLock::new(proxy.clone()),
             jar: Arc::new(Jar::default()),
             agent,
-            solving: Mutex::new(None),
+            verifier: Verifier::default(),
         })
     }
 
@@ -232,58 +232,45 @@ impl Client {
         Ok(builder)
     }
 
-    async fn solve(&self, puzzle: pow::Puzzle) -> bool {
-        let mut last = self.solving.lock().await;
-        if last.is_some_and(|at| at.elapsed() < challenge::SOLVE_COOLDOWN) {
-            return false;
-        }
-        let Ok(Some(nonces)) = tokio::task::spawn_blocking({
-            let puzzle = puzzle.clone();
-            move || pow::solve(&puzzle)
-        })
-        .await
-        else {
-            return false;
-        };
-        let request = Request::new(Method::POST, "/.vp/pow");
-        let Ok(builder) = self.prepare(&request) else {
-            return false;
-        };
-        let sent = builder
-            .header(CONTENT_TYPE, "application/x-www-form-urlencoded")
-            .body(challenge::submission(&puzzle, &nonces))
-            .send()
-            .await;
-        let Ok(response) = sent else { return false };
-        self.jar.store(response.headers());
-        *last = Some(Instant::now());
-        true
+    pub fn observe_verification(&self, observer: impl Fn(Verification) + Send + Sync + 'static) {
+        self.verifier.observe(observer);
+    }
+
+    pub fn answer_verification(&self, answer: Answer) {
+        self.verifier.answer(answer);
+    }
+
+    pub async fn clear_challenge(&self, level: u8) -> bool {
+        let seen = self.verifier.generation();
+        self.verify(level, None, seen).await
     }
 
     async fn execute(&self, request: &Request) -> Result<reqwest::Response> {
-        for attempt in 0..challenge::MAX_ATTEMPTS {
+        let mut last_retry = 5;
+        for _ in 0..challenge::MAX_ATTEMPTS {
+            let seen = self.verifier.generation();
             let response = self.prepare(request)?.send().await?;
             self.jar.store(response.headers());
-            if response.status().as_u16() != 429 || challenge::level(response.headers()) == 0 {
+            let level = challenge::level(response.headers());
+            if level == 0 {
                 return Ok(response);
             }
-            let headers = response.headers().clone();
+            last_retry = challenge::retry_after(response.headers());
             let body = response.bytes().await.unwrap_or_default();
-            let last = attempt + 1 == challenge::MAX_ATTEMPTS;
-            match challenge::classify(&headers, &body) {
-                Some(Challenge::Pause) if !last => tokio::time::sleep(challenge::PAUSE).await,
-                Some(Challenge::Solve(puzzle)) if !last => {
-                    if !self.solve(puzzle).await {
-                        return Err(ClientError::Challenge { retry_after: 15 });
-                    }
-                }
-                Some(Challenge::Blocked { retry_after }) => {
-                    return Err(ClientError::Challenge { retry_after })
-                }
-                _ => return Err(ClientError::Challenge { retry_after: 5 }),
+            let puzzle = if level == 2 {
+                challenge::json_puzzle(&body)
+            } else {
+                None
+            };
+            if !self.verify(level, puzzle, seen).await {
+                return Err(ClientError::Challenge {
+                    retry_after: last_retry.max(10),
+                });
             }
         }
-        Err(ClientError::Challenge { retry_after: 5 })
+        Err(ClientError::Challenge {
+            retry_after: last_retry,
+        })
     }
 
     pub async fn send(&self, request: &Request) -> Result<Response> {

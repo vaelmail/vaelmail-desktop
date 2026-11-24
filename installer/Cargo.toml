@@ -1,0 +1,21 @@
+[package]
+name = "vaelmail-setup"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "VaelMail Setup"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[target.'cfg(windows)'.dependencies]
+windows-registry = "0.6"
+
+[lints]
+workspace = true

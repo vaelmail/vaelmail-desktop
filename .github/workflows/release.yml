@@ -72,6 +72,13 @@ jobs:
           prerelease: false
           includeUpdaterJson: true
           args: --config src-tauri/tauri.release.conf.json ${{ matrix.target && format('--target {0}', matrix.target) || '' }}
+      - name: Build and upload VaelMail Setup
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          setup="$(node scripts/package-setup.mjs "${{ matrix.target }}" | tail -n 1)"
+          gh release upload "v${{ steps.tauri.outputs.appVersion }}" "$setup" --clobber
       - name: Package and upload the portable build
         shell: bash
         env:

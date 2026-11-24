@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VaelMail Setup</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="welcome">
+    <aside class="art" data-tauri-drag-region>
+      <div class="art-image" data-tauri-drag-region></div>
+      <div class="art-shade" data-tauri-drag-region></div>
+      <div class="art-brand" data-tauri-drag-region>
+        <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M14 16h10l14 32H28z" fill="#b9d778" />
+          <path d="M40 16h10L36 48H26z" fill="#e6e9dc" />
+        </svg>
+        <div>
+          <strong>VaelMail</strong>
+          <span class="chip" id="version">setup</span>
+        </div>
+      </div>
+      <p class="art-quote" data-tauri-drag-region>Private mail that stays yours.</p>
+    </aside>
+
+    <main class="panel">
+      <header class="bar" data-tauri-drag-region>
+        <span class="bar-title" data-tauri-drag-region>VaelMail Setup</span>
+        <div class="bar-buttons">
+          <button type="button" class="win" id="minimize" aria-label="Minimize">
+            <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M0 5.5h10" /></svg>
+          </button>
+          <button type="button" class="win close" id="close" aria-label="Close">
+            <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M.5.5l9 9M9.5.5l-9 9" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="page" id="page-welcome" aria-labelledby="welcome-title">
+        <p class="eyebrow" id="eyebrow">Welcome</p>
+        <h1 id="welcome-title">Install VaelMail</h1>
+        <p class="lead">
+          Your private mailbox as a real app: new mail notifications, an encrypted offline cache and
+          mailto links that open straight into a new message.
+        </p>
+        <ul class="features">
+          <li>
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z" /></svg>
+            </span>
+            <span><strong>No trackers, no phone number.</strong> Sign in with your account number.</span>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6" /></svg>
+            </span>
+            <span><strong>Works offline.</strong> Recent mail is kept encrypted on this device.</span>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" /></svg>
+            </span>
+            <span><strong>Updates itself.</strong> New versions install quietly in the background.</span>
+          </li>
+        </ul>
+
+        <div class="location" id="location-row">
+          <label for="location">Install to</label>
+          <div class="location-field">
+            <input id="location" type="text" readonly spellcheck="false" />
+            <button type="button" class="ghost" id="choose">Change…</button>
+          </div>
+        </div>
+
+        <div class="options">
+          <label class="toggle" id="desktop-row">
+            <input type="checkbox" id="desktop" checked />
+            <span class="switch" aria-hidden="true"></span>
+            <span>Add a desktop shortcut</span>
+          </label>
+          <label class="toggle" id="autostart-row">
+            <input type="checkbox" id="autostart" />
+            <span class="switch" aria-hidden="true"></span>
+            <span>Start VaelMail when I sign in to this computer</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="launch" checked />
+            <span class="switch" aria-hidden="true"></span>
+            <span>Open VaelMail when setup finishes</span>
+          </label>
+        </div>
+
+        <footer class="actions">
+          <button type="button" class="text-button" id="remove" hidden>Remove VaelMail</button>
+          <span class="spacer"></span>
+          <button type="button" class="ghost" id="cancel">Cancel</button>
+          <button type="button" class="primary" id="install">Install</button>
+        </footer>
+      </section>
+
+      <section class="page" id="page-progress" aria-labelledby="progress-title" aria-live="polite">
+        <p class="eyebrow" id="progress-eyebrow">Installing</p>
+        <h1 id="progress-title"><span id="percent">0</span><small>%</small></h1>
+        <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+        <p class="status" id="status">Preparing</p>
+        <ol class="steps" id="steps">
+          <li data-step="0">Preparing</li>
+          <li data-step="1" id="main-step">Installing VaelMail</li>
+          <li data-step="2">Adding shortcuts</li>
+          <li data-step="3">Finishing</li>
+        </ol>
+      </section>
+
+      <section class="page" id="page-done" aria-labelledby="done-title">
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" /><path d="M15 27l7 7 15-16" /></svg>
+        </div>
+        <h1 id="done-title">VaelMail is ready</h1>
+        <p class="lead" id="done-text">
+          You'll find VaelMail in your apps. Sign in with your account number to open your mailbox.
+        </p>
+        <footer class="actions">
+          <span class="spacer"></span>
+          <button type="button" class="ghost" id="finish">Close</button>
+          <button type="button" class="primary" id="open">Open VaelMail</button>
+        </footer>
+      </section>
+
+      <section class="page" id="page-error" aria-labelledby="error-title">
+        <div class="seal danger" aria-hidden="true">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" /><path d="M26 15v14M26 36v1" /></svg>
+        </div>
+        <h1 id="error-title">Setup couldn't finish</h1>
+        <p class="lead" id="error-text">Something went wrong.</p>
+        <footer class="actions">
+          <button type="button" class="text-button" id="fallback" hidden>Use the standard installer</button>
+          <span class="spacer"></span>
+          <button type="button" class="ghost" id="give-up">Close</button>
+          <button type="button" class="primary" id="retry">Try again</button>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

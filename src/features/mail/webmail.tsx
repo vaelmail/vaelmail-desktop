@@ -48,7 +48,6 @@ import { Button, Dropdown, Empty, Failure, IconButton, Sheet, Skeleton } from "@
 import { Reader, type ReaderCommands } from "./reader";
 import { CommandMenu } from "./command-menu";
 import { MailNavigation } from "./mail-navigation";
-import { MailMenubar } from "./mail-menubar";
 import {
   useElementWide,
   useMailKeyboard,
@@ -636,29 +635,6 @@ export function MailApplication({
   );
   return (
     <div ref={root} className={desktop ? "v98-mail-root" : undefined}>
-      {desktop && (
-        <>
-          <MailMenubar
-            go={go}
-            compose={compose}
-            items={items}
-            selection={selection}
-            threadId={threadId}
-            readerCommands={readerCommands}
-            busy={busy}
-            refreshing={refreshing}
-            refresh={refresh}
-            runAction={runAction}
-            selectLoaded={() => {
-              setSelection([...new Set(items.flatMap((i) => (i.threadId ? [i.threadId] : [])))]);
-              setAllMatching(false);
-            }}
-            clearSelection={clearSelection}
-            focusSearch={() => queryInput.current?.focus()}
-            showShortcuts={() => setHelp(true)}
-          />
-        </>
-      )}
       <div
         className={"wm " + (desktop ? "v98-mail-app " : "") + (collapsed ? "is-collapsed" : "")}
         data-density={data.mailbox.settings.density}

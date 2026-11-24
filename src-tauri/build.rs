@@ -52,6 +52,7 @@ const COMMANDS: &[&str] = &[
     "updates_supported",
     "updates_check",
     "updates_install",
+    "verification_reply",
 ];
 
 fn main() {

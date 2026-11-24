@@ -5816,9 +5816,8 @@ dependencies = [
 
 [[package]]
 name = "vael-client"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
- "base64 0.22.1",
  "bytes",
  "futures-util",
  "percent-encoding",
@@ -5838,7 +5837,7 @@ dependencies = [
 
 [[package]]
 name = "vael-store"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "keyring",
  "rand 0.9.5",
@@ -5852,7 +5851,7 @@ dependencies = [
 
 [[package]]
 name = "vaelmail-desktop"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -5883,6 +5882,18 @@ dependencies = [
  "vael-client",
  "vael-store",
  "windows 0.62.2",
+ "windows-registry",
+]
+
+[[package]]
+name = "vaelmail-setup"
+version = "0.2.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
  "windows-registry",
 ]
 

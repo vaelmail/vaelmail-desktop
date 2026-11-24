@@ -8,3 +8,4 @@ target
 src-tauri/gen
 src-tauri/target
 dist-portable
+installer/gen

@@ -5,6 +5,7 @@ import { files } from "./files";
 import { realtime } from "./realtime";
 import { recovery } from "./recovery";
 import { session } from "./session";
+import { verification } from "./verification";
 
 export const bridge = {
   api,
@@ -18,6 +19,7 @@ export const bridge = {
   cache,
   recovery,
   desktop,
+  verification,
 };
 
 export { api, apiBytes, apiDataUrl, apiImage, apiText } from "./api";

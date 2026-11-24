@@ -1,9 +1,9 @@
 [workspace]
 resolver = "2"
-members = ["crates/vael-client", "crates/vael-store", "src-tauri"]
+members = ["crates/vael-client", "crates/vael-store", "src-tauri", "installer"]
 
 [workspace.package]
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.85"
 
@@ -14,5 +14,5 @@ all = { level = "warn", priority = -1 }
 codegen-units = 1
 lto = true
 opt-level = "s"
-panic = "abort"
+panic = "unwind"
 strip = true
