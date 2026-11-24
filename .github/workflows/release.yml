@@ -26,7 +26,7 @@ jobs:
             platform: windows-11-arm
             target: ""
           - name: macOS Apple silicon
-            platform: macos-15
+            platform: macos-15-intel
             target: aarch64-apple-darwin
           - name: macOS Intel
             platform: macos-latest
