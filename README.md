@@ -6,7 +6,7 @@
 
 The [VaelMail](https://vaelmail.com) desktop app for Windows, macOS and Linux.
 
-[Download](https://github.com/vaelmail/vaelmail-desktop/releases/latest) · [Website](https://vaelmail.com) · [Architecture](docs/architecture.md)
+[Download](https://github.com/vaelmail/vaelmail-desktop/releases/latest) · [Website](https://vaelmail.com) · [Screenshots](#gallery) · [Architecture](docs/architecture.md)
 
 <img src="docs/screenshots/mail.webp" alt="VaelMail Desktop showing the inbox">
 
@@ -35,14 +35,14 @@ The script picks the right build for your system. Run it again to update, reinst
 
 Pass options after `bash -s --`, for example `curl -fsSL https://vaelmail.com/desktop/install.sh | bash -s -- --uninstall`.
 
-| Option        | Effect                                                     |
-| ------------- | ---------------------------------------------------------- |
-| `--yes`       | Use the defaults without asking                            |
-| `--appimage`  | Linux only. Install the AppImage, no sudo needed           |
-| `--package`   | Linux only. Install the `.deb` or `.rpm`                   |
-| `--uninstall` | Remove VaelMail                                            |
+| Option        | Effect                                                      |
+| ------------- | ----------------------------------------------------------- |
+| `--yes`       | Use the defaults without asking                             |
+| `--appimage`  | Linux only. Install the AppImage, no sudo needed            |
+| `--package`   | Linux only. Install the `.deb` or `.rpm`                    |
+| `--uninstall` | Remove VaelMail                                             |
 | `--purge`     | With `--uninstall`, also delete settings, cache and sign-in |
-| `--no-launch` | Don't open VaelMail after installing                       |
+| `--no-launch` | Don't open VaelMail after installing                        |
 
 On Windows, `-Quiet` installs without the setup window and `-Uninstall` removes the app:
 
@@ -54,14 +54,14 @@ On Windows, `-Quiet` installs without the setup window and `-Uninstall` removes 
 
 ## Download
 
-| Platform                    | Installer                                                                                                                                                                                                                                                                                                                  | Portable                                                                                                              |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Windows 10/11, x64          | [.exe](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-x64-setup.exe)                                                                                                                                                                                                               | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-x64-portable.zip)         |
-| Windows 11, arm64           | [.exe](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-arm64-setup.exe)                                                                                                                                                                                                             | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-arm64-portable.zip)       |
-| macOS 11+, Apple silicon    | [.dmg](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-apple-silicon.dmg)                                                                                                                                                                                                             | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-apple-silicon-portable.zip) |
-| macOS 11+, Intel            | [.dmg](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-intel.dmg)                                                                                                                                                                                                                     | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-intel-portable.zip)         |
-| Linux, x64                  | [AppImage](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64.AppImage) · [.deb](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64.deb) · [.rpm](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64.rpm)       | [.tar.gz](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64-portable.tar.gz)     |
-| Linux, arm64                | [AppImage](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64.AppImage) · [.deb](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64.deb) · [.rpm](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64.rpm) | [.tar.gz](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64-portable.tar.gz)   |
+| Platform                 | Installer                                                                                                                                                                                                                                                                                                                         | Portable                                                                                                                |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Windows 10/11, x64       | [.exe](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-x64-setup.exe)                                                                                                                                                                                                                      | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-x64-portable.zip)         |
+| Windows 11, arm64        | [.exe](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-arm64-setup.exe)                                                                                                                                                                                                                    | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-windows-arm64-portable.zip)       |
+| macOS 11+, Apple silicon | [.dmg](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-apple-silicon.dmg)                                                                                                                                                                                                                    | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-apple-silicon-portable.zip) |
+| macOS 11+, Intel         | [.dmg](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-intel.dmg)                                                                                                                                                                                                                            | [.zip](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-macos-intel-portable.zip)         |
+| Linux, x64               | [AppImage](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64.AppImage) · [.deb](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64.deb) · [.rpm](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64.rpm)       | [.tar.gz](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-x64-portable.tar.gz)     |
+| Linux, arm64             | [AppImage](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64.AppImage) · [.deb](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64.deb) · [.rpm](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64.rpm) | [.tar.gz](https://github.com/vaelmail/vaelmail-desktop/releases/latest/download/VaelMail-linux-arm64-portable.tar.gz)   |
 
 The installers and the AppImage update themselves. `.deb` and `.rpm` update with a new package. Portable builds don't update. To upgrade one, replace the app and keep the `VaelMail Data` folder.
 
@@ -76,17 +76,8 @@ Everything from vaelmail.com is here: mail, contacts, aliases, domains, security
 - **Drag and drop** attachments in and out of messages.
 - **Proxy support**, including SOCKS5 for Tor.
 - **Portable mode** that runs from a USB stick and writes nothing to the registry or keychain.
-
-<table>
-  <tr>
-    <td><img src="docs/screenshots/start-menu.webp" alt="Start menu"></td>
-    <td><img src="docs/screenshots/compose.webp" alt="Writing a message"></td>
-  </tr>
-  <tr>
-    <td><img src="docs/screenshots/mail-light.webp" alt="Light theme"></td>
-    <td><img src="docs/screenshots/desktop-settings.webp" alt="Desktop settings"></td>
-  </tr>
-</table>
+- **Go to anything.** <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>Cmd</kbd> <kbd>K</kbd> on a Mac) opens any folder, page or action. <kbd>Ctrl</kbd> <kbd>1</kbd> to <kbd>6</kbd> switch between Mail, Contacts, Aliases, Services, Account and Settings.
+- **Keeps working under heavy traffic.** When vaelmail.com asks for a security check, the app solves it in the background. During an attack it asks for a short code, or continues by itself after 30 seconds.
 
 ## Signing in
 
@@ -125,21 +116,53 @@ cargo test --workspace
 
 <br>
 
-| Path                 | Contents                                                |
-| -------------------- | ------------------------------------------------------- |
-| `src`                | React interface: desktop shell, apps, mail, account     |
-| `src/lib/bridge`     | Typed calls from the interface into Rust                |
-| `crates/vael-client` | HTTP and WebSocket client, session, edge challenge      |
-| `crates/vael-store`  | Keychain, encrypted cache, settings                     |
-| `src-tauri`          | Tauri 2 app: commands, tray, notifications, updater     |
-| `install.sh`         | Installer for Linux and macOS                           |
-| `install.ps1`        | Installer for Windows                                   |
+| Path                 | Contents                                             |
+| -------------------- | ---------------------------------------------------- |
+| `src`                | React interface: app shell, views, mail, account     |
+| `src/lib/bridge`     | Typed calls from the interface into Rust             |
+| `crates/vael-client` | HTTP and WebSocket client, session, edge challenge   |
+| `crates/vael-store`  | Keychain, encrypted cache, settings                  |
+| `src-tauri`          | Tauri 2 app: commands, tray, notifications, updater  |
+| `installer`          | VaelMail Setup, the installer app around each bundle |
+| `install.sh`         | Installer for Linux and macOS                        |
+| `install.ps1`        | Installer for Windows                                |
 
 `src/styles/vael98` is generated from the web app by `pnpm sync:styles`. Edit the styles there.
 
 Pushing a `vX.Y.Z` tag makes GitHub Actions build, sign and publish a release for every platform.
 
 </details>
+
+## Gallery
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/mail-light.webp" alt="Inbox in the light theme"><br><sub>Light theme</sub></td>
+    <td width="50%"><img src="docs/screenshots/compose.webp" alt="Writing a message in the compose panel"><br><sub>Writing a message</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/go-to-anything.webp" alt="Go to anything palette"><br><sub>Go to anything, <kbd>Ctrl</kbd> <kbd>K</kbd></sub></td>
+    <td width="50%"><img src="docs/screenshots/aliases.webp" alt="Aliases"><br><sub>Aliases</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/account.webp" alt="Account overview"><br><sub>Account</sub></td>
+    <td width="50%"><img src="docs/screenshots/app-settings.webp" alt="App settings for notifications"><br><sub>App settings</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/sign-in.webp" alt="Sign-in screen"><br><sub>Sign in</sub></td>
+    <td width="50%"><img src="docs/screenshots/security-check.webp" alt="Security check shown during heavy traffic"><br><sub>Security check during heavy traffic</sub></td>
+  </tr>
+</table>
+
+**VaelMail Setup**, the Windows installer. macOS and Linux have their own versions.
+
+<table>
+  <tr>
+    <td width="33%"><img src="docs/screenshots/setup.webp" alt="VaelMail Setup, install options"></td>
+    <td width="33%"><img src="docs/screenshots/setup-progress.webp" alt="VaelMail Setup installing"></td>
+    <td width="33%"><img src="docs/screenshots/setup-done.webp" alt="VaelMail Setup finished"></td>
+  </tr>
+</table>
 
 ## License
 

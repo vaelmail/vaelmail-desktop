@@ -20,6 +20,27 @@ const desktopSettings = {
   proxy: { mode: "system", url: "" },
 };
 
+function emptyDraft(id: string) {
+  return {
+    id,
+    revision: 1,
+    identityId: "i1",
+    to: [] as unknown[],
+    cc: [] as unknown[],
+    bcc: [] as unknown[],
+    subject: "",
+    html: "",
+    editor: null as unknown,
+    plain: false,
+    attachmentIds: [] as string[],
+    threadId: null as string | null,
+    quote: "",
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+const drafts = new Map<string, ReturnType<typeof emptyDraft>>();
+
 function respond(status: number, value: unknown) {
   return { status, value };
 }
@@ -50,40 +71,30 @@ function request(args: Args) {
     return respond(200, { services: [], suggestions: [] });
   if (route === "/api/webmail/sync") return respond(200, {});
   if (route === "/api/webmail/drafts" && method === "POST") {
-    return respond(201, {
-      id: "00000000-0000-4000-8000-000000000001",
-      revision: 1,
-      identityId: "i1",
-      to: [],
-      cc: [],
-      bcc: [],
-      subject: "",
-      html: "",
-      editor: null,
-      plain: false,
-      attachmentIds: [],
-      threadId: null,
-      quote: "",
-      updatedAt: new Date().toISOString(),
-    });
+    const draft = emptyDraft("00000000-0000-4000-8000-00000000000" + (drafts.size + 1));
+    drafts.set(draft.id, draft);
+    return respond(201, draft);
   }
   if (/^\/api\/webmail\/drafts\/[^/]+$/.test(route)) {
-    return respond(200, {
-      id: route.split("/").at(-1),
-      revision: 1,
-      identityId: "i1",
-      to: [],
-      cc: [],
-      bcc: [],
-      subject: "",
-      html: "",
-      editor: null,
-      plain: false,
-      attachmentIds: [],
-      threadId: null,
-      quote: "",
-      updatedAt: new Date().toISOString(),
-    });
+    const id = route.split("/").at(-1) ?? "";
+    const stored = drafts.get(id) ?? emptyDraft(id);
+    if (method === "PATCH") {
+      const body = (args?.body ?? {}) as Partial<typeof stored>;
+      const next = {
+        ...stored,
+        ...body,
+        id,
+        revision: stored.revision + 1,
+        updatedAt: new Date().toISOString(),
+      };
+      drafts.set(id, next);
+      return respond(200, next);
+    }
+    if (method === "DELETE") {
+      drafts.delete(id);
+      return respond(200, {});
+    }
+    return respond(200, stored);
   }
   if (/^\/api\/webmail\/drafts\/[^/]+\/files$/.test(route)) return respond(200, []);
   if (route === "/api/account/security-checkup") return respond(200, { items: [] });
@@ -124,7 +135,7 @@ export function mockInvoke(command: string, args: Args): unknown {
       return desktopSettings;
     case "app_info":
       return {
-        version: "0.1.0",
+        version: "0.2.1",
         os: "linux",
         arch: "x86_64",
         webview: "browser",

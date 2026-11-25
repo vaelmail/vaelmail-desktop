@@ -1265,7 +1265,8 @@ body.vael98 [data-sonner-toaster] {
 
 body.vael98 .vx-app .wm-account,
 body.vael98 .vx-app .v98-new-message,
-body.vael98 .vx-app .wm-command-hint {
+body.vael98 .vx-app .wm-command-hint,
+body.vael98 .vx-app button:has(.wm-key) {
   display: none;
 }
 

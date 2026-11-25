@@ -25,10 +25,16 @@ export type BridgeEvents = {
   "upload:progress": { id: string; percent: number };
 };
 
+const preview: Partial<BridgeEvents> = { "realtime:status": "connected" };
+
 export function on<K extends keyof BridgeEvents>(
   name: K,
   handler: (payload: BridgeEvents[K]) => void,
 ): Promise<UnlistenFn> {
-  if (!native) return Promise.resolve(() => undefined);
+  if (!native) {
+    const value = preview[name];
+    if (value !== undefined) queueMicrotask(() => handler(value as BridgeEvents[K]));
+    return Promise.resolve(() => undefined);
+  }
   return listen<BridgeEvents[K]>(name, (event) => handler(event.payload));
 }

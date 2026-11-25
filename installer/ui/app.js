@@ -119,7 +119,7 @@ async function start() {
     const platform = new URLSearchParams(location.search).get("platform") || "windows";
     state.info = {
       platform,
-      version: "0.2.0",
+      version: "0.2.1",
       defaultDir: "C:\\Users\\you\\AppData\\Local\\Programs\\VaelMail",
       installed: null,
       payload: true,
