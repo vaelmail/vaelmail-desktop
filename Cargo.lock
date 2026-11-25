@@ -5816,10 +5816,11 @@ dependencies = [
 
 [[package]]
 name = "vael-client"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "bytes",
  "futures-util",
+ "log",
  "percent-encoding",
  "regex",
  "reqwest",
@@ -5837,7 +5838,7 @@ dependencies = [
 
 [[package]]
 name = "vael-store"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "keyring",
  "rand 0.9.5",
@@ -5851,7 +5852,7 @@ dependencies = [
 
 [[package]]
 name = "vaelmail-desktop"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -5887,7 +5888,7 @@ dependencies = [
 
 [[package]]
 name = "vaelmail-setup"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "serde",
  "serde_json",

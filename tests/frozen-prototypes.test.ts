@@ -1,21 +1,16 @@
-// @vitest-environment node
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createRequire } from "node:module";
 import { runInNewContext } from "node:vm";
 import { describe, expect, it } from "vitest";
 
-// The desktop webview hardens Object.prototype with public/harden.js (instead
-// of Tauri's freezePrototype). These tests run code the way the webview does:
-// in a fresh realm after hardening.
-const harden = readFileSync(resolve(__dirname, "../public/harden.js"), "utf8");
+const harden = readFileSync(resolve(process.cwd(), "public/harden.js"), "utf8");
 const require = createRequire(import.meta.url);
 const signalsFile = createRequire(require.resolve("@dnd-kit/state"))
   .resolve("@preact/signals-core")
   .replace(/signals-core\.js$/, "signals-core.module.js");
 const signals = readFileSync(signalsFile, "utf8");
 
-// Each snippet runs as its own strict function after the setup script.
 function run(setup: string, code: string) {
   const context: Record<string, unknown> = {};
   runInNewContext(setup + '\n(function(){"use strict";' + code + "\n})();", context);

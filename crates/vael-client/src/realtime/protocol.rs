@@ -35,6 +35,10 @@ pub fn subscribe_frame(queries: &[Subscription]) -> String {
     json!({ "version": VERSION, "type": "subscribe", "queries": queries }).to_string()
 }
 
+pub fn ping_frame() -> String {
+    json!({ "version": VERSION, "type": "ping" }).to_string()
+}
+
 pub fn cancel_frame(id: &str) -> String {
     json!({ "version": VERSION, "type": "cancel", "id": id }).to_string()
 }

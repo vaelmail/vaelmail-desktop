@@ -72,6 +72,7 @@ fn plugins(builder: tauri::Builder<tauri::Wry>) -> tauri::Builder<tauri::Wry> {
             tauri_plugin_log::Builder::new()
                 .level(log::LevelFilter::Warn)
                 .level_for("vaelmail_desktop_lib", log::LevelFilter::Info)
+                .level_for("vael_client", log::LevelFilter::Info)
                 .max_file_size(2_000_000)
                 .clear_targets()
                 .target(log_target())

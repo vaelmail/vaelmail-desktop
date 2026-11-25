@@ -26,6 +26,9 @@ type Sink = SplitSink<Socket, Message>;
 type Source = SplitStream<Socket>;
 
 const WATCHDOG_TICK: Duration = Duration::from_secs(5);
+const PROBE_AFTER: Duration = Duration::from_secs(35);
+const PROBE_TIMEOUT: Duration = Duration::from_secs(4);
+const CLOSE_TIMEOUT: Duration = Duration::from_secs(2);
 const FALLBACK_INTERVAL: Duration = Duration::from_secs(30);
 const CONNECT_TIMEOUT: Duration = Duration::from_secs(20);
 const SESSION_CLOSE_CODES: [u16; 2] = [4401, 4403];
@@ -35,8 +38,10 @@ struct Pending {
     reply: oneshot::Sender<Option<RpcResponse>>,
 }
 
+#[derive(Debug)]
 enum Exit {
     SessionEnded,
+    Unauthorized,
     Stopped,
     Dropped,
     Rejected,
@@ -85,7 +90,7 @@ impl Shared {
                 });
             }
             Command::Stop => return true,
-            Command::Cancel { .. } | Command::Forget(_) | Command::Reconnect => {}
+            Command::Cancel { .. } | Command::Forget(_) | Command::Reconnect | Command::Wake => {}
         }
         false
     }
@@ -127,8 +132,10 @@ fn rejection(error: &SocketError) -> Exit {
     if level > 0 {
         return Exit::Challenged(level);
     }
-    match response.status().as_u16() {
-        401 => Exit::SessionEnded,
+    let status = response.status().as_u16();
+    log::warn!("realtime handshake rejected with HTTP {status}");
+    match status {
+        401 => Exit::Unauthorized,
         403 => Exit::Forbidden,
         _ => Exit::Rejected,
     }
@@ -148,6 +155,7 @@ async fn send(sink: &mut Sink, text: String) -> bool {
 struct Greeting {
     rpc: bool,
     snapshots: bool,
+    pings: bool,
     revision: i64,
 }
 
@@ -160,18 +168,24 @@ async fn serve(
     let mut greeting = Greeting {
         rpc: false,
         snapshots: false,
+        pings: false,
         revision: -1,
     };
     let mut heartbeat = Instant::now();
+    let mut probe: Option<Instant> = None;
     let mut watchdog = interval(WATCHDOG_TICK);
 
     let exit = loop {
         tokio::select! {
             frame = source.next() => match frame {
                 None => break Exit::Dropped,
-                Some(Err(_)) => break Exit::Dropped,
+                Some(Err(error)) => {
+                    log::warn!("realtime connection error: {error}");
+                    break Exit::Dropped;
+                }
                 Some(Ok(Message::Close(frame))) => {
                     let code = frame.map(|f| u16::from(f.code));
+                    log::info!("realtime closed by server (code {code:?})");
                     break if code.is_some_and(|c| SESSION_CLOSE_CODES.contains(&c)) {
                         Exit::SessionEnded
                     } else {
@@ -179,6 +193,8 @@ async fn serve(
                     };
                 }
                 Some(Ok(Message::Text(text))) => {
+                    heartbeat = Instant::now();
+                    probe = None;
                     if text.len() > SOCKET_FRAME_LIMIT {
                         continue;
                     }
@@ -187,11 +203,26 @@ async fn serve(
                         break Exit::Dropped;
                     }
                 }
-                Some(Ok(_)) => {}
+                Some(Ok(_)) => {
+                    heartbeat = Instant::now();
+                    probe = None;
+                }
             },
             command = commands.recv() => match command {
                 None | Some(Command::Stop) => break Exit::Stopped,
                 Some(Command::Reconnect) => break Exit::Dropped,
+                Some(Command::Wake) => {
+                    if probe.is_none() && heartbeat.elapsed() > PROBE_TIMEOUT {
+                        if greeting.pings {
+                            if !send(&mut sink, protocol::ping_frame()).await {
+                                break Exit::Dropped;
+                            }
+                            probe = Some(Instant::now());
+                        } else if heartbeat.elapsed() > PROBE_AFTER {
+                            break Exit::Dropped;
+                        }
+                    }
+                }
                 Some(command) => {
                     if on_command(shared, &mut sink, &greeting, command).await.is_err() {
                         break Exit::Dropped;
@@ -200,12 +231,23 @@ async fn serve(
             },
             _ = watchdog.tick() => {
                 if heartbeat.elapsed() > Duration::from_secs(HEARTBEAT_WATCHDOG_SECS) {
+                    log::warn!("realtime connection silent for {}s, reconnecting", heartbeat.elapsed().as_secs());
                     break Exit::Dropped;
+                }
+                if probe.is_some_and(|sent| sent.elapsed() > PROBE_TIMEOUT) {
+                    log::warn!("realtime connection did not answer a ping, reconnecting");
+                    break Exit::Dropped;
+                }
+                if probe.is_none() && greeting.pings && heartbeat.elapsed() > PROBE_AFTER {
+                    if !send(&mut sink, protocol::ping_frame()).await {
+                        break Exit::Dropped;
+                    }
+                    probe = Some(Instant::now());
                 }
             }
         }
     };
-    let _ = sink.close().await;
+    let _ = timeout(CLOSE_TIMEOUT, sink.close()).await;
     exit
 }
 
@@ -239,6 +281,8 @@ async fn on_frame(
             if kind == "ready" {
                 greeting.rpc = frame.get("rpc").and_then(Value::as_bool) == Some(true);
                 greeting.snapshots = frame.get("snapshots").and_then(Value::as_bool) == Some(true);
+                greeting.pings = frame.get("ping").and_then(Value::as_bool) == Some(true);
+                log::info!("realtime connected");
                 greeting.revision = -1;
                 shared.settle(if greeting.rpc {
                     TransportState::Ready
@@ -330,7 +374,7 @@ async fn on_command(
         Command::Forget(id) => {
             shared.pending.remove(&id);
         }
-        Command::Reconnect | Command::Stop => {}
+        Command::Reconnect | Command::Wake | Command::Stop => {}
     }
     Ok(())
 }
@@ -366,11 +410,28 @@ pub async fn run(
                 attempt = 0;
                 serve(&mut shared, socket, &mut commands).await
             }
-            Ok(Err(error)) => rejection(&error),
-            Err(_) => Exit::Dropped,
+            Ok(Err(error)) => {
+                if !matches!(error, SocketError::Http(_)) {
+                    log::warn!("realtime connect failed: {error}");
+                }
+                rejection(&error)
+            }
+            Err(_) => {
+                log::warn!(
+                    "realtime connect timed out after {}s",
+                    CONNECT_TIMEOUT.as_secs()
+                );
+                Exit::Dropped
+            }
         };
+        if !matches!(exit, Exit::Stopped) {
+            log::info!("realtime disconnected: {exit:?}");
+        }
         let exit = match exit {
-            Exit::Forbidden if session_lost(&shared.client).await => Exit::SessionEnded,
+            Exit::Unauthorized | Exit::Forbidden if session_lost(&shared.client).await => {
+                Exit::SessionEnded
+            }
+            Exit::Unauthorized => Exit::Rejected,
             Exit::Forbidden => Exit::Rejected,
             Exit::Challenged(level) => {
                 if shared.client.clear_challenge(level).await {
@@ -390,7 +451,11 @@ pub async fn run(
                 shared.emit(Event::SessionEnded);
                 return;
             }
-            Exit::Dropped | Exit::Rejected | Exit::Challenged(_) | Exit::Forbidden => {}
+            Exit::Dropped
+            | Exit::Rejected
+            | Exit::Challenged(_)
+            | Exit::Forbidden
+            | Exit::Unauthorized => {}
         }
 
         shared.emit(Event::Status(Status::Polling));
@@ -410,6 +475,10 @@ pub async fn run(
                 command = commands.recv() => match command {
                     None => return,
                     Some(Command::Reconnect) => break,
+                    Some(Command::Wake) => {
+                        attempt = 0;
+                        break;
+                    }
                     Some(command) => {
                         if shared.handle_idle(command) {
                             return;

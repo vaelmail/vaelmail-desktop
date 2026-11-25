@@ -89,6 +89,11 @@ pub fn quit(app: &AppHandle) {
 }
 
 pub fn on_window_event(window: &tauri::Window, event: &WindowEvent) {
+    if let WindowEvent::Focused(true) = event {
+        if let Some(realtime) = window.app_handle().state::<AppState>().realtime() {
+            realtime.wake();
+        }
+    }
     if let WindowEvent::CloseRequested { api, .. } = event {
         let app = window.app_handle();
         api.prevent_close();

@@ -1,17 +1,3 @@
-// Tamper-proof Object.prototype without the "override mistake".
-//
-// Tauri's security.freezePrototype runs Object.freeze(Object.prototype). That
-// blocks prototype pollution, but it also makes every inherited built-in
-// (valueOf, toString, constructor, hasOwnProperty, ...) read-only on ALL
-// objects: a plain assignment such as `Thing.prototype.valueOf = fn` or
-// `Child.prototype.constructor = Child` then throws "Cannot assign to read only
-// property". Libraries do this routinely, which crashed whole panels.
-//
-// Same approach as SES (enablePropertyOverrides): each data property becomes a
-// getter/setter pair before the freeze. Reads are unchanged. Assigning on
-// Object.prototype itself still throws, so nothing can replace or add
-// built-ins there; assigning on any other object defines an own property, as
-// it would without the freeze. Loaded as the first script, before app code.
 (function () {
   "use strict";
   var proto = Object.prototype;

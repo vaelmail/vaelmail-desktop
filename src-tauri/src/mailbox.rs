@@ -58,6 +58,11 @@ fn set_online(app: &AppHandle, online: bool) {
     if state.online.swap(online, Ordering::Relaxed) != online {
         events::emit(app, events::NETWORK_ONLINE, online);
         badge::refresh(app);
+        if online {
+            if let Some(realtime) = state.realtime() {
+                realtime.wake();
+            }
+        }
     }
 }
 

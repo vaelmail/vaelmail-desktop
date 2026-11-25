@@ -56,6 +56,7 @@ pub(crate) enum Command {
     },
     Forget(String),
     Reconnect,
+    Wake,
     Stop,
 }
 
@@ -95,6 +96,10 @@ impl Realtime {
 
     pub fn reconnect(&self) {
         let _ = self.commands.send(Command::Reconnect);
+    }
+
+    pub fn wake(&self) {
+        let _ = self.commands.send(Command::Wake);
     }
 
     pub fn cancel(&self, id: &str) {
